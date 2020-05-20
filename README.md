@@ -1,2 +1,2 @@
 # WFLapp
-IT Working project from World Fighting League
+IT Project for World Fighting League.
