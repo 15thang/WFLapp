@@ -1,0 +1,172 @@
+body{
+	 background-image: url("../pics/background2.jpg");
+	 background-size: cover;
+}
+
+@font-face {
+font-family: "raleway";
+src: url("../fonts/raleway-regular-webfont.woff2") format("woff2"),
+url("../fonts/raleway-regular-webfont.otf") format("opentype");
+font-weight: normal;
+font-style: normal;
+}
+
+
+#menu			 	{
+					position: relative;
+					border-width: 1px;
+					/*border-style: none groove none groove;
+					border-color: #4e31de;*/
+					list-style-type: none;
+					overflow: hidden;
+					text-align: center;
+
+}
+
+#container{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	margin: 40px;
+	padding-bottom: 20px;
+	background-image: linear-gradient(to bottom, rgba(0, 163, 52,0) , rgba(0, 255, 229, 1) , rgba(0, 163, 52,0));
+	
+}
+
+#athlete{
+  background-color: rgba(110, 178, 255, 0.5);
+  width: 20%;
+  padding: 20px;
+  border: 5px solid rgba(255, 0, 0, 0.6);
+  border-style: solid none;
+  border-radius: 1%;
+  display: inline-block;
+  margin-top: 15px;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+#athlete a{
+  color: white;
+  font-size: 40px;
+  font-family: raleway;
+  font-weight: bold;
+  opacity: 1;
+  text-decoration: none;
+}
+
+#athlete:hover{
+  background-image: linear-gradient(to bottom, rgba(0, 163, 52,0) , rgba(0, 255, 229, 1) , rgba(0, 163, 52,0));	
+  opacity: 1;
+  transition: 0.3s;  
+}
+
+#events{
+  margin-top: 15px;
+  background-color: rgba(110, 178, 255, 0.6);
+  width: 20%;
+  padding: 20px;
+  border: 5px solid rgba(255, 255, 255, 0.6);
+  border-style: solid none;
+  border-radius: 1%;
+  opacity: 0.8;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+#events a{
+  color: white;
+  font-size: 40px;
+  font-family: raleway;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#events:hover{
+	background-image: linear-gradient(to bottom, rgba(0, 163, 52,0) , rgba(0, 255, 229, 1) , rgba(0, 163, 52,0));
+	opacity: 1;
+	transition: 0.3s;
+}
+
+#competition{
+  margin-top: 15px;
+  background-color: rgba(110, 178, 255, 0.5);
+  width: 50%;
+  padding: 20px;
+  border: 5px solid rgba(8, 0, 247, 0.6);
+  border-style: solid none;
+  border-radius: 1%;
+  opacity: 0.8;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+#competition a{
+  color: white;
+  font-size: 40px;
+  font-family: raleway;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#competition:hover{
+	background-image: linear-gradient(to bottom, rgba(0, 163, 52,0) , rgba(0, 255, 229, 1) , rgba(0, 163, 52,0));
+	opacity: 1;
+	transition: 0.3s;
+}
+
+#videos{
+  margin-top: 15px;
+  background-color: rgba(110, 178, 255, 0.6);
+  width: 20%;
+  padding: 20px;
+  height: relative;
+  border: 5px solid rgba(255, 255, 255, 0.6);
+  border-style: solid none;
+  border-radius: 1%;
+  opacity: 0.8;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+#videos a{
+  color: white;
+  font-size: 40px;
+  font-family: raleway;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#videos:hover{
+	background-image: linear-gradient(to bottom, rgba(0, 163, 52,0) , rgba(0, 255, 229, 1) , rgba(0, 163, 52,0));
+	opacity: 1;
+	transition: 0.3s;
+}
+
+#output{
+  margin-top: 15px;
+  background-color: rgba(110, 178, 255, 0.5);
+  width: 20%;
+  padding: 20px;
+  height: relative;
+  border: 5px solid rgba(255, 0, 0, 0.6);
+  border-style: solid none;
+  border-radius: 1%;
+  opacity: 0.8;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+#output a{
+  color: white;
+  font-size: 40px;
+  font-family: raleway;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#output:hover{
+	background-image: linear-gradient(to bottom, rgba(0, 163, 52,0) , rgba(0, 255, 229, 1) , rgba(0, 163, 52,0));
+	opacity: 1;
+	transition: 0.3s;
+}

@@ -1,0 +1,159 @@
+#picture_event{
+    margin-right: auto;
+	margin-left: auto;
+	max-width: 400px;
+	max-height: 400px;
+	overflow: hidden;
+	flex-direction: row;
+	padding: 0;
+	border: 5px solid white;
+	box-shadow: 0px 0px 30px 0px rgba(255,255,255,1);
+}
+
+#pic {
+    padding: 0;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+	max-height: 100%;	
+}
+
+#matchup{
+  margin-top: 15px;
+  background-color: rgba(191, 191, 191, 0.5);
+  width: 50%;
+  margin-left: 25%;
+  padding: 20px;
+  border: 5px solid rgba(255, 255, 255, 0.6);
+  border-style: solid none;
+  border-radius: 1%;
+  opacity: 0.8;
+  display: inline-block;
+}
+
+#matchup a{
+  color: white;
+  font-size: 40px;
+  font-family: raleway;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#eventinformation {
+	margin-right: auto;
+	margin-left: auto;
+	position: static;
+    background-image: linear-gradient(to bottom, rgba(255, 53, 38, 1) , rgba(217, 113, 113, 0.5) , rgba(255, 53, 38, 0.1));
+    height: auto;
+	width: 27%;
+    overflow-wrap: break-word;
+	overflow: hidden;
+}
+
+
+#eventinformation th{
+	font-family: "raleway";
+	font-weight: bolder;
+	font-size: 16px;
+}
+
+#eventinformation tr{
+	font-family: "raleway";
+	font-weight: bolder;
+	font-size: 16px;
+	width: 10%;
+}
+
+#eventinformation td{
+	font-family: "raleway";
+	font-size: 14px;
+
+}
+
+#redcorner td, th{
+    border: 2px solid #FFFFFF;
+    text-align: center;
+	width: 80%;
+    padding: 10px;
+	font-family: "raleway";
+	font-weight: bolder;
+	font-size: 16px;
+}
+
+#redcorner td{
+background: rgb(6,0,117);
+background: linear-gradient(173deg, rgba(6,0,117,0.8) 0%, rgba(121,52,115,1) 15%, rgba(255,35,35,1) 50%, rgba(170,75,114,1) 85%, rgba(255,255,255,1) 100%);
+width: 50%;	
+}
+
+#bluecorner td, th{
+    border: 2px solid #FFFFFF;
+    text-align: center;
+	padding: 15px;
+	width: 60%;
+	font-family: "raleway";
+	font-weight: bolder;
+	font-size: 16px;
+}
+
+#bluecorner td{
+	background: rgb(35,106,255);
+	background: linear-gradient(187deg, rgba(255,35,35,0.8) 0%, rgba(121,52,115,1) 15%, rgba(35,106,255,1) 50%, rgba(170,75,114,1) 85%, rgba(255,255,255,1) 100%);
+
+}
+
+#redcorner tr:nth-child(odd) {
+    background-color: rgba(221, 221, 221, 0.8);
+}
+
+#bluecorner tr:nth-child(odd) {
+    background-color: rgba(221, 221, 221, 0.8);
+}
+
+#eventcompetition{
+  margin-top: 15px;
+  background-color: rgba(227, 227, 227, 0.6);
+  width: 80%;
+  margin-left: 10%;
+  padding: 20px;
+  border: 5px solid rgba(255, 255 , 255 , 0.6);
+  border-top: 5px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 5px solid rgba(25, 0, 255, 0.6);
+  border-style: solid none;
+  border-radius: 1%;
+  opacity: 0.9;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+#eventcompetition a{
+  color: white;
+  font-size: 40px;
+  font-family: raleway;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#eventcompetition:hover{
+	background-image: linear-gradient(to bottom, rgba(0, 163, 52,0) , rgba(212, 212, 212, 1) , rgba(0, 163, 52,0));
+	opacity: 1;
+	transition: 0.3s;
+}
+
+#cornerPic {
+	width: 140px;
+	height: 140px;
+	overflow: hidden;
+}
+
+#athleteVSdiv {
+	font-size: 15px;
+	font-family: raleway;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 25px;
+	font-family: raleway;
+	font-weight: bold;
+}
