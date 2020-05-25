@@ -455,12 +455,8 @@ while ($row = $results->fetch_assoc()) {
 
         //$athlete_total_matches = $athlete_wins + $athlete_losses + $athlete_draws;
 
-        //echo wat je hebt ingevuld
-        echo $athlete_firstname . $athlete_lastname . $athlete_nickname . $athlete_weightclass . $athlete_grade . $athlete_nationality . $athlete_day_of_birth
-            . $athlete_description;
-
         //check of picture input leeg is
-        if ($_FILES['athlete_picture']['size'] == 0 && $_FILES['cover_image']['error'] == 0)
+        if($_FILES['athlete_picture']['error'] > 0)
         {
             $dst = $athlete_picture;
         }
@@ -472,14 +468,18 @@ while ($row = $results->fetch_assoc()) {
             move_uploaded_file($_FILES["athlete_picture"]["tmp_name"], $dst);
         }
 
+        //echo wat je hebt ingevuld
+        echo $athlete_firstname . $athlete_lastname . $athlete_nickname . $athlete_weightclass . $athlete_grade . $athlete_nationality . $athlete_day_of_birth
+            . $athlete_description . ' picture= '.$dst;
+
         /*athlete_total_matches = '$athlete_total_matches', athlete_wins = '$athlete_wins', athlete_losses = '$athlete_losses', athlete_draws = '$athlete_draws', athlete_points = '$athlete_points'*/
 
         $query = "UPDATE athletes SET athlete_firstname = '$athlete_firstname', athlete_lastname = '$athlete_lastname', athlete_nickname = '$athlete_nickname', athlete_gender = '$athlete_gender',
-                  athlete_picture = '$dst', athlete_height = '$athlete_height', athlete_weight = '$athlete_weight', athlete_weightclass = '$athlete_weightclass',
+                  athlete_picture = '$dst', athlete_weight = '$athlete_weight', athlete_weightclass = '$athlete_weightclass',
                   athlete_grade = '$athlete_grade', athlete_nationality = '$athlete_nationality', athlete_day_of_birth = '$athlete_day_of_birth', athlete_description = '$athlete_description',
                   athlete_email = '$athlete_email', athlete_phone1 = '$athlete_phone1', athlete_phone2 = '$athlete_phone2', athlete_adress = '$athlete_adress', athlete_postal_code = '$athlete_postal_code', athlete_city = '$athlete_city',
                   athlete_facebook = '$athlete_facebook', athlete_twitter = '$athlete_twitter', athlete_instagram = '$athlete_instagram', athlete_linkedin = '$athlete_linkedin', athlete_youtube = '$athlete_youtube'
-                  WHERE athlete_id = $athlete_id";
+                  WHERE athlete_id = '$athlete_id'";
         mysqli_query($db, $query);
         header('location: APP_website2.php');
 
