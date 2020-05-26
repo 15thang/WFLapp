@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:wfl_app/model/event.dart';
 import 'package:wfl_app/model/redbluecorner.dart';
+import 'dart:math';
 
 class EventsDetailPage extends StatefulWidget {
   //Declare a field that holds the Event.
@@ -121,7 +122,6 @@ class _EventPageState extends State<EventsDetailPage> {
                         ),
                         //vs
                         Container(
-                          padding: const EdgeInsets.only(top: 30),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
@@ -144,15 +144,14 @@ class _EventPageState extends State<EventsDetailPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
-                              //red corner
-                              Container(
+                              //blue corner
+                              new Container(
                                 width: 130,
                                 height: 130,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(5),
-                                      topLeft: Radius.circular(5)),
-                                  image: new DecorationImage(
+                                child: new Transform(
+                                  alignment: Alignment.center,
+                                  transform: Matrix4.rotationY(3.14159265359),
+                                  child: Image(
                                       image: new NetworkImage(
                                           _notes[index].bluecornerPicture),
                                       fit: BoxFit.cover),
