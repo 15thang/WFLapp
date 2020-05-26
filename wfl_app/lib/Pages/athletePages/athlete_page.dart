@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 import 'package:wfl_app/Pages/components/athlete_sliver_app_bar.dart';
+import 'package:wfl_app/Pages/components/athlete_drawer.dart';
 import 'package:wfl_app/Pages/delegates/sliver_persistent_header_delegate_impl.dart';
 import 'athlete_32.dart';
 import 'athlete_36.dart';
@@ -43,7 +44,6 @@ class _AthletePageState extends State<AthletePage>
     Tuple3('40', W40(), Icon(Icons.image)),
     Tuple3('36', W36(), Icon(Icons.image)),
     Tuple3('32', W32(), Icon(Icons.image)),
-
   ];
 
   TabController _tabController;
@@ -88,6 +88,7 @@ class _AthletePageState extends State<AthletePage>
           children: _pages.map<Widget>((Tuple3 page) => page.item2).toList(),
         ),
       ),
+      drawer: AthleteDrawer(),
     );
   }
 }
