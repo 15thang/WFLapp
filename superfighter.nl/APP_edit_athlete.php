@@ -370,6 +370,9 @@ while ($row = $results->fetch_assoc()) {
         <input type="date" name="athlete_day_of_birth" min="1930-01-01" max="2015-01-01" value="' . $row['athlete_day_of_birth'] . '" required><br>
         <label>Description</label><br>
         <input type="text" name="athlete_description" value="' . $row['athlete_description'] . '"><br>
+        <label>VA-number <font color="red">*</font></label><br>
+        <input type="text" name="athlete_va_number" value="' . $row['va_number'] . '" required><br>
+        <br>
         <!--<label>Athlete wins</label><br>
         <input type="number" name="athlete_wins" value="' . $row['athlete_wins'] . '"><br>
         <label>Athlete losses</label><br>
@@ -435,6 +438,7 @@ while ($row = $results->fetch_assoc()) {
         $athlete_nationality = ($_POST['athlete_nationality']);
         $athlete_day_of_birth = date('Y-m-d', strtotime($_POST['athlete_day_of_birth']));
         $athlete_description = (str_replace("'","",$_POST['athlete_description']));
+        $va_number = ($_POST['athlete_va_number']);
         /*$athlete_wins = ($_POST['athlete_wins']);
         $athlete_losses = ($_POST['athlete_losses']);
         $athlete_draws = ($_POST['athlete_draws']);
@@ -462,7 +466,8 @@ while ($row = $results->fetch_assoc()) {
         //check of picture input leeg is
         if ($_FILES['athlete_picture']['size'] == 0 && $_FILES['cover_image']['error'] == 0)
         {
-            $dst = $athlete_picture;
+            $dst="pics/athlete_avatar.png";
+            move_uploaded_file($_FILES["athlete_picture"]["tmp_name"], $dst);
         }
         else {
             // cover_image is empty (and not an error)
@@ -476,7 +481,7 @@ while ($row = $results->fetch_assoc()) {
 
         $query = "UPDATE athletes SET athlete_firstname = '$athlete_firstname', athlete_lastname = '$athlete_lastname', athlete_nickname = '$athlete_nickname', athlete_gender = '$athlete_gender',
                   athlete_picture = '$dst', athlete_height = '$athlete_height', athlete_weight = '$athlete_weight', athlete_weightclass = '$athlete_weightclass',
-                  athlete_grade = '$athlete_grade', athlete_nationality = '$athlete_nationality', athlete_day_of_birth = '$athlete_day_of_birth', athlete_description = '$athlete_description',
+                  athlete_grade = '$athlete_grade', athlete_nationality = '$athlete_nationality', athlete_day_of_birth = '$athlete_day_of_birth', athlete_description = '$athlete_description', va_number = '$va_number',
                   athlete_email = '$athlete_email', athlete_phone1 = '$athlete_phone1', athlete_phone2 = '$athlete_phone2', athlete_adress = '$athlete_adress', athlete_postal_code = '$athlete_postal_code', athlete_city = '$athlete_city',
                   athlete_facebook = '$athlete_facebook', athlete_twitter = '$athlete_twitter', athlete_instagram = '$athlete_instagram', athlete_linkedin = '$athlete_linkedin', athlete_youtube = '$athlete_youtube'
                   WHERE athlete_id = $athlete_id";
