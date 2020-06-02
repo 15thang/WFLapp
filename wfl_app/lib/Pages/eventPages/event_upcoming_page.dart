@@ -13,7 +13,6 @@ class UpcomingEvents extends StatefulWidget {
 
   @override
   _EventPageState createState() => _EventPageState();
-
 }
 
 //Future is to launch URL buttons (like buy ticket)
@@ -74,27 +73,15 @@ class _EventPageState extends State<UpcomingEvents> {
               color: Colors.blueGrey[100],
               elevation: 5,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    height: 265,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(5),
-                          topLeft: Radius.circular(5)),
-                    ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                          height: 200,
-                          width: 400,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
-                                height: 200,
+                                height: 220,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(5),
@@ -109,13 +96,12 @@ class _EventPageState extends State<UpcomingEvents> {
                           ),
                         ),
                         Container(
-                          height: 65,
-                          width: 400,
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Container(
-                                  width: 230,
+                              Expanded(
+                                flex: 4,
+                                child: Container(
                                   padding:
                                       const EdgeInsets.only(top: 7, left: 10),
                                   child: Column(
@@ -131,30 +117,36 @@ class _EventPageState extends State<UpcomingEvents> {
                                         height: 10,
                                       ),
                                     ],
-                                  )),
-                              Container(
-                                margin: const EdgeInsets.only(left: 6.0),
-                                padding: const EdgeInsets.all(5),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    RaisedButton(
-                                      onPressed: () {
-                                        launchURL(
-                                            _notes[index].eventTicketLink);
-                                      },
-                                      child: Text(
-                                        'Buy Tickets',
-                                        style: TextStyle(
-                                          color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.all(5),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      RaisedButton(
+                                        onPressed: () {
+                                          launchURL(
+                                              _notes[index].eventTicketLink);
+                                        },
+                                        child: Text(
+                                          'Buy Tickets',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
                                         ),
+                                        color: Colors.lightBlue[400],
                                       ),
-                                      color: Colors.lightBlue[400],
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

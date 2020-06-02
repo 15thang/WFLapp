@@ -38,6 +38,10 @@ class _EventPageState extends State<EventsDetailPage> {
     return notes;
   }
 
+  final GlobalKey _cardKey = GlobalKey();
+  Size cardSize;
+  Offset cardPosition;
+
   @override
   void initState() {
     fetchNotes().then((value) {
@@ -46,11 +50,22 @@ class _EventPageState extends State<EventsDetailPage> {
       });
     });
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => getSizeAndPosition());
+  }
+
+  getSizeAndPosition() {
+    RenderBox _cardBox = _cardKey.currentContext.findRenderObject();
+    cardSize = _cardBox.size;
+    cardPosition = _cardBox.localToGlobal(Offset.zero);
+    print(cardSize);
+    print(cardPosition);
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      key: _cardKey,
       backgroundColor: Colors.grey[800],
       body: CustomScrollView(
         slivers: <Widget>[
@@ -77,102 +92,99 @@ class _EventPageState extends State<EventsDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         //redcorner
-                        Container(
-                          height: 220,
-                          width: 150,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(5),
-                                topLeft: Radius.circular(5)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              //red corner
-                              Container(
-                                width: 130,
-                                height: 130,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(5),
-                                      topLeft: Radius.circular(5)),
-                                  image: new DecorationImage(
-                                      image: new NetworkImage(
-                                          _notes[index].redcornerPicture),
-                                      fit: BoxFit.cover),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            width: 130,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  width: 130,
+                                  height: 130,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(5),
+                                        topLeft: Radius.circular(5)),
+                                    image: new DecorationImage(
+                                        image: new NetworkImage(
+                                            _notes[index].redcornerPicture),
+                                        fit: BoxFit.cover),
+                                  ),
                                 ),
-                              ),
-                              //red corner
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                height: 90,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(_notes[index].redcornerFullName,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                    Text(_notes[index].redcornerNickname),
-                                    Text(_notes[index].redcornerNationality),
-                                  ],
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  height: 90,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(_notes[index].redcornerFullName,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      Text(_notes[index].redcornerNickname),
+                                      Text(_notes[index].redcornerNationality),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         //vs
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Text(' '),
-                              Text('VS',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                            ],
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            width: 111.4,
+                            alignment: Alignment.center,
+                            child: Column(
+                              children: <Widget>[
+                                Text(' '),
+                                Text('VS',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                              ],
+                            ),
                           ),
                         ),
                         //blue corner
-                        Container(
-                          height: 220,
-                          width: 187.4,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(5),
-                                topLeft: Radius.circular(5)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
-                              //blue corner
-                              new Container(
-                                width: 130,
-                                height: 130,
-                                child: new Transform(
-                                  alignment: Alignment.center,
-                                  transform: Matrix4.rotationY(3.14159265359),
-                                  child: Image(
-                                      image: new NetworkImage(
-                                          _notes[index].bluecornerPicture),
-                                      fit: BoxFit.cover),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            width: 130,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                //blue corner
+                                new Container(
+                                  width: 130,
+                                  height: 130,
+                                  child: new Transform(
+                                    alignment: Alignment.center,
+                                    transform: Matrix4.rotationY(3.14159265359),
+                                    child: Image(
+                                        image: new NetworkImage(
+                                            _notes[index].bluecornerPicture),
+                                        fit: BoxFit.cover),
+                                  ),
                                 ),
-                              ),
-                              //red corner
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                height: 90,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(_notes[index].bluecornerFullName,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                    Text(_notes[index].bluecornerNickname),
-                                    Text(_notes[index].bluecornerNationality),
-                                  ],
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  height: 90,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(_notes[index].bluecornerFullName,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      Text(_notes[index].bluecornerNickname),
+                                      Text(_notes[index].bluecornerNationality),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
