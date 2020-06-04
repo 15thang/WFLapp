@@ -65,5 +65,5 @@ foreach ($eventArray as $eventid) {
 
 $query = "UPDATE athletecompetition SET points = '$total_points' WHERE athlete_id = '$athlete_id' AND competition_id = '$comp_id'";
 mysqli_query($db, $query);
-header('location: APP_competition_info.php?competition_id='.$comp_id);
+header('location: APP_athlete_total_stats.php?comp_id='.$comp_id.'&athlete_id='.$athlete_id);
 ?>

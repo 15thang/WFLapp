@@ -12,24 +12,25 @@ class AthletesDetailPage extends StatefulWidget {
 
   // In the constructor, require a Athlete.
   AthletesDetailPage({Key key, @required this.athlete}) : super(key: key);
-  
+
   @override
   _AthletesDetailPageState createState() => _AthletesDetailPageState();
 }
 
 class _AthletesDetailPageState extends State<AthletesDetailPage>
     with SingleTickerProviderStateMixin {
-      
-  final List<Tuple3> _pages = [
-    Tuple3('Info', AthletesInfoPage(), Icon(Icons.image)),
-    Tuple3('Match history', AthletesCompPage(), Icon(Icons.image)),
-  ];
+  List<Tuple3> _pages;
 
   TabController _tabController;
 
   @override
   void initState() {
     super.initState();
+    _pages = [
+      Tuple3('Info', AthletesInfoPage(athlete: widget.athlete), Icon(Icons.image)),
+      Tuple3('Match history', AthletesCompPage(athlete: widget.athlete),
+          Icon(Icons.image)),
+    ];
     _tabController = TabController(length: _pages.length, vsync: this);
     _tabController.addListener(() => setState(() {}));
   }

@@ -1,56 +1,14 @@
-import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/athletes.dart';
-import 'athlete_detail_page.dart';
 
-class AthletesInfoPage extends StatefulWidget {
-  const AthletesInfoPage({Key key}) : super(key: key);
+class AthletesInfoPage extends StatelessWidget {
+  // Declare a field that holds the Athlete.
+  final Athlete athlete;
 
-  @override
-  _AthletesInfoPage createState() => _AthletesInfoPage();
-}
-
-//Future is to launch URL buttons (like buy ticket)
-Future launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url, forceWebView: true, forceSafariVC: true);
-  } else {
-    print("Can't Launch");
-  }
-}
-
-class _AthletesInfoPage extends State<AthletesInfoPage> {
-  List<Athlete> _notes = List<Athlete>();
-
-  Future<List<Athlete>> fetchNotes() async {
-    var url =
-        'http://superfighter.nl/APP_output_athlete_info.php?athlete_id=296';
-    var response = await http.get(url);
-
-    var notes = List<Athlete>();
-
-    if (response.statusCode == 200) {
-      var notesJson = json.decode(response.body);
-      for (var noteJson in notesJson) {
-        notes.add(Athlete.fromJson(noteJson));
-      }
-    }
-    return notes;
-  }
-
-  @override
-  void initState() {
-    fetchNotes().then((value) {
-      setState(() {
-        _notes.addAll(value);
-      });
-    });
-    super.initState();
-  }
+  // In the constructor, require a Athlete.
+  AthletesInfoPage({Key key, @required this.athlete}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +16,7 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
       backgroundColor: Colors.grey[800],
       body: ListView.builder(
         itemBuilder: (context, index) {
-          String athleteWeightclass = _notes[index].athleteWeightclass;
+          String athleteWeightclass = athlete.athleteWeightclass;
           switch (athleteWeightclass) {
             case "0":
               athleteWeightclass = "";
@@ -130,7 +88,7 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
                             decoration: BoxDecoration(
                               image: new DecorationImage(
                                   image: new NetworkImage(
-                                      _notes[index].athletePicture),
+                                      athlete.athletePicture),
                                   fit: BoxFit.cover),
                             ),
                             child: Expanded(
@@ -149,19 +107,19 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Text(_notes[index].athleteFullName,
+                              Text(athlete.athleteFullName,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white)),
-                              Text(_notes[index].athleteNationality,
+                              Text(athlete.athleteNationality,
                                   style: TextStyle(color: Colors.white)),
-                              Text(_notes[index].athleteDayOfBirth,
+                              Text(athlete.athleteDayOfBirth,
                                   style: TextStyle(color: Colors.white)),
                               Text(athleteWeightclass + '" C',
                                   style: TextStyle(color: Colors.white)),
                               Container(
                                 margin: const EdgeInsets.only(top: 5.0),
-                                child: Text(_notes[index].athleteDescription,
+                                child: Text(athlete.athleteDescription,
                                     style: TextStyle(color: Colors.white)),
                               ),
                               Container(
@@ -216,7 +174,7 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
                                                 ),
                                               ),
                                             ),
-                                            child: Text('17',
+                                            child: Text(athlete.athleteWins.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
@@ -251,7 +209,7 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
                                                 ),
                                               ),
                                             ),
-                                            child: Text('8',
+                                            child: Text(athlete.athleteTKO.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -295,7 +253,7 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
                                                 ),
                                               ),
                                             ),
-                                            child: Text('3',
+                                            child: Text(athlete.athleteLosses.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
@@ -330,7 +288,7 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
                                                 ),
                                               ),
                                             ),
-                                            child: Text('2',
+                                            child: Text(athlete.athleteKO.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -379,7 +337,7 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
                                     ),
                                   ),
                                 ),
-                                child: Text('0',
+                                child: Text(athlete.athleteDraws.toString(),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16)),
@@ -399,7 +357,7 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
             ),
           );
         },
-        itemCount: _notes.length,
+        itemCount: 1,
       ),
     );
   }

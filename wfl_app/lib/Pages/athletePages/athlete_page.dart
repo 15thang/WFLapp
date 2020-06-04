@@ -3,20 +3,7 @@ import 'package:tuple/tuple.dart';
 import 'package:wfl_app/Pages/components/athlete_sliver_app_bar.dart';
 import 'package:wfl_app/Pages/components/athlete_drawer.dart';
 import 'package:wfl_app/Pages/delegates/sliver_persistent_header_delegate_impl.dart';
-import 'athlete_32.dart';
-import 'athlete_36.dart';
-import 'athlete_40.dart';
-import 'athlete_44.dart';
-import 'athlete_48.dart';
-import 'athlete_52.dart';
-import 'athlete_56.dart';
-import 'athlete_61.dart';
-import 'athlete_65.dart';
-import 'athlete_70.dart';
-import 'athlete_77.dart';
-import 'athlete_84.dart';
-import 'athlete_95.dart';
-import 'athlete_95p.dart';
+import 'athlete_sorted_weight.dart';
 import 'athlete_all.dart';
 
 class AthletePage extends StatefulWidget {
@@ -30,20 +17,20 @@ class _AthletePageState extends State<AthletePage>
     with SingleTickerProviderStateMixin {
   final List<Tuple3> _pages = [
     Tuple3('All', All(), Icon(Icons.image)),
-    Tuple3('95+', W95p(), Icon(Icons.image)),
-    Tuple3('95', W95(), Icon(Icons.image)),
-    Tuple3('84', W84(), Icon(Icons.image)),
-    Tuple3('77', W77(), Icon(Icons.image)),
-    Tuple3('70', W70(), Icon(Icons.image)),
-    Tuple3('65', W65(), Icon(Icons.image)),
-    Tuple3('61', W61(), Icon(Icons.image)),
-    Tuple3('56', W56(), Icon(Icons.image)),
-    Tuple3('52', W52(), Icon(Icons.image)),
-    Tuple3('48', W48(), Icon(Icons.image)),
-    Tuple3('44', W44(), Icon(Icons.image)),
-    Tuple3('40', W40(), Icon(Icons.image)),
-    Tuple3('36', W36(), Icon(Icons.image)),
-    Tuple3('32', W32(), Icon(Icons.image)),
+    Tuple3('95+', W95p(weight: 1), Icon(Icons.image)),
+    Tuple3('95', W95p(weight: 2), Icon(Icons.image)),
+    Tuple3('84', W95p(weight: 3), Icon(Icons.image)),
+    Tuple3('77', W95p(weight: 4), Icon(Icons.image)),
+    Tuple3('70', W95p(weight: 5), Icon(Icons.image)),
+    Tuple3('65', W95p(weight: 6), Icon(Icons.image)),
+    Tuple3('61', W95p(weight: 7), Icon(Icons.image)),
+    Tuple3('56', W95p(weight: 8), Icon(Icons.image)),
+    Tuple3('52', W95p(weight: 9), Icon(Icons.image)),
+    Tuple3('48', W95p(weight: 10), Icon(Icons.image)),
+    Tuple3('44', W95p(weight: 11), Icon(Icons.image)),
+    Tuple3('40', W95p(weight: 12), Icon(Icons.image)),
+    Tuple3('36', W95p(weight: 13), Icon(Icons.image)),
+    Tuple3('32', W95p(weight: 14), Icon(Icons.image)),
   ];
 
   TabController _tabController;

@@ -7,11 +7,14 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/athletes.dart';
 import 'athlete_detail_page.dart';
 
-class W65 extends StatefulWidget {
-  const W65({Key key}) : super(key: key);
+class W95p extends StatefulWidget {
+
+  final int weight;
+
+  const W95p({Key key, @required this.weight}) : super(key: key);
 
   @override
-  _W65 createState() => _W65();
+  _W95p createState() => _W95p();
 }
 
 //Future is to launch URL buttons (like buy ticket)
@@ -23,11 +26,11 @@ Future launchURL(String url) async {
   }
 }
 
-class _W65 extends State<W65> {
+class _W95p extends State<W95p> {
   List<Athlete> _notes = List<Athlete>();
 
   Future<List<Athlete>> fetchNotes() async {
-    var url = 'http://superfighter.nl/APP_output_athlete_sort_weight.php?weight=6';
+    var url = 'http://superfighter.nl/APP_output_athlete_sort_weight.php?weight=' + widget.weight.toString();
     var response = await http.get(url);
 
     var notes = List<Athlete>();

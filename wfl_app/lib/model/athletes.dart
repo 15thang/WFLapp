@@ -8,7 +8,12 @@ class Athlete {
       athleteNationality,
       athleteDescription,
       athleteFullName,
-      athleteWeightclass;
+      athleteWeightclass,
+      athleteWins,
+      athleteLosses,
+      athleteDraws,
+      athleteKO,
+      athleteTKO;
 
   Athlete(
       {this.athletePicture,
@@ -19,7 +24,12 @@ class Athlete {
       this.athleteNationality,
       this.athleteDescription,
       this.athleteFullName,
-      this.athleteWeightclass});
+      this.athleteWeightclass,
+      this.athleteWins,
+      this.athleteLosses,
+      this.athleteDraws,
+      this.athleteKO,
+      this.athleteTKO});
 
   Athlete.fromJson(Map<String, dynamic> json) {
     athletePicture = "http://superfighter.nl/" + json['athlete_picture'];
@@ -32,5 +42,10 @@ class Athlete {
     athleteDescription = json['athlete_description'];
     athleteFullName = athleteFirstname + " " + athleteLastname;
     athleteWeightclass = json['athlete_weightclass'];
+    athleteWins = json['athlete_wins'];
+    athleteLosses = json['athlete_losses'];
+    athleteDraws = json['athlete_draws'];
+    athleteKO = json['athlete_ko'];
+    athleteTKO = json['athlete_tko'];
   }
 }
