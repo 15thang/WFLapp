@@ -24,8 +24,10 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
             <option value="Female">Female</option>
         </select>
         <br>
-        <label>Picture athlete</label><br>
+        <label>Profile picture</label><br>
         <input type="file" name="athlete_picture"><br>
+        <label>Event picture</label><br>
+        <input type="file" name="athlete_picture2"><br>
         <label>Weight athlete (kg) <font color="red">*</font></label><br>
         <input type="number" name="athlete_weight" placeholder="0kg" required><br>
         <label>Weightclass <font color="red">*</font></label><br>
@@ -404,7 +406,7 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
         echo $athlete_firstname . $athlete_lastname . $athlete_nickname . $athlete_weightclass . $athlete_grade . $athlete_nationality . $athlete_day_of_birth
             . $athlete_description;
 
-        //check of picture input leeg is
+        //check of picture1 input leeg is
         if ($_FILES['athlete_picture']['size'] == 0 && $_FILES['cover_image']['error'] == 0)
         {
             $dst="pics/athlete_avatar.png";
@@ -417,15 +419,28 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
             $dst="pics/athletepics/".$fnm;
             move_uploaded_file($_FILES["athlete_picture"]["tmp_name"], $dst);
         }
+        //check of picture2 input leeg is
+        if ($_FILES['athlete_picture2']['size'] == 0 && $_FILES['cover_image']['error'] == 0)
+        {
+            $dst2="pics/athlete_avatar.png";
+            move_uploaded_file($_FILES["athlete_picture2"]["tmp_name"], $dst2);
+        }
+        else {
+            // cover_image is empty (and not an error)
+            //foto naar mapje sturen
+            $fnm=$_FILES["athlete_picture2"]["name"];
+            $dst2="pics/athletepics/".$fnm;
+            move_uploaded_file($_FILES["athlete_picture2"]["tmp_name"], $dst2);
+        }
 
         //'$athlete_total_matches', '$athlete_wins', '$athlete_losses', '$athlete_draws', '$athlete_points',
         /*athlete_total_matches, athlete_wins, athlete_losses, athlete_draws, athlete_points,*/
 
-        $query = "INSERT INTO athletes (athlete_firstname, athlete_lastname, athlete_nickname, athlete_gender, athlete_gym, athlete_trainer, athlete_picture, athlete_weight, athlete_weightclass, athlete_grade, 
+        $query = "INSERT INTO athletes (athlete_firstname, athlete_lastname, athlete_nickname, athlete_gender, athlete_gym, athlete_trainer, athlete_picture, athlete_picture2, athlete_weight, athlete_weightclass, athlete_grade, 
                             athlete_nationality, va_number, date_added,
                             athlete_day_of_birth, athlete_description, athlete_email, athlete_phone1, athlete_phone2,
                             athlete_adress, athlete_postal_code, athlete_city, athlete_facebook, athlete_twitter, athlete_instagram, athlete_linkedin, athlete_youtube) 
-      	  VALUES('$athlete_firstname', '$athlete_lastname', '$athlete_nickname', '$athlete_gender', '$gymname', '$trainer', '$dst', '$athlete_weight', '$athlete_weightclass', '$athlete_grade', 
+      	  VALUES('$athlete_firstname', '$athlete_lastname', '$athlete_nickname', '$athlete_gender', '$gymname', '$trainer', '$dst', '$dst2', '$athlete_weight', '$athlete_weightclass', '$athlete_grade', 
       	         '$athlete_nationality', '$va_number', '$date_added',
       	         '$athlete_day_of_birth', '$athlete_description', '$athlete_email', '$athlete_phone1', '$athlete_phone2', 
       	         '$athlete_adress', '$athlete_postal_code', '$athlete_city', '$athlete_facebook', '$athlete_twitter', '$athlete_instagram', '$athlete_linkedin', '$athlete_youtube')";

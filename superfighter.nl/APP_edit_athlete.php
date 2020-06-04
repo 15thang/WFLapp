@@ -18,6 +18,7 @@ $results = mysqli_query($db, $query);
 while ($row = $results->fetch_assoc()) {
     //Dit is de bestaande foto voor het geval er geen nieuwe foto wordt geupload.
     $athlete_picture = $row['athlete_picture'];
+    $athlete_picture2 = $row['athlete_picture2'];
 
     switch ($row['athlete_grade']) {
         case "1":
@@ -88,8 +89,10 @@ while ($row = $results->fetch_assoc()) {
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select><br>
-        <label>Picture athlete</label><br>
+        <label>Profile picture</label><br>
         <input type="file" name="athlete_picture"><br>
+        <label>Event picture</label><br>
+        <input type="file" name="athlete_picture2"><br>
         <label>Height athlete (cm) <font color="red">*</font></label><br>
         <input type="number" name="athlete_height" value="' . $row['athlete_height'] . '"><br>
         <label>Weight athlete (kg) <font color="red">*</font></label><br>
@@ -459,11 +462,10 @@ while ($row = $results->fetch_assoc()) {
 
         //$athlete_total_matches = $athlete_wins + $athlete_losses + $athlete_draws;
 
-        //check of picture input leeg is
+        //check of picture input1 leeg is
         if($_FILES['athlete_picture']['error'] > 0)
         {
-            $dst="pics/athlete_avatar.png";
-            move_uploaded_file($_FILES["athlete_picture"]["tmp_name"], $dst);
+            $dst = $athlete_picture;
         }
         else {
             // cover_image is empty (and not an error)
@@ -472,16 +474,28 @@ while ($row = $results->fetch_assoc()) {
             $dst="pics/athletepics/".$fnm;
             move_uploaded_file($_FILES["athlete_picture"]["tmp_name"], $dst);
         }
+        //check of picture input2 leeg is
+        if($_FILES['athlete_picture2']['error'] > 0)
+        {
+            $dst2 = $athlete_picture2;
+        }
+        else {
+            // cover_image is empty (and not an error)
+            //foto naar mapje sturen
+            $fnm=$_FILES["athlete_picture2"]["name"];
+            $dst2="pics/athletepics/".$fnm;
+            move_uploaded_file($_FILES["athlete_picture2"]["tmp_name"], $dst2);
+        }
 
         //echo wat je hebt ingevuld
         echo $athlete_firstname . $athlete_lastname . $athlete_nickname . $athlete_weightclass . $athlete_grade . $athlete_nationality . $athlete_day_of_birth
-            . $athlete_description . ' picture= '.$dst;
+            . $athlete_description . ' picture= '.$dst . ' picture2= '.$dst2;
 
         /*athlete_total_matches = '$athlete_total_matches', athlete_wins = '$athlete_wins', athlete_losses = '$athlete_losses', athlete_draws = '$athlete_draws', athlete_points = '$athlete_points'*/
 
         $query = "UPDATE athletes SET athlete_firstname = '$athlete_firstname', athlete_lastname = '$athlete_lastname', athlete_nickname = '$athlete_nickname', athlete_gender = '$athlete_gender',
                   athlete_grade = '$athlete_grade', athlete_nationality = '$athlete_nationality', athlete_day_of_birth = '$athlete_day_of_birth', athlete_description = '$athlete_description', va_number = '$va_number',
-                  athlete_picture = '$dst', athlete_weight = '$athlete_weight', athlete_weightclass = '$athlete_weightclass',
+                  athlete_picture = '$dst', athlete_picture2 = '$dst2', athlete_weight = '$athlete_weight', athlete_weightclass = '$athlete_weightclass',
                   athlete_email = '$athlete_email', athlete_phone1 = '$athlete_phone1', athlete_phone2 = '$athlete_phone2', athlete_adress = '$athlete_adress', athlete_postal_code = '$athlete_postal_code', athlete_city = '$athlete_city',
                   athlete_facebook = '$athlete_facebook', athlete_twitter = '$athlete_twitter', athlete_instagram = '$athlete_instagram', athlete_linkedin = '$athlete_linkedin', athlete_youtube = '$athlete_youtube'
                   WHERE athlete_id = '$athlete_id'";

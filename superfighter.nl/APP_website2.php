@@ -34,6 +34,7 @@ $results = mysqli_query($db, $query);
             <th class="skip-filter">lastname</th>
             <th class="skip-filter">nickname</th>
             <th class="skip-filter">picture</th>
+            <th class="skip-filter">picture 2</th>
             <th class="skip-filter">weight(kg)</th>
             <th>Filter weightclass...</th>
             <th>Filter grade...</th>
@@ -51,6 +52,7 @@ $results = mysqli_query($db, $query);
         <?php
         while ($row = $results->fetch_assoc()) {
             $picture = $row['athlete_picture'];
+            $picture2 = $row['athlete_picture2'];
             $athlete_id = $row['athlete_id'];
             //switch case om de nummers naar letters te veranderen
             switch ($row['athlete_grade']) {
@@ -131,6 +133,7 @@ $results = mysqli_query($db, $query);
                 <td>'.$row['athlete_lastname'].'</td>
                 <td>'.$row['athlete_nickname'].'</td>
                 <td><img src="'.$picture.'" id="pic"/>' .'</td>
+                <td><img src="'.$picture2.'" id="pic"/>' .'</td>
                 <td>'.$row['athlete_weight'].'</td>
                 <td>'.$athlete_weightclassA .'</td>
                 <td>'.$athlete_grade_letter.'</div></td>
