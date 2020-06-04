@@ -27,7 +27,8 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
   List<Athlete> _notes = List<Athlete>();
 
   Future<List<Athlete>> fetchNotes() async {
-    var url = 'http://superfighter.nl/APP_output_athlete_info.php?athlete_id=296';
+    var url =
+        'http://superfighter.nl/APP_output_athlete_info.php?athlete_id=296';
     var response = await http.get(url);
 
     var notes = List<Athlete>();
@@ -106,70 +107,292 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
               break;
           }
           return new GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      AthletesDetailPage(athlete: _notes[index]),
-                ),
-              );
-            },
             child: new Card(
-              color: Colors.blueGrey[50],
+              color: Colors.grey[900],
               elevation: 5,
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Container(
-                    height: 174,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(5),
-                          topLeft: Radius.circular(5)),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      color: Colors.grey[900],
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                            width: 174,
-                            height: 174,
+                          child: Container(
+                            width: 130,
+                            height: 130,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(5),
-                                    topLeft: Radius.circular(5)),
-                                image: new DecorationImage(
-                                    image: new NetworkImage(
-                                        _notes[index].athletePicture),
-                                    fit: BoxFit.cover))),
+                              image: new DecorationImage(
+                                  image: new NetworkImage(
+                                      _notes[index].athletePicture),
+                                  fit: BoxFit.cover),
+                            ),
+                            child: Expanded(
+                              child: Align(
+                                alignment: FractionalOffset.bottomCenter,
+                                child: Container(
+                                  height: 7,
+                                  color: Colors.red[900],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         Container(
-                            padding: const EdgeInsets.all(10),
-                            height: 174,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(_notes[index].athleteFullName,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                Text(_notes[index].athleteNickname),
-                                Text(_notes[index].athleteNationality),
-                                Text(_notes[index].athleteDayOfBirth),
-                                Text(athleteWeightclass),
-                                SizedBox(
-                                  height: 5,
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text(_notes[index].athleteFullName,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)),
+                              Text(_notes[index].athleteNationality,
+                                  style: TextStyle(color: Colors.white)),
+                              Text(_notes[index].athleteDayOfBirth,
+                                  style: TextStyle(color: Colors.white)),
+                              Text(athleteWeightclass + '" C',
+                                  style: TextStyle(color: Colors.white)),
+                              Container(
+                                margin: const EdgeInsets.only(top: 5.0),
+                                child: Text(_notes[index].athleteDescription,
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(
+                                    top: 10.0, bottom: 5.0),
+                                child: Text('STATS',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white)),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 2,
+                                  ),
                                 ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 35.0),
-                                  width: 170,
-                                  child: Text("Deze pagina is nog niet klaar",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                      flex: 1,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Container(
+                                            width: 1000,
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                right: BorderSide(
+                                                  width: 1,
+                                                ),
+                                                bottom: BorderSide(
+                                                  width: 2,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text('WINS',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white)),
+                                          ),
+                                          Container(
+                                            width: 1000,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[600],
+                                              border: Border(
+                                                right: BorderSide(
+                                                  width: 1,
+                                                ),
+                                                bottom: BorderSide(
+                                                  width: 2,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text('17',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
+                                                    fontSize: 22)),
+                                          ),
+                                          Container(
+                                            width: 1000,
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                right: BorderSide(
+                                                  width: 1,
+                                                ),
+                                                bottom: BorderSide(
+                                                  width: 2,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text('TKO',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white)),
+                                          ),
+                                          Container(
+                                            width: 1000,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[600],
+                                              border: Border(
+                                                right: BorderSide(
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text('8',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Container(
+                                            width: 1000,
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                left: BorderSide(
+                                                  width: 1,
+                                                ),
+                                                bottom: BorderSide(
+                                                  width: 2,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text('LOSSES',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white)),
+                                          ),
+                                          Container(
+                                            width: 1000,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[600],
+                                              border: Border(
+                                                left: BorderSide(
+                                                  width: 1,
+                                                ),
+                                                bottom: BorderSide(
+                                                  width: 2,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text('3',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
+                                                    fontSize: 22)),
+                                          ),
+                                          Container(
+                                            width: 1000,
+                                            decoration: BoxDecoration(
+                                              border: Border(
+                                                left: BorderSide(
+                                                  width: 1,
+                                                ),
+                                                bottom: BorderSide(
+                                                  width: 2,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text('KO',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white)),
+                                          ),
+                                          Container(
+                                            width: 1000,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[600],
+                                              border: Border(
+                                                left: BorderSide(
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text('2',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            )),
+                              ),
+                              Container(
+                                width: 1000,
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    left: BorderSide(
+                                      width: 2,
+                                    ),
+                                    right: BorderSide(
+                                      width: 2,
+                                    ),
+                                    bottom: BorderSide(
+                                      width: 2,
+                                    ),
+                                  ),
+                                ),
+                                child: Text('DRAW',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white)),
+                              ),
+                              Container(
+                                width: 1000,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[600],
+                                  border: Border(
+                                    left: BorderSide(
+                                      width: 2,
+                                    ),
+                                    right: BorderSide(
+                                      width: 2,
+                                    ),
+                                    bottom: BorderSide(
+                                      width: 2,
+                                    ),
+                                  ),
+                                ),
+                                child: Text('0',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16)),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(),
                   ),
                 ],
               ),

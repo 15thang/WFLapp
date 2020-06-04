@@ -22,7 +22,7 @@ class _AthletesDetailPageState extends State<AthletesDetailPage>
       
   final List<Tuple3> _pages = [
     Tuple3('Info', AthletesInfoPage(), Icon(Icons.image)),
-    /*Tuple3('Match history', AthletesCompPage(), Icon(Icons.image)),*/
+    Tuple3('Match history', AthletesCompPage(), Icon(Icons.image)),
   ];
 
   TabController _tabController;
