@@ -51,7 +51,6 @@ class _AthletesDetailPageState extends State<AthletesDetailPage>
             SliverPersistentHeader(
               delegate: SliverPersistentHeaderDelegateImpl(
                 tabBar: TabBar(
-                  isScrollable: true,
                   labelColor: Colors.black,
                   indicatorColor: Colors.black,
                   controller: _tabController,
