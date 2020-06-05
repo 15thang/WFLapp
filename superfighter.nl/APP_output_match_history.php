@@ -13,6 +13,13 @@ while ($row = $results->fetch_assoc()) {
 
 $comma = false;
 echo "[ ";
+echo '{ ';
+echo '"match_date": "date", ';
+echo '"match_result": "result", ';
+echo '"match_opponent": "opponent", ';
+echo '"match_method": "method", ';
+echo '"match_round": "round" ';
+echo ' }, ';
 foreach ($match_id as $matchid) {
     //atleet
     $query = "SELECT * FROM matches WHERE match_id = '$matchid' AND athlete_id = '$athlete_id'";

@@ -8,7 +8,6 @@ import 'package:wfl_app/model/athletes.dart';
 import 'athlete_detail_page.dart';
 
 class W95p extends StatefulWidget {
-
   final int weight;
 
   const W95p({Key key, @required this.weight}) : super(key: key);
@@ -30,7 +29,9 @@ class _W95p extends State<W95p> {
   List<Athlete> _notes = List<Athlete>();
 
   Future<List<Athlete>> fetchNotes() async {
-    var url = 'http://superfighter.nl/APP_output_athlete_sort_weight.php?weight=' + widget.weight.toString();
+    var url =
+        'http://superfighter.nl/APP_output_athlete_sort_weight.php?weight=' +
+            widget.weight.toString();
     var response = await http.get(url);
 
     var notes = List<Athlete>();
@@ -136,16 +137,18 @@ class _W95p extends State<W95p> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                            width: 174,
-                            height: 174,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(5),
-                                    topLeft: Radius.circular(5)),
-                                image: new DecorationImage(
-                                    image: new NetworkImage(
-                                        _notes[index].athletePicture),
-                                    fit: BoxFit.cover))),
+                          width: 174,
+                          height: 174,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(5),
+                                topLeft: Radius.circular(5)),
+                            image: new DecorationImage(
+                                image: new NetworkImage(
+                                    _notes[index].athletePicture),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
                         Container(
                             padding: const EdgeInsets.all(10),
                             height: 174,

@@ -26,10 +26,10 @@ class _AthletesDetailPageState extends State<AthletesDetailPage>
   @override
   void initState() {
     super.initState();
-    _pages = [
-      Tuple3('Info', AthletesInfoPage(athlete: widget.athlete), Icon(Icons.image)),
-      Tuple3('Match history', AthletesCompPage(athlete: widget.athlete),
-          Icon(Icons.image)),
+    var name = widget.athlete.athleteFullName;
+        _pages = [
+          Tuple3('Info', AthletesInfoPage(athlete: widget.athlete), name.toString()),
+      Tuple3('Match history', AthletesCompPage(athlete: widget.athlete), name.toString()),
     ];
     _tabController = TabController(length: _pages.length, vsync: this);
     _tabController.addListener(() => setState(() {}));
@@ -47,7 +47,7 @@ class _AthletesDetailPageState extends State<AthletesDetailPage>
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
-            AthleteSliverAppBar(_pages[_tabController.index].item1),
+            AthleteSliverAppBar(_pages[_tabController.index].item3),
             SliverPersistentHeader(
               delegate: SliverPersistentHeaderDelegateImpl(
                 tabBar: TabBar(

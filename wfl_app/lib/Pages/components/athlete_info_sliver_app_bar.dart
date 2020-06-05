@@ -16,7 +16,7 @@ class AthleteSliverAppBar extends StatelessWidget {
       ),
       backgroundColor: Colors.black,
       title: Text(
-        'Athlete ('+ _title + ')',
+        _title,
         style: TextStyle(color: Colors.white),
       ),
     );

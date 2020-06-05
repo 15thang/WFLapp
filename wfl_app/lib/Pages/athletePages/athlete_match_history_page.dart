@@ -61,52 +61,314 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
     print(cardPosition);
     setState(() {});
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      key: _cardKey,
+    return Scaffold(
       backgroundColor: Colors.grey[800],
-      body: CustomScrollView(
-        slivers: <Widget>[
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-              (context, index) => new ListTile(
-                title: new Card(
-                  child: Container(
-                    color: Colors.blueGrey[50],
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: Text(_notes[index].matchDate),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 3.0, bottom: 5.0),
+                        padding: const EdgeInsets.only(left: 5.0),
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[900],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(_notes[index].matchResult),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 1,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    'W/L/D: ${widget.athlete.athleteWins}/${widget.athlete.athleteLosses}/${widget.athlete.athleteDraws}',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 1,
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(_notes[index].matchOpponent),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(_notes[index].matchMethod),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(_notes[index].matchRound),
-                        ),
-                      ],
+                      ),
                     ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 3.0, bottom: 5.0),
+                        padding: const EdgeInsets.only(left: 5.0),
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[900],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 1,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 6,
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Total points: 9',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 1,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                            left: 3.0, bottom: 5.0, right: 3.0),
+                        padding: const EdgeInsets.only(left: 5.0),
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[900],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 1,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 5,
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    '2 ',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
+                                  ),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    color: Colors.yellow,
+                                    margin: const EdgeInsets.only(right: 15.0),
+                                  ),
+                                  Text(
+                                    '1 ',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
+                                  ),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    color: Colors.red,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 1,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 3.0),
+                        padding: const EdgeInsets.only(left: 5.0),
+                        height: 20,
+                        child: Text(
+                          'Date',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[900],
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(5),
+                            topLeft: Radius.circular(5),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        height: 20,
+                        color: Colors.grey[900],
+                        child: Text(
+                          'Result',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        height: 20,
+                        color: Colors.grey[900],
+                        child: Text(
+                          'Opponent',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        height: 20,
+                        color: Colors.grey[900],
+                        child: Text(
+                          'Method',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 5.0),
+                        padding: const EdgeInsets.only(right: 5.0),
+                        height: 20,
+                        child: Text(
+                          'Round',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[900],
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(5),
+                            topRight: Radius.circular(5),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            );
+          } else {
+            return new GestureDetector(
+              onTap: () {},
+              child: new Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[400],
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          ' ' + _notes[index].matchDate,
+                          style: TextStyle(color: Colors.grey[900]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          _notes[index].matchResult,
+                          style: TextStyle(color: Colors.grey[900]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          _notes[index].matchOpponent,
+                          style: TextStyle(color: Colors.grey[900]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          _notes[index].matchMethod,
+                          style: TextStyle(color: Colors.grey[900]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          _notes[index].matchRound,
+                          style: TextStyle(color: Colors.grey[900]),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              childCount: _notes.length,
-            ),
-          ),
-        ],
+            );
+          }
+        },
+        itemCount: _notes.length,
       ),
     );
   }
