@@ -18,7 +18,6 @@ foreach ($match_id as $matchid) {
     $results = mysqli_query($db, $query);
     while ($row = $results->fetch_assoc()) {
         if (!$row['points'] == 0 || !$row['redyellowcard'] == 'No cards' || !$row['ko'] == 'No KO') {
-            echo '<br>' . $row['match_id'] . ' heeft wel punten!!!!<br><br>';
             $past_match[] = $row['match_id'];
         }
     }

@@ -1,14 +1,66 @@
-import 'dart:ui';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
 import 'package:wfl_app/model/athletes.dart';
+import 'package:wfl_app/model/match_upcoming.dart';
 
-class UpcomingMatchPage extends StatelessWidget {
-  // Declare a field that holds the Athlete.
+class UpcomingMatchPage extends StatefulWidget {
+  //Declare a field that holds the Athlete.
   final Athlete athlete;
 
   // In the constructor, require a Athlete.
   UpcomingMatchPage({Key key, @required this.athlete}) : super(key: key);
+
+  @override
+  _UpcomingMatchPageState createState() => _UpcomingMatchPageState();
+}
+
+class _UpcomingMatchPageState extends State<UpcomingMatchPage> {
+  List<MatchU> _notes = List<MatchU>();
+
+  Future<List<MatchU>> fetchNotes() async {
+    var url =
+        'http://superfighter.nl/APP_output_match_upcoming.php?athlete_id=' +
+            '${widget.athlete.athleteId}';
+
+    var response = await http.get(url);
+
+    var notes = List<MatchU>();
+
+    if (response.statusCode == 200) {
+      var notesJson = json.decode(response.body);
+
+      for (var noteJson in notesJson) {
+        notes.add(MatchU.fromJson(noteJson));
+      }
+    }
+    return notes;
+  }
+
+  final GlobalKey _cardKey = GlobalKey();
+  Size cardSize;
+  Offset cardPosition;
+
+  @override
+  void initState() {
+    fetchNotes().then((value) {
+      setState(() {
+        _notes.addAll(value);
+      });
+    });
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => getSizeAndPosition());
+  }
+
+  getSizeAndPosition() {
+    RenderBox _cardBox = _cardKey.currentContext.findRenderObject();
+    cardSize = _cardBox.size;
+    cardPosition = _cardBox.localToGlobal(Offset.zero);
+    print(cardSize);
+    print(cardPosition);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,348 +68,50 @@ class UpcomingMatchPage extends StatelessWidget {
       backgroundColor: Colors.grey[800],
       body: ListView.builder(
         itemBuilder: (context, index) {
-          String athleteWeightclass = athlete.athleteWeightclass;
-          switch (athleteWeightclass) {
-            case "0":
-              athleteWeightclass = "";
-              break;
-            case "1":
-              athleteWeightclass = "95+";
-              break;
-            case "2":
-              athleteWeightclass = "95";
-              break;
-            case "3":
-              athleteWeightclass = "84";
-              break;
-            case "4":
-              athleteWeightclass = "77";
-              break;
-            case "5":
-              athleteWeightclass = "70";
-              break;
-            case "6":
-              athleteWeightclass = "65";
-              break;
-            case "7":
-              athleteWeightclass = "61";
-              break;
-            case "8":
-              athleteWeightclass = "56";
-              break;
-            case "9":
-              athleteWeightclass = "52";
-              break;
-            case "10":
-              athleteWeightclass = "48";
-              break;
-            case "11":
-              athleteWeightclass = "44";
-              break;
-            case "12":
-              athleteWeightclass = "40";
-              break;
-            case "13":
-              athleteWeightclass = "36";
-              break;
-            case "14":
-              athleteWeightclass = "32";
-              break;
-          }
           return new GestureDetector(
+            onTap: () {},
             child: new Card(
-              color: Colors.grey[900],
-              elevation: 5,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      color: Colors.grey[900],
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey[400],
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        ' ' + _notes[index].matchEvent,
+                        style: TextStyle(color: Colors.grey[900]),
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          child: Container(
-                            width: 130,
-                            height: 130,
-                            decoration: BoxDecoration(
-                              image: new DecorationImage(
-                                  image: new NetworkImage(
-                                      athlete.athletePicture),
-                                  fit: BoxFit.cover),
-                            ),
-                            child: Expanded(
-                              child: Align(
-                                alignment: FractionalOffset.bottomCenter,
-                                child: Container(
-                                  height: 7,
-                                  color: Colors.red[900],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Text(athlete.athleteFullName,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white)),
-                              Text(athlete.athleteNationality,
-                                  style: TextStyle(color: Colors.white)),
-                              Text(athlete.athleteDayOfBirth,
-                                  style: TextStyle(color: Colors.white)),
-                              Text(athleteWeightclass + '" C',
-                                  style: TextStyle(color: Colors.white)),
-                              Container(
-                                margin: const EdgeInsets.only(top: 5.0),
-                                child: Text(athlete.athleteDescription,
-                                    style: TextStyle(color: Colors.white)),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                    top: 10.0, bottom: 5.0),
-                                child: Text('STATS',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 2,
-                                  ),
-                                ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Expanded(
-                                      flex: 1,
-                                      child: Column(
-                                        children: <Widget>[
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              border: Border(
-                                                right: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text('WINS',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[600],
-                                              border: Border(
-                                                right: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text(athlete.athleteWins.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
-                                                    fontSize: 22)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              border: Border(
-                                                right: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text('TKO',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[600],
-                                              border: Border(
-                                                right: BorderSide(
-                                                  width: 1,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text(athlete.athleteTKO.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16)),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 1,
-                                      child: Column(
-                                        children: <Widget>[
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              border: Border(
-                                                left: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text('LOSSES',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[600],
-                                              border: Border(
-                                                left: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text(athlete.athleteLosses.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
-                                                    fontSize: 22)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              border: Border(
-                                                left: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text('KO',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[600],
-                                              border: Border(
-                                                left: BorderSide(
-                                                  width: 1,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text(athlete.athleteKO.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16)),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 1000,
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    left: BorderSide(
-                                      width: 2,
-                                    ),
-                                    right: BorderSide(
-                                      width: 2,
-                                    ),
-                                    bottom: BorderSide(
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                                child: Text('DRAW',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              ),
-                              Container(
-                                width: 1000,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[600],
-                                  border: Border(
-                                    left: BorderSide(
-                                      width: 2,
-                                    ),
-                                    right: BorderSide(
-                                      width: 2,
-                                    ),
-                                    bottom: BorderSide(
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                                child: Text(athlete.athleteDraws.toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        _notes[index].matchDate,
+                        style: TextStyle(color: Colors.grey[900]),
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(),
-                  ),
-                ],
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        _notes[index].matchBlok,
+                        style: TextStyle(color: Colors.grey[900]),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        _notes[index].matchOpponent,
+                        style: TextStyle(color: Colors.grey[900]),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
         },
-        itemCount: 1,
+        itemCount: _notes.length,
       ),
     );
   }
