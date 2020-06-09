@@ -70,7 +70,11 @@ class _EventPageState extends State<PastEvents> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => EventsDetailPage(event: _notes[index]),
+                  builder: (context) => EventsDetailPage(
+                    event: int.parse(_notes[index].eventId),
+                    eventName: _notes[index].eventName,
+                    eventPicture: _notes[index].eventPicture,
+                  ),
                 ),
               );
             },

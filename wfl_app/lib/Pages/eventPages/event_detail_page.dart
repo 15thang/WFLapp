@@ -8,10 +8,11 @@ import 'dart:math';
 
 class EventsDetailPage extends StatefulWidget {
   //Declare a field that holds the Event.
-  final Event event;
+  final int event;
+  final String eventName, eventPicture;
 
   // In the constructor, require a Event.
-  EventsDetailPage({Key key, @required this.event}) : super(key: key);
+  EventsDetailPage({Key key, @required this.event, this.eventName, this.eventPicture}) : super(key: key);
 
   @override
   _EventPageState createState() => _EventPageState();
@@ -22,7 +23,7 @@ class _EventPageState extends State<EventsDetailPage> {
 
   Future<List<Corners>> fetchNotes() async {
     var url = 'http://superfighter.nl/APP_output_bluecorner.php?event_id=' +
-        '${widget.event.eventId}';
+        widget.event.toString();
 
     var response = await http.get(url);
 
@@ -75,9 +76,9 @@ class _EventPageState extends State<EventsDetailPage> {
             floating: false, //This is not needed since it's default
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text('${widget.event.eventName}'),
+              title: Text(widget.eventName),
               background: Image.network(
-                '${widget.event.eventPicture}',
+                widget.eventPicture,
                 fit: BoxFit.cover,
               ),
             ),

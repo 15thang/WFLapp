@@ -25,9 +25,18 @@ foreach ($match_id as $matchid) {
 $opponent = 'moetnog';
 $comma = false;
 $nodouble[] = array();
-echo "[ ";
+echo "[ { ";
+echo '"match_event": "match_event", ';
+echo '"match_event_name": "match_event_name", ';
+echo '"match_date": "match_date", ';
+echo '"match_blok": "match_blok", ';
+echo '"match_opponent": "match_opponent", ';
+echo '"match_event_picture": "event_picture"';
+echo ' }, ';
 foreach ($match_id as $matchid) {
-    $query = "SELECT * FROM `matches` WHERE match_id = '$matchid' AND NOT athlete_id = '$athlete_id'";
+    $query = "SELECT matches.match_id, matches.event_id, events.event_name, events.event_date, matches.blok, matches.athlete_name, events.event_picture 
+              FROM `matches` INNER JOIN events ON matches.event_id = events.event_id 
+              WHERE match_id = '$matchid' AND NOT athlete_id = '$athlete_id'";
     $results = mysqli_query($db, $query);
     while ($row = $results->fetch_assoc()) {
         if (!in_array($row['match_id'], $past_match) && !in_array($row['match_id'], $nodouble)) {
@@ -38,9 +47,11 @@ foreach ($match_id as $matchid) {
             }
             echo '{ ';
             echo '"match_event": "'.$row['event_id'].'", ';
-            echo '"match_date": "'.$row['match_date'].'", ';
+            echo '"match_event_name": "'.$row['event_name'].'", ';
+            echo '"match_date": "'.$row['event_date'].'", ';
             echo '"match_blok": "'.$row['blok'].'", ';
-            echo '"match_opponent": "'.$row['athlete_name'].'"';
+            echo '"match_opponent": "'.$row['athlete_name'].'", ';
+            echo '"match_event_picture": "'.$row['event_picture'].'"';
             echo ' }';
             $comma = true;
         }
