@@ -3,7 +3,7 @@ $db       = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wf
 $event_id = $_GET['event_id'];
 $redArray = array();
 $blueArray = array();
-$query      = "SELECT athlete_picture AS redcorner_picture, athlete_id AS redcorner_id, athlete_firstname AS redcorner_firstname,
+$query      = "SELECT athlete_picture2 AS redcorner_picture, athlete_id AS redcorner_id, athlete_firstname AS redcorner_firstname,
 athlete_lastname AS redcorner_lastname, athlete_nickname AS redcorner_nickname, athlete_day_of_birth AS redcorner_day_of_birth,
 athlete_nationality AS redcorner_nationality, athlete_description AS redcorner_description, athlete_weightclass AS redcorner_weightclass, athlete_grade AS redcorner_grade
  FROM `athletes` WHERE athlete_id IN (SELECT redcorner FROM `eventcompetition` WHERE event_id = '$event_id')";
@@ -11,7 +11,7 @@ $result     = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $redArray[] = $row;
 }
-$query       = "SELECT athlete_picture AS bluecorner_picture, athlete_id AS bluecorner_id, athlete_firstname AS bluecorner_firstname,
+$query       = "SELECT athlete_picture2 AS bluecorner_picture, athlete_id AS bluecorner_id, athlete_firstname AS bluecorner_firstname,
 athlete_lastname AS bluecorner_lastname, athlete_nickname AS bluecorner_nickname, athlete_day_of_birth AS bluecorner_day_of_birth,
 athlete_nationality AS bluecorner_nationality, athlete_description AS bluecorner_description, athlete_weightclass AS bluecorner_weightclass, athlete_grade AS bluecorner_grade
  FROM `athletes` WHERE athlete_id IN (SELECT bluecorner FROM `eventcompetition` WHERE event_id = '$event_id')";

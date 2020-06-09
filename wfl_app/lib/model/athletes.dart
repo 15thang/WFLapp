@@ -1,5 +1,6 @@
 class Athlete {
-  String athletePicture,
+  String athleteProfilePicture,
+      athleteEventPicture,
       athleteId,
       athleteFirstname,
       athleteLastname,
@@ -19,7 +20,8 @@ class Athlete {
       totalRedcards;
 
   Athlete(
-      {this.athletePicture,
+      {this.athleteProfilePicture,
+      this.athleteEventPicture,
       this.athleteId,
       this.athleteFirstname,
       this.athleteLastname,
@@ -38,7 +40,8 @@ class Athlete {
       this.totalRedcards});
 
   Athlete.fromJson(Map<String, dynamic> json) {
-    athletePicture = "http://superfighter.nl/" + json['athlete_picture'];
+    athleteProfilePicture = "http://superfighter.nl/" + json['athlete_picture'];
+    athleteEventPicture = "http://superfighter.nl/" + json['athlete_picture2'];
     athleteId = json['athlete_id'];
     athleteFirstname = json['athlete_firstname'];
     athleteLastname = json['athlete_lastname'];

@@ -145,7 +145,7 @@ class _W95p extends State<W95p> {
                                 topLeft: Radius.circular(5)),
                             image: new DecorationImage(
                                 image: new NetworkImage(
-                                    _notes[index].athletePicture),
+                                    _notes[index].athleteProfilePicture),
                                 fit: BoxFit.cover),
                           ),
                         ),

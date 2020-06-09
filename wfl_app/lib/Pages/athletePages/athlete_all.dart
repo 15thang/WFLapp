@@ -141,7 +141,7 @@ class _All extends State<All> {
                                     topLeft: Radius.circular(5)),
                                 image: new DecorationImage(
                                     image: new NetworkImage(
-                                        _notes[index].athletePicture),
+                                        _notes[index].athleteProfilePicture),
                                     fit: BoxFit.cover))),
                         Container(
                             padding: const EdgeInsets.all(10),

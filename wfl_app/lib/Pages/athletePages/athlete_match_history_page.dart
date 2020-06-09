@@ -189,7 +189,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                               child: Row(
                                 children: <Widget>[
                                   Text(
-                                    '2 ',
+                                    '${widget.athlete.totalYellowcards} ',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16),
                                   ),
@@ -200,7 +200,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                                     margin: const EdgeInsets.only(right: 15.0),
                                   ),
                                   Text(
-                                    '1 ',
+                                    '${widget.athlete.totalRedcards} ',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16),
                                   ),

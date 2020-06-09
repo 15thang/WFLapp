@@ -110,7 +110,7 @@ class AthletesInfoPage extends StatelessWidget {
                             decoration: BoxDecoration(
                               image: new DecorationImage(
                                   image:
-                                      new NetworkImage(athlete.athletePicture),
+                                      new NetworkImage(athlete.athleteProfilePicture),
                                   fit: BoxFit.cover),
                             ),
                             child: Expanded(
