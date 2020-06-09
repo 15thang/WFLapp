@@ -64,6 +64,28 @@ class AthletesInfoPage extends StatelessWidget {
               athleteWeightclass = "32";
               break;
           }
+          //switch case om de nummers naar letters te veranderen
+          String athleteGrade = athlete.athleteGrade;
+          switch (athleteGrade) {
+            case "0":
+              athleteGrade = "";
+              break;
+            case "1":
+              athleteGrade = "A";
+              break;
+            case "2":
+              athleteGrade = "B";
+              break;
+            case "3":
+              athleteGrade = "C";
+              break;
+            case "4":
+              athleteGrade = "N";
+              break;
+            case "5":
+              athleteGrade = "J";
+              break;
+          }
           return new GestureDetector(
             child: new Card(
               color: Colors.grey[900],
@@ -87,8 +109,8 @@ class AthletesInfoPage extends StatelessWidget {
                             height: 130,
                             decoration: BoxDecoration(
                               image: new DecorationImage(
-                                  image: new NetworkImage(
-                                      athlete.athletePicture),
+                                  image:
+                                      new NetworkImage(athlete.athletePicture),
                                   fit: BoxFit.cover),
                             ),
                             child: Expanded(
@@ -115,7 +137,7 @@ class AthletesInfoPage extends StatelessWidget {
                                   style: TextStyle(color: Colors.white)),
                               Text(athlete.athleteDayOfBirth,
                                   style: TextStyle(color: Colors.white)),
-                              Text(athleteWeightclass + '" C',
+                              Text(athleteWeightclass + '" ' + athleteGrade,
                                   style: TextStyle(color: Colors.white)),
                               Container(
                                 margin: const EdgeInsets.only(top: 5.0),
@@ -174,7 +196,8 @@ class AthletesInfoPage extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            child: Text(athlete.athleteWins.toString(),
+                                            child: Text(
+                                                athlete.athleteWins.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
@@ -209,7 +232,8 @@ class AthletesInfoPage extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            child: Text(athlete.athleteTKO.toString(),
+                                            child: Text(
+                                                athlete.athleteTKO.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -253,7 +277,9 @@ class AthletesInfoPage extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            child: Text(athlete.athleteLosses.toString(),
+                                            child: Text(
+                                                athlete.athleteLosses
+                                                    .toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
@@ -288,7 +314,8 @@ class AthletesInfoPage extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            child: Text(athlete.athleteKO.toString(),
+                                            child: Text(
+                                                athlete.athleteKO.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Colors.white,

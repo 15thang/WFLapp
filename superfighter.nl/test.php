@@ -1,6 +1,6 @@
 <?php
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
-$comp_id = $_GET['comp_id'];
+
 $athlete_id = $_GET['athlete_id'];
 
 $match_id[] = array();
@@ -86,6 +86,6 @@ if ($draws == null) {
 $query = "UPDATE athletes SET athlete_wins = '$wins', athlete_losses = '$losses', athlete_draws = '$draws', athlete_ko = '$ko', 
           athlete_tko = '$tko', athlete_yellowcards = '$yellowcards', athlete_redcards = '$redcards' WHERE athlete_id = '$athlete_id'";
 mysqli_query($db, $query);
-header('location: APP_competition_info.php?competition_id='.$comp_id);
+header('location: test.php?athlete_id='.$athlete_id += 1);
 
 ?>
