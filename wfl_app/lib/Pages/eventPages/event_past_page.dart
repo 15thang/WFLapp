@@ -89,7 +89,7 @@ class _EventPageState extends State<PastEvents> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                            height: 215,
+                            height: 195,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(5),

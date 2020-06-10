@@ -85,7 +85,7 @@ class _EventPageState extends State<UpcomingEvents> {
                           child: Column(
                             children: <Widget>[
                               Container(
-                                height: 220,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(5),
@@ -104,7 +104,7 @@ class _EventPageState extends State<UpcomingEvents> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Expanded(
-                                flex: 4,
+                                flex: 5,
                                 child: Container(
                                   padding:
                                       const EdgeInsets.only(top: 7, left: 10),
@@ -125,7 +125,7 @@ class _EventPageState extends State<UpcomingEvents> {
                                 ),
                               ),
                               Expanded(
-                                flex: 2,
+                                flex: 3,
                                 child: Container(
                                   margin: const EdgeInsets.only(left: 6.0),
                                   padding: const EdgeInsets.all(5),

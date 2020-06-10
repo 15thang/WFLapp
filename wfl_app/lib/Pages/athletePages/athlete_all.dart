@@ -105,6 +105,28 @@ class _All extends State<All> {
               athleteWeightclass = "32";
               break;
           }
+          //switch case om de nummers naar letters te veranderen
+          String athleteGrade = _notes[index].athleteGrade;
+          switch (athleteGrade) {
+            case "0":
+              athleteGrade = "";
+              break;
+            case "1":
+              athleteGrade = "A";
+              break;
+            case "2":
+              athleteGrade = "B";
+              break;
+            case "3":
+              athleteGrade = "C";
+              break;
+            case "4":
+              athleteGrade = "N";
+              break;
+            case "5":
+              athleteGrade = "J";
+              break;
+          }
           return new GestureDetector(
             onTap: () {
               Navigator.push(
@@ -116,59 +138,100 @@ class _All extends State<All> {
               );
             },
             child: new Card(
-              color: Colors.blueGrey[50],
+              color: Colors.grey[400],
               elevation: 5,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Container(
-                    height: 174,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(5),
-                          topLeft: Radius.circular(5)),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                            width: 174,
-                            height: 174,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(5),
-                                    topLeft: Radius.circular(5)),
-                                image: new DecorationImage(
-                                    image: new NetworkImage(
-                                        _notes[index].athleteProfilePicture),
-                                    fit: BoxFit.cover))),
-                        Container(
-                            padding: const EdgeInsets.all(10),
-                            height: 174,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(_notes[index].athleteFullName,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                Text(_notes[index].athleteNickname),
-                                Text(_notes[index].athleteNationality),
-                                Text(_notes[index].athleteDayOfBirth),
-                                Text(athleteWeightclass),
-                                SizedBox(
-                                  height: 10,
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 174,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(5),
+                            topLeft: Radius.circular(5)),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Expanded(
+                            flex: 1,
+                            child: Stack(children: <Widget>[
+                              Container(
+                                width: 174,
+                                height: 174,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(5),
+                                      topLeft: Radius.circular(5)),
+                                  image: new DecorationImage(
+                                      image: new NetworkImage(
+                                          _notes[index].athleteProfilePicture),
+                                      fit: BoxFit.cover),
                                 ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 35.0),
-                                  width: 170,
-                                  child: Text("Lees meer >",
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    gradient: LinearGradient(
+                                        begin: FractionalOffset.topCenter,
+                                        end: FractionalOffset.bottomCenter,
+                                        colors: [
+                                          Colors.grey.withOpacity(0.0),
+                                          Colors.black.withOpacity(0.5)
+                                        ],
+                                        stops: [
+                                          0.0,
+                                          1.0
+                                        ])),
+                              )
+                            ]),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              height: 174,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(_notes[index].athleteFullName,
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                              ],
-                            )),
-                      ],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18)),
+                                  Text(_notes[index].athleteNickname,
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 18)),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 5.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(_notes[index].athleteNationality,
+                                            style: TextStyle(fontSize: 17)),
+                                        Text(_notes[index].athleteDayOfBirth,
+                                            style: TextStyle(fontSize: 17)),
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 5.0),
+                                          child: Text(
+                                              athleteWeightclass +
+                                                  '"  ' +
+                                                  athleteGrade,
+                                              style: TextStyle(fontSize: 17)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
