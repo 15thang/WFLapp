@@ -1,6 +1,8 @@
-
 import 'package:flutter/material.dart';
-import 'package:wfl_app/Pages/eventPages/event_page.dart';
+import 'package:wfl_app/Pages/athletePages/athlete_page_female.dart';
+import 'package:wfl_app/Pages/athletePages/athlete_page_femaleyouth.dart';
+import 'package:wfl_app/Pages/athletePages/athlete_page_male.dart';
+import 'package:wfl_app/Pages/athletePages/athlete_page_maleyouth.dart';
 
 class AthleteDrawer extends StatelessWidget {
   const AthleteDrawer({Key key}) : super(key: key);
@@ -48,14 +50,16 @@ class AthleteDrawer extends StatelessWidget {
         color: Colors.white,
       ),
       onTap: () {
-        Navigator.of(context).pop();
-
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => EventPage()),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AthletePageMale(),
+          ),
         );
       },
     );
   }
+
   ListTile _buildFilterFemaleItem(BuildContext context) {
     return ListTile(
       title: Text(
@@ -67,14 +71,16 @@ class AthleteDrawer extends StatelessWidget {
         color: Colors.white,
       ),
       onTap: () {
-        Navigator.of(context).pop();
-
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => EventPage()),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AthletePageFemale(),
+          ),
         );
       },
     );
   }
+
   ListTile _buildFilterMaleYouthItem(BuildContext context) {
     return ListTile(
       title: Text(
@@ -86,14 +92,16 @@ class AthleteDrawer extends StatelessWidget {
         color: Colors.white,
       ),
       onTap: () {
-        Navigator.of(context).pop();
-
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => EventPage()),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AthletePageYouthMale(),
+          ),
         );
       },
     );
   }
+
   ListTile _buildFilterFemaleYouthItem(BuildContext context) {
     return ListTile(
       title: Text(
@@ -105,10 +113,11 @@ class AthleteDrawer extends StatelessWidget {
         color: Colors.white,
       ),
       onTap: () {
-        Navigator.of(context).pop();
-
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => EventPage()),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AthletePageYouthFemale(),
+          ),
         );
       },
     );

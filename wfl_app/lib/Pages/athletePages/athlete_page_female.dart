@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
-import 'package:wfl_app/Pages/components/athlete_sliver_app_bar.dart';
-import 'package:wfl_app/Pages/components/athlete_drawer.dart';
+import 'package:wfl_app/Pages/components/athlete_sliver_app_bar_female.dart';
 import 'package:wfl_app/Pages/delegates/sliver_persistent_header_delegate_impl.dart';
-import 'athlete_sorted_weight.dart';
-import 'athlete_all.dart';
+import 'athlete_all_gender.dart';
+import 'athlete_sorted_weight_gender.dart';
 
-class AthletePage extends StatefulWidget {
-  AthletePage({Key key}) : super(key: key);
+class AthletePageFemale extends StatefulWidget {
+  AthletePageFemale({Key key}) : super(key: key); 
 
   @override
-  _AthletePageState createState() => _AthletePageState();
+  _AthletePageFemaleState createState() => _AthletePageFemaleState();
 }
 
-class _AthletePageState extends State<AthletePage>
+class _AthletePageFemaleState extends State<AthletePageFemale>
     with SingleTickerProviderStateMixin {
   final List<Tuple3> _pages = [
-    Tuple3('All', All(), Icon(Icons.image)),
-    Tuple3('95+', W95p(weight: 1), Icon(Icons.image)),
-    Tuple3('95', W95p(weight: 2), Icon(Icons.image)),
-    Tuple3('84', W95p(weight: 3), Icon(Icons.image)),
-    Tuple3('77', W95p(weight: 4), Icon(Icons.image)),
-    Tuple3('70', W95p(weight: 5), Icon(Icons.image)),
-    Tuple3('65', W95p(weight: 6), Icon(Icons.image)),
-    Tuple3('61', W95p(weight: 7), Icon(Icons.image)),
+    Tuple3('All', AllGender(gender: 2, grade: 4), Icon(Icons.image)),
+    Tuple3('95+', AthleteWeightGender(gender: 2, grade: 4, weight: 1), Icon(Icons.image)),
+    Tuple3('95', AthleteWeightGender(gender: 2, grade: 4, weight: 2), Icon(Icons.image)),
+    Tuple3('84', AthleteWeightGender(gender: 2, grade: 4, weight: 3), Icon(Icons.image)),
+    Tuple3('77', AthleteWeightGender(gender: 2, grade: 4, weight: 4), Icon(Icons.image)),
+    Tuple3('70', AthleteWeightGender(gender: 2, grade: 4, weight: 5), Icon(Icons.image)),
+    Tuple3('65', AthleteWeightGender(gender: 2, grade: 4, weight: 6), Icon(Icons.image)),
+    Tuple3('61', AthleteWeightGender(gender: 2, grade: 4, weight: 7), Icon(Icons.image)),
   ];
 
   TabController _tabController;
@@ -68,7 +67,6 @@ class _AthletePageState extends State<AthletePage>
           children: _pages.map<Widget>((Tuple3 page) => page.item2).toList(),
         ),
       ),
-      drawer: AthleteDrawer(),
     );
   }
 }
