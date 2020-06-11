@@ -180,8 +180,14 @@ class _UpcomingMatchPageState extends State<UpcomingMatchPage> {
                               MaterialPageRoute(
                                 builder: (context) => EventsDetailPage(
                                     event: int.parse(_notes[index].matchEvent),
+                                    past: 0,
                                     eventName: _notes[index].matchEventName,
-                                    eventPicture: _notes[index].eventPicture),
+                                    eventPicture: _notes[index].eventPicture,
+                                    eventDate: _notes[index].matchDate, 
+                                    eventDescription: _notes[index].eventDescription,
+                                    eventPlace: _notes[index].eventPlace,
+                                    eventLink: _notes[index].eventLink
+                                  ),
                               ),
                             );
                           },

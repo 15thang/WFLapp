@@ -31,10 +31,14 @@ echo '"match_event_name": "match_event_name", ';
 echo '"match_date": "match_date", ';
 echo '"match_blok": "match_blok", ';
 echo '"match_opponent": "match_opponent", ';
-echo '"match_event_picture": "event_picture"';
+echo '"match_event_picture": "event_picture", ';
+echo '"match_description": "event_description", ';
+echo '"match_event_place": "event_place", ';
+echo '"match_event_link": "event_link"';
 echo ' }, ';
 foreach ($match_id as $matchid) {
-    $query = "SELECT matches.match_id, matches.event_id, events.event_name, events.event_date, matches.blok, matches.athlete_name, events.event_picture 
+    $query = "SELECT events.event_name, events.event_date, events.event_description, events.event_place, events.event_link,
+              matches.match_id, matches.event_id, matches.blok, matches.athlete_name, events.event_picture 
               FROM `matches` INNER JOIN events ON matches.event_id = events.event_id 
               WHERE match_id = '$matchid' AND NOT athlete_id = '$athlete_id'";
     $results = mysqli_query($db, $query);
@@ -51,7 +55,10 @@ foreach ($match_id as $matchid) {
             echo '"match_date": "'.$row['event_date'].'", ';
             echo '"match_blok": "'.$row['blok'].'", ';
             echo '"match_opponent": "'.$row['athlete_name'].'", ';
-            echo '"match_event_picture": "'.$row['event_picture'].'"';
+            echo '"match_event_picture": "'.$row['event_picture'].'", ';
+            echo '"match_description": "'.$row['event_description'].'", ';
+            echo '"match_event_place": "'.$row['event_place'].'", ';
+            echo '"match_event_link": "'.$row['event_link'].'"';
             echo ' }';
             $comma = true;
         }

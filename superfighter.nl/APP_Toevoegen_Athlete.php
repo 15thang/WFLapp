@@ -422,7 +422,7 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
         //check of picture2 input leeg is
         if ($_FILES['athlete_picture2']['size'] == 0 && $_FILES['cover_image']['error'] == 0)
         {
-            $dst2="pics/athlete_avatar.png";
+            $dst2="pics/athlete_event.png";
             move_uploaded_file($_FILES["athlete_picture2"]["tmp_name"], $dst2);
         }
         else {

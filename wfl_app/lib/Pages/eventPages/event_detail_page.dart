@@ -2,17 +2,31 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:wfl_app/model/event.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/redbluecorner.dart';
-import 'dart:math';
 
 class EventsDetailPage extends StatefulWidget {
   //Declare a field that holds the Event.
-  final int event;
-  final String eventName, eventPicture;
+  final int event, past;
+  final String eventName,
+      eventPicture,
+      eventDescription,
+      eventDate,
+      eventPlace,
+      eventLink;
 
   // In the constructor, require a Event.
-  EventsDetailPage({Key key, @required this.event, this.eventName, this.eventPicture}) : super(key: key);
+  EventsDetailPage(
+      {Key key,
+      @required this.event,
+      this.past,
+      this.eventName,
+      this.eventPicture,
+      this.eventDescription,
+      this.eventDate,
+      this.eventPlace,
+      this.eventLink})
+      : super(key: key);
 
   @override
   _EventPageState createState() => _EventPageState();
@@ -20,6 +34,14 @@ class EventsDetailPage extends StatefulWidget {
 
 class _EventPageState extends State<EventsDetailPage> {
   List<Corners> _notes = List<Corners>();
+
+  Future launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceWebView: true, forceSafariVC: true);
+    } else {
+      print("Can't Launch");
+    }
+  }
 
   Future<List<Corners>> fetchNotes() async {
     var url = 'http://superfighter.nl/APP_output_bluecorner.php?event_id=' +
@@ -73,7 +95,6 @@ class _EventPageState extends State<EventsDetailPage> {
           SliverAppBar(
             backgroundColor: Colors.black,
             expandedHeight: 200.0,
-            floating: false, //This is not needed since it's default
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(widget.eventName),
@@ -81,6 +102,67 @@ class _EventPageState extends State<EventsDetailPage> {
                 widget.eventPicture,
                 fit: BoxFit.cover,
               ),
+            ),
+          ),
+          new SliverList(
+            delegate: new SliverChildBuilderDelegate(
+              (context, index) => new ListTile(
+                title: new Card(
+                  child: Container(
+                    color: Colors.grey[500],
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            padding: const EdgeInsets.only(top: 7, left: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(widget.eventName,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                                Text(widget.eventDescription),
+                                Text(widget.eventDate),
+                                Text(widget.eventPlace),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 6.0),
+                            padding: const EdgeInsets.all(5),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                RaisedButton(
+                                  onPressed: () {
+                                    launchURL(widget.eventLink);
+                                  },
+                                  child: Text(
+                                    'Buy Tickets',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  color: Colors.lightBlue[400],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              childCount: 1,
             ),
           ),
           new SliverList(
@@ -104,9 +186,6 @@ class _EventPageState extends State<EventsDetailPage> {
                                   width: 130,
                                   height: 130,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(5),
-                                        topLeft: Radius.circular(5)),
                                     image: new DecorationImage(
                                         image: new NetworkImage(
                                             _notes[index].redcornerPicture),
@@ -142,8 +221,9 @@ class _EventPageState extends State<EventsDetailPage> {
                               children: <Widget>[
                                 Text(' '),
                                 Text('VS',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 23)),
                               ],
                             ),
                           ),
@@ -157,17 +237,37 @@ class _EventPageState extends State<EventsDetailPage> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 //blue corner
-                                new Container(
-                                  width: 130,
-                                  height: 130,
-                                  child: new Transform(
-                                    alignment: Alignment.center,
-                                    transform: Matrix4.rotationY(3.14159265359),
-                                    child: Image(
-                                        image: new NetworkImage(
-                                            _notes[index].bluecornerPicture),
-                                        fit: BoxFit.cover),
-                                  ),
+                                Stack(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 130,
+                                      height: 130,
+                                      child: new Transform(
+                                        alignment: Alignment.center,
+                                        transform:
+                                            Matrix4.rotationY(3.14159265359),
+                                        child: Image(
+                                            image: new NetworkImage(
+                                                _notes[index]
+                                                    .bluecornerPicture),
+                                            fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        gradient: LinearGradient(
+                                          begin: FractionalOffset.topCenter,
+                                          end: FractionalOffset.bottomCenter,
+                                          colors: [
+                                            Colors.grey.withOpacity(0.0),
+                                            Colors.black.withOpacity(0.5)
+                                          ],
+                                          stops: [0.0, 1.0],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(10),

@@ -67,8 +67,13 @@ class _EventPageState extends State<UpcomingEvents> {
                 MaterialPageRoute(
                   builder: (context) => EventsDetailPage(
                     event: int.parse(_notes[index].eventId),
+                    past: 0,
                     eventName: _notes[index].eventName,
                     eventPicture: _notes[index].eventPicture,
+                    eventDescription: _notes[index].eventDescription, 
+                    eventDate: _notes[index].eventDate, 
+                    eventPlace: _notes[index].eventPlace,
+                    eventLink: _notes[index].eventTicketLink,
                   ),
                 ),
               );
