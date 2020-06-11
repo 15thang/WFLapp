@@ -183,8 +183,8 @@ $max = 1;
         // V V V  DISPLAY STATS FROM EVENT 1 TO 9  V V V
         echo '
 <!-- Event1 -->
-<table id="compstats" >
-        <tr id="hoverknop" data-href="APP_event_info.php?event_id='.$event1.'&events7=0">
+<table id="compstats">
+        <tr>
             <th>Event1</th>
         </tr>';
         //make array with all athletes that are participating in event
@@ -203,11 +203,11 @@ ORDER BY ac.points DESC, m.athlete_id ASC";
         while ($row = $results2->fetch_assoc()) {
             if (in_array($row['athlete_id'], $participants_id)) {
                 if ($event1 == $row['event_id']) {
-                    $event1stats[] = $row['points'];
+                    $event2stats[] = $row['points'];
                     if ($row['corner'] == "red") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event1.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event1.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
                     } else if ($row['corner'] == "blue") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event1.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event1.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
                     }
                     echo $row['redyellowcard'].'<br>'.$row['points'].' points<br>'.$row['ko'].'</td></tr>';
                 } else if (!in_array($row['athlete_id'], $idInEvent) && $row['event_id'] == $event0) {
@@ -239,9 +239,9 @@ ORDER BY ac.points DESC, m.athlete_id ASC";
                 if ($event2 == $row['event_id']) {
                     $event2stats[] = $row['points'];
                     if ($row['corner'] == "red") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event2.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event2.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
                     } else if ($row['corner'] == "blue") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event2.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event2.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
                     }
                     echo $row['redyellowcard'].'<br>'.$row['points'].' points<br>'.$row['ko'].'</td></tr>';
                 } else if (!in_array($row['athlete_id'], $idInEvent) && $row['event_id'] == $event0) {
@@ -273,9 +273,9 @@ ORDER BY ac.points DESC, m.athlete_id ASC";
                 if ($event3 == $row['event_id']) {
                     $event3stats[] = $row['points'];
                     if ($row['corner'] == "red") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event3.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event3.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
                     } else if ($row['corner'] == "blue") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event3.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event3.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
                     }
                     echo $row['redyellowcard'].'<br>'.$row['points'].' points<br>'.$row['ko'].'</td></tr>';
                 } else if (!in_array($row['athlete_id'], $idInEvent) && $row['event_id'] == $event0) {
@@ -307,9 +307,9 @@ ORDER BY ac.points DESC, m.athlete_id ASC";
                 if ($event4 == $row['event_id']) {
                     $event4stats[] = $row['points'];
                     if ($row['corner'] == "red") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event4.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event4.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
                     } else if ($row['corner'] == "blue") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event4.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event4.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
                     }
                     echo $row['redyellowcard'].'<br>'.$row['points'].' points<br>'.$row['ko'].'</td></tr>';
                 } else if (!in_array($row['athlete_id'], $idInEvent) && $row['event_id'] == $event0) {
@@ -341,9 +341,9 @@ ORDER BY ac.points DESC, m.athlete_id ASC";
                 if ($event5 == $row['event_id']) {
                     $event5stats[] = $row['points'];
                     if ($row['corner'] == "red") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event5.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event5.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
                     } else if ($row['corner'] == "blue") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event5.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event5.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
                     }
                     echo $row['redyellowcard'].'<br>'.$row['points'].' points<br>'.$row['ko'].'</td></tr>';
                 } else if (!in_array($row['athlete_id'], $idInEvent) && $row['event_id'] == $event0) {
@@ -375,9 +375,9 @@ ORDER BY ac.points DESC, m.athlete_id ASC";
                 if ($event6 == $row['event_id']) {
                     $event6stats[] = $row['points'];
                     if ($row['corner'] == "red") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event6.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event6.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
                     } else if ($row['corner'] == "blue") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event6.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event6.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
                     }
                     echo $row['redyellowcard'].'<br>'.$row['points'].' points<br>'.$row['ko'].'</td></tr>';
                 } else if (!in_array($row['athlete_id'], $idInEvent) && $row['event_id'] == $event0) {
@@ -409,9 +409,9 @@ ORDER BY ac.points DESC, m.athlete_id ASC";
                 if ($event7 == $row['event_id']) {
                     $event7stats[] = $row['points'];
                     if ($row['corner'] == "red") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event7.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event7.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(255,0,0,0.5);">';
                     } else if ($row['corner'] == "blue") {
-                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event7.'&events7=0#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
+                        echo '<td id="hoverknop" data-href="APP_event_info.php?event_id='.$event7.'&events7=0&comp_id='.$comp_id.'#section'.$row['athlete_id'].'" style="background-color:rgba(0,0,255,0.5);">';
                     }
                     echo $row['redyellowcard'].'<br>'.$row['points'].' points<br>'.$row['ko'].'</td></tr>';
                 } else if (!in_array($row['athlete_id'], $idInEvent) && $row['event_id'] == $event0) {

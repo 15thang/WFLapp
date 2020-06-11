@@ -3,6 +3,7 @@ ob_start();
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 $event_id = $_GET['event_id'];
 $events7 = $_GET['events7'];
+$showcomp = $_GET['comp_id'];
 if ($events7 == 9) {
     echo "<script type='text/javascript'>alert('This competition already has 9 events!');</script>";
 }
@@ -68,17 +69,42 @@ while ($row = $results->fetch_assoc()) {
               </form>
                ';
     } else {
-        echo '<form id="form_add_match2event" method="post" action="APP_add_match2event.php?event_id=' . $event_id . '&competition_id=' . $comp . '&redcorner_id=0&bluecorner_id=0">
+        echo '<form id="form_add_match2event" method="post" action="APP_add_match2event.php?event_id=' . $event_id . '&competition_id=0&redcorner_id=0&bluecorner_id=0">
                 <button type="submit" class="ssbutton">Add more matches</button>
+              </form>
+               ';
+        echo '<form id="form_add_comp2event" method="post" action="APP_add_comp2event.php?event_id=' . $event_id . '&competition_id=0&redcorner_id=0&bluecorner_id=0">
+                <button type="submit" class="ssbutton">Add another competition></button>
               </form>
                ';
     }
 }
 ?>
 </div>
+<div id="eventcompetition">
+    <?php
+    $query = "SELECT competition_id FROM `eventcompetition` WHERE event_id = '$event_id'";
+    $results = mysqli_query($db, $query);
+    $nodouble[] = array();
+    while ($row = $results->fetch_assoc()) {
+        if (!in_array($row['competition_id'], $nodouble)) {
+            echo '<form id="form_show_comp" method="post" action="APP_event_info.php?event_id='.$event_id.'&events7=0&comp_id='.$row['competition_id'].'">';
+            if ($row['competition_id'] == $showcomp) {
+                echo '<button style="color: red;" type="submit" class="ssbutton">Competition '.$row['competition_id'].'</button>';
+            } else {
+                echo '<button type="submit" class="ssbutton">Competition '.$row['competition_id'].'</button>';
+            }
+            echo '</form>';
+            if (isset($_POST['submitRedcorner'])) {
+
+            }
+            array_push($nodouble, $row['competition_id']);
+        }
+    }
+    ?>
+</div>
 <!-- Competitie -->
 <div id="eventcompetition">
-
     <!-- rode hoek-->
     <div id="redcorner" style="float: left;">
         <table>
@@ -87,9 +113,9 @@ while ($row = $results->fetch_assoc()) {
                 <th>Stats</th>
             </tr>
             <?php
-            $query = "SELECT * FROM matches WHERE matches.athlete_id
-            IN (SELECT redcorner FROM `eventcompetition` WHERE competition_id = '$comp' AND event_id = '$event_id')
-            AND matches.event_id = '$event_id'";
+            $query = "SELECT * FROM matches INNER JOIN eventcompetition ON matches.match_id = eventcompetition.match_id WHERE matches.athlete_id
+            IN (SELECT redcorner FROM `eventcompetition` WHERE event_id = '$event_id')
+            AND matches.event_id = '$event_id' AND eventcompetition.competition_id = '$showcomp'";
             $results = mysqli_query($db, $query);
 
             while ($row = $results->fetch_assoc()) {
@@ -143,7 +169,7 @@ while ($row = $results->fetch_assoc()) {
                 }
                 echo '
             <tr id="section'.$row['athlete_id'].'">
-                <td><img id="cornerPic" src="'.$row['athlete_picture'].'" id="pic"/><form id="form_delete_match" method="post" action="APP_delete_match.php?red_id='.$row['athlete_id'].'&comp_id='.$comp.'&event_id='.$event_id.'">
+                <td><img id="cornerPic" src="'.$row['athlete_picture'].'" id="pic"/><form id="form_delete_match" method="post" action="APP_delete_match.php?red_id='.$row['athlete_id'].'&comp_id='.$showcomp.'&event_id='.$event_id.'">
                 <button type="submit" class="button" value="Delete" style="background-color: red; cursor: pointer; font-family: raleway; font-weight: bold;">Remove match</button>
                 </form>
                     '.$row['athlete_name'].'<br>'
@@ -177,7 +203,7 @@ while ($row = $results->fetch_assoc()) {
                 $points = ($_POST['points']);
                 $ko = ($_POST['KO']);
 
-                header('location: APP_submit_match_outcome.php?athlete_id='.$athlete_id.'&red_id=1&blue_id=0&comp_id='.$comp.'&event_id='.$event_id.'&redyellowcard='.$redyellowcard.'&points='.$points.'&ko='.$ko);
+                header('location: APP_submit_match_outcome.php?athlete_id='.$athlete_id.'&red_id=1&blue_id=0&comp_id='.$showcomp.'&event_id='.$event_id.'&redyellowcard='.$redyellowcard.'&points='.$points.'&ko='.$ko);
                 ob_flush();
             }
             ?>
@@ -191,9 +217,10 @@ while ($row = $results->fetch_assoc()) {
                 <th>Blue corner</th>
             </tr>
             <?php
-            $query = "SELECT * FROM matches WHERE matches.athlete_id
-            IN (SELECT bluecorner FROM `eventcompetition` WHERE competition_id = '$comp' AND event_id = '$event_id')
-            AND matches.event_id = '$event_id'";
+            $query = "SELECT * FROM matches INNER JOIN eventcompetition ON matches.match_id = eventcompetition.match_id WHERE matches.athlete_id
+            IN (SELECT bluecorner FROM `eventcompetition` WHERE event_id = '$event_id')
+            AND matches.event_id = '$event_id' AND eventcompetition.competition_id = '$showcomp'";
+            $results = mysqli_query($db, $query);
             $results = mysqli_query($db, $query);
             while ($row = $results->fetch_assoc()) {
                 //switch case om de nummers naar letters te veranderen
@@ -265,7 +292,7 @@ while ($row = $results->fetch_assoc()) {
                 <button type="submit" name="submitBluecorner" value="'.$row['athlete_id'].'" style="background-color: lime;">Submit stats</button>
                 </form>
                 </td>
-                <td style="width: 20%;"><img id="cornerPic" src="'.$row['athlete_picture'].'" id="pic"/><form id="form_delete_match" method="post" action="APP_delete_match.php?blue_id='.$row['athlete_id'].'&comp_id='.$comp.'&event_id='.$event_id.'">
+                <td style="width: 20%;"><img id="cornerPic" src="'.$row['athlete_picture'].'" id="pic"/><form id="form_delete_match" method="post" action="APP_delete_match.php?blue_id='.$row['athlete_id'].'&comp_id='.$showcomp.'&event_id='.$event_id.'">
                 <button type="submit" class="button" value="Delete" style="background-color: red; cursor: pointer; font-family: raleway; font-weight: bold;">Remove match</button>
                 </form>
                     '.$row['athlete_name'].'<br>'
@@ -281,7 +308,7 @@ while ($row = $results->fetch_assoc()) {
                 $points = ($_POST['points']);
                 $ko = ($_POST['KO']);
 
-                header('location: APP_submit_match_outcome.php?athlete_id='.$athlete_id.'&red_id=0&blue_id=1&comp_id='.$comp.'&event_id='.$event_id.'&redyellowcard='.$redyellowcard.'&points='.$points.'&ko='.$ko);
+                header('location: APP_submit_match_outcome.php?athlete_id='.$athlete_id.'&red_id=0&blue_id=1&comp_id='.$showcomp.'&event_id='.$event_id.'&redyellowcard='.$redyellowcard.'&points='.$points.'&ko='.$ko);
                 ob_flush();
             }
             ?>
@@ -291,8 +318,6 @@ while ($row = $results->fetch_assoc()) {
 </div>
 <!-- Competitie statistieken -->
 <div id="statistics">
-
 </div>
 </section>
 </body>
-

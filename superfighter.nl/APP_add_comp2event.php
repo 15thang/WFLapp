@@ -3,12 +3,13 @@ ob_start();
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 $event_id = $_GET['event_id'];
 $selected_comp = $_GET['competition_id'];
-$query = "SELECT * FROM `competition` ORDER BY competition_id DESC";
-$results = mysqli_query($db, $query);
-
 $red_corner = true;
 $red_cornerID = $_GET['redcorner_id'];
 $blue_cornerID = $_GET['bluecorner_id'];
+
+$query = "SELECT * FROM `competition` WHERE competition_id NOT IN (SELECT competition_id FROM `eventcompetition` WHERE event_id = '$event_id') ORDER BY competition_id DESC";
+$results = mysqli_query($db, $query);
+
 if (!$red_cornerID == 0) {
     $red_corner = false;
 }
@@ -16,6 +17,7 @@ if (!$red_cornerID == 0) {
 <head>
     <link rel="stylesheet" type="text/css" href="css/APP_CSS.css">
     <link rel="stylesheet" type="text/css" href="css/wflapp.css">
+    <link rel="stylesheet" type="text/css" href="css/APP_event_CSS.css">
 </head>
 
 <div><!-- terugknop -->

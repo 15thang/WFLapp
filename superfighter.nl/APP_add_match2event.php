@@ -3,12 +3,14 @@ ob_start();
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 $event_id = $_GET['event_id'];
 $selected_comp = $_GET['competition_id'];
-$query = "SELECT * FROM `competition` ORDER BY competition_id DESC";
-$results = mysqli_query($db, $query);
-
 $red_corner = true;
 $red_cornerID = $_GET['redcorner_id'];
 $blue_cornerID = $_GET['bluecorner_id'];
+$more = $_GET['more'];
+
+$query = "SELECT * FROM `competition` WHERE competition_id IN (SELECT competition_id FROM `eventcompetition` WHERE event_id = '$event_id') ORDER BY competition_id DESC";
+$results = mysqli_query($db, $query);
+
 if (!$red_cornerID == 0) {
     $red_corner = false;
 }
@@ -32,9 +34,10 @@ if (!$red_cornerID == 0) {
 <div id="field">
     <form name="form1" method="post" action="" enctype="multipart/form-data">
         <div class="container" style="margin-top:10px;">
-            <table>
+            <input id="myInput" type="text" placeholder="Search..">
+            <table id="table_format" class="table table-bordered">
                 <tr>
-                    <th class="skip-filter">Competition id</th>
+                    <th class="skip-filter" style="text-decoration: underline">Select competition for match</th>
                     <th class="skip-filter">Competition name</th>
                 </tr>
                 <tbody id="myTable">
@@ -43,7 +46,22 @@ if (!$red_cornerID == 0) {
                     if ($selected_comp == $row['competition_id']){
                         echo '
                 <tr style="background-color:green">
-                <td>'.$row['competition_id'].'</td>
+                <td>'.$row['competition_id'].'
+                <label>
+                <input type="radio" name="radioComp" value="'.$row['competition_id'].'"/>
+                </label>
+                </td>
+                <td>'.$row['competition_name'].'</td>
+                </td>
+              </tr>';
+                    } else {
+                        echo '
+                <tr>
+                <td>'.$row['competition_id'].'
+                <label>
+                <input type="radio" name="radioComp" value="'.$row['competition_id'].'"/>
+                </label>
+                </td>
                 <td>'.$row['competition_name'].'</td>
                 </td>
               </tr>';
@@ -149,7 +167,41 @@ if (!$red_cornerID == 0) {
           WHERE competition_id ='$selected_comp')";
         $results2 = mysqli_query($db, $query2);
         while ($row = $results2->fetch_assoc()) {
+            //show comp name
             echo $row['competition_name'].'<br><br>VS</h2>';
+
+            //variabelen om te kijken hoeveelste event dit event is
+            $event1 = $row['event1'];
+            $event2 = $row['event2'];
+            $event3 = $row['event3'];
+            $event4 = $row['event4'];
+            $event5 = $row['event5'];
+            $event6 = $row['event6'];
+            $event7 = $row['event7'];
+            $event8 = $row['event8'];
+            $event9 = $row['event9'];
+
+            if ($event1 == 0) {
+                $comp_event = 1;
+            } else if ($event2 == 0) {
+                $comp_event = 2;
+            } else if ($event3 == 0) {
+                $comp_event = 3;
+            } else if ($event4 == 0) {
+                $comp_event = 4;
+            } else if ($event5 == 0) {
+                $comp_event = 5;
+            } else if ($event6 == 0) {
+                $comp_event = 6;
+            } else if ($event7 == 0) {
+                $comp_event = 7;
+            } else if ($event8 == 0) {
+                $comp_event = 8;
+            } else if ($event9 == 0) {
+                $comp_event = 9;
+            } else {
+                $comp_event = 0;
+            }
         }
         ?>
         <div id="athleteVS2">
@@ -227,13 +279,17 @@ if (!$red_cornerID == 0) {
             }
 
             if (isset($_POST['submit_event_comp'])) {
-                $query = "INSERT INTO eventcompetition (event_id, competition_id, redcorner, bluecorner) 
-  			    VALUES('$event_id','$selected_comp','$red_cornerID','$blue_cornerID')";
+                $query = "UPDATE events SET competition = '$selected_comp' WHERE competition = 0 AND event_id = '$event_id'";
                 mysqli_query($db, $query);
 
-                header("location: APP_insert_match.php?event_id=".$event_id."&competition_id=".$selected_comp."&redcorner_id=".$red_cornerID."&bluecorner_id=".$blue_cornerID."&events7=".$events7);
+                $query = "INSERT INTO eventcompetition (event_id, competition_id, redcorner, bluecorner) 
+  			        VALUES('$event_id','$selected_comp','$red_cornerID','$blue_cornerID')";
+                mysqli_query($db, $query);
+
+                header("location: APP_insert_match.php?event_id=".$event_id."&competition_id=".$selected_comp."&redcorner_id=".$red_cornerID."&bluecorner_id=".$blue_cornerID."&events7=0");
                 ob_flush();
             }
+
             ?>
         </div>
         <!-- atleten tabel dat atleten uit de geselecteerde competitie weergeeft-->
@@ -250,9 +306,9 @@ if (!$red_cornerID == 0) {
         $results2 = mysqli_query($db, $query2);
         while ($row = $results2->fetch_assoc()) {
             if ($red_corner == true && !$selected_comp == 0) {
-                echo '<h2>'.$row['competition_name'].' - Select red corner fighter - available athletes:</h2>';
+                echo '<h2>'.$row['competition_name'].' - Select red corner fighter</h2>';
             } else if ($red_corner == false && $blue_cornerID == 0) {
-                echo '<h2>'.$row['competition_name'].' - Select blue corner fighter - available athletes:</h2>';
+                echo '<h2>'.$row['competition_name'].' - Select blue corner fighter</h2>';
             }
         }
         if ($red_corner == true && !$selected_comp == 0) {
@@ -278,9 +334,9 @@ if (!$red_cornerID == 0) {
                 </tr>
                 <tbody id="myTable">';
 
-        $query2 = "SELECT * FROM `athletes` WHERE athletes.athlete_id NOT IN (SELECT redcorner FROM `eventcompetition` WHERE event_id = '$event_id')
-                   AND athletes.athlete_id NOT IN (SELECT bluecorner FROM `eventcompetition` WHERE event_id = '$event_id')
-                   AND athletes.athlete_id IN (SELECT athlete_id FROM `athletecompetition` WHERE competition_id ='$selected_comp')";
+        $query2 = "SELECT * FROM `athletes` WHERE athlete_id 
+          IN (SELECT athlete_id FROM `athletecompetition` 
+          WHERE competition_id ='$selected_comp')";
         $results2 = mysqli_query($db, $query2);
         while ($row = $results2->fetch_assoc()) {
             $picture = $row['athlete_picture'];
@@ -341,7 +397,7 @@ if (!$red_cornerID == 0) {
                     break;
             }
 
-            if ($red_cornerID != $row['athlete_id'] && $blue_cornerID != $row['athlete_id']) {
+            if ($red_cornerID != $row['athlete_id'] && $blue_cornerID != $row['athlete_id']){
                 echo '
                 <tr>
                 <td>' . $row['athlete_id'] . '
