@@ -2,21 +2,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/redbluecorner.dart';
 
-class EventsDetailPage extends StatefulWidget {
+class EventsDetailPagePast extends StatefulWidget {
   //Declare a field that holds the Event.
   final int event, past;
   final String eventName,
       eventPicture,
       eventDescription,
       eventDate,
-      eventPlace,
-      eventLink;
+      eventPlace;
 
   // In the constructor, require a Event.
-  EventsDetailPage(
+  EventsDetailPagePast(
       {Key key,
       @required this.event,
       this.past,
@@ -24,24 +22,15 @@ class EventsDetailPage extends StatefulWidget {
       this.eventPicture,
       this.eventDescription,
       this.eventDate,
-      this.eventPlace,
-      this.eventLink})
+      this.eventPlace})
       : super(key: key);
 
   @override
   _EventPageState createState() => _EventPageState();
 }
 
-class _EventPageState extends State<EventsDetailPage> {
+class _EventPageState extends State<EventsDetailPagePast> {
   List<Corners> _notes = List<Corners>();
-
-  Future launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceWebView: true, forceSafariVC: true);
-    } else {
-      print("Can't Launch");
-    }
-  }
 
   Future<List<Corners>> fetchNotes() async {
     var url = 'http://superfighter.nl/APP_output_bluecorner.php?event_id=' +
@@ -121,7 +110,7 @@ class _EventPageState extends State<EventsDetailPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(widget.eventName,
+                                Text(widget.eventName + ' (Ended)',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold)),
                                 Text(widget.eventDescription),
@@ -139,25 +128,6 @@ class _EventPageState extends State<EventsDetailPage> {
                                               widget.eventPlace,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 4, right: 4),
-                                          child: RaisedButton(
-                                            onPressed: () {
-                                              launchURL(widget.eventLink);
-                                            },
-                                            child: Text(
-                                              'Buy Tickets',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            color: Colors.lightBlue[400],
-                                          ),
                                         ),
                                       ),
                                     ],

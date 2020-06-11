@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/event.dart';
-import 'event_detail_page.dart';
+import 'event_detail_page_past.dart';
 
 class PastEvents extends StatefulWidget {
   const PastEvents({Key key}) : super(key: key);
@@ -70,7 +70,7 @@ class _EventPageState extends State<PastEvents> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => EventsDetailPage(
+                  builder: (context) => EventsDetailPagePast(
                     event: int.parse(_notes[index].eventId),
                     past: 1,
                     eventName: _notes[index].eventName,
@@ -78,7 +78,6 @@ class _EventPageState extends State<PastEvents> {
                     eventDescription: _notes[index].eventDescription, 
                     eventDate: _notes[index].eventDate, 
                     eventPlace: _notes[index].eventPlace,
-                    eventLink: _notes[index].eventTicketLink,
                   ),
                 ),
               );
