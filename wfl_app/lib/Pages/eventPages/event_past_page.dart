@@ -73,6 +73,7 @@ class _EventPageState extends State<PastEvents> {
                   builder: (context) => EventsDetailPagePast(
                     event: int.parse(_notes[index].eventId),
                     past: 1,
+                    maxComp: int.parse(_notes[index].eventMaxComp),
                     eventName: _notes[index].eventName,
                     eventPicture: _notes[index].eventPicture,
                     eventDescription: _notes[index].eventDescription, 

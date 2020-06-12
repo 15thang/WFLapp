@@ -68,6 +68,7 @@ class _EventPageState extends State<UpcomingEvents> {
                   builder: (context) => EventsDetailPage(
                     event: int.parse(_notes[index].eventId),
                     past: 0,
+                    maxComp: int.parse(_notes[index].eventMaxComp),
                     eventName: _notes[index].eventName,
                     eventPicture: _notes[index].eventPicture,
                     eventDescription: _notes[index].eventDescription, 

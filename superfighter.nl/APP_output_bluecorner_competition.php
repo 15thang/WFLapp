@@ -1,6 +1,7 @@
 <?php
 $db       = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 $event_id = $_GET['event_id'];
+$comp_id = $_GET['competition_id'];
 $redArray = array();
 $blueArray = array();
 $query = "SELECT ath.athlete_picture2 AS redcorner_picture, ath.athlete_id AS redcorner_id, 
@@ -13,7 +14,7 @@ ath.athlete_weightclass AS redcorner_weightclass, ath.athlete_grade AS redcorner
     ON ath.athlete_id = ec.redcorner
     INNER JOIN `competition` AS comp
     ON ec.competition_id = comp.competition_id
-    WHERE ath.athlete_id IN (SELECT redcorner FROM `eventcompetition` WHERE event_id = '$event_id')
+    WHERE ath.athlete_id IN (SELECT redcorner FROM `eventcompetition` WHERE event_id = '$event_id' AND competition_id = '$comp_id')
     AND comp.competition_id IN (SELECT competition_id FROM `eventcompetition` WHERE event_id = '$event_id') ORDER BY ec.competition_id ASC";
 $result     = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
@@ -31,7 +32,7 @@ comp.competition_name AS bluecorner_comp_name, comp.competition_id AS bluecorner
     ON ath.athlete_id = ec.bluecorner
     INNER JOIN `competition` AS comp
     ON ec.competition_id = comp.competition_id
-    WHERE ath.athlete_id IN (SELECT bluecorner FROM `eventcompetition` WHERE event_id = '$event_id')
+    WHERE ath.athlete_id IN (SELECT bluecorner FROM `eventcompetition` WHERE event_id = '$event_id' AND competition_id = '$comp_id')
     AND comp.competition_id IN (SELECT competition_id FROM `eventcompetition` WHERE event_id = '$event_id') ORDER BY ec.competition_id ASC";
 $result      = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {

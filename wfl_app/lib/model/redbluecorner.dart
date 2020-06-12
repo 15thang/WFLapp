@@ -10,6 +10,7 @@ class Corners {
       redcornerFullName,
       redcornerWeightclass,
       redcornerGrade,
+      redcornerComp,
       bluecornerPicture,
       bluecornerId,
       bluecornerFirstname,
@@ -20,7 +21,9 @@ class Corners {
       bluecornerDescription,
       bluecornerFullName,
       bluecornerWeightclass,
-      bluecornerGrade;
+      bluecornerGrade,
+      bluecornerCompName,
+      bluecornerCompId;
 
   Corners(
       {this.redcornerPicture,
@@ -33,6 +36,7 @@ class Corners {
       this.redcornerFullName,
       this.redcornerWeightclass,
       this.redcornerGrade,
+      this.redcornerComp,
       this.bluecornerPicture,
       this.bluecornerId,
       this.bluecornerFirstname,
@@ -42,7 +46,9 @@ class Corners {
       this.bluecornerDescription,
       this.bluecornerFullName,
       this.bluecornerWeightclass,
-      this.bluecornerGrade});
+      this.bluecornerGrade,
+      this.bluecornerCompName,
+      this.bluecornerCompId});
 
   Corners.fromJson(Map<String, dynamic> json) {
     redcornerPicture = "http://superfighter.nl/" + json['redcorner_picture'];
@@ -56,6 +62,7 @@ class Corners {
     redcornerFullName = redcornerFirstname + " " + redcornerLastname;
     redcornerWeightclass = json['redcorner_weightclass'];
     redcornerGrade = json['redcorner_grade'];
+    redcornerComp = json['redcorner_comp'];
     bluecornerPicture = "http://superfighter.nl/" + json['bluecorner_picture'];
     bluecornerId = json['bluecorner_id'];
     bluecornerFirstname = json['bluecorner_firstname'];
@@ -67,5 +74,7 @@ class Corners {
     bluecornerFullName = bluecornerFirstname + " " + bluecornerLastname;
     bluecornerWeightclass = json['bluecorner_weightclass'];
     bluecornerGrade = json['bluecorner_grade'];
+    bluecornerCompName = json['bluecorner_comp_name'];
+    bluecornerCompId = json['bluecorner_comp_id'];
   }
 }

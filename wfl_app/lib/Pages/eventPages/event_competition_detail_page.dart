@@ -4,16 +4,17 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:wfl_app/model/redbluecorner.dart';
 
-class EventsDetailPagePast extends StatefulWidget {
+class EventsDetailPageCompetition extends StatefulWidget {
   //Declare a field that holds the Event.
-  final int event, past, maxComp;
+  final int event, past, maxComp, compId;
   final String eventName, eventPicture, eventDescription, eventDate, eventPlace;
 
   // In the constructor, require a Event.
-  EventsDetailPagePast(
+  EventsDetailPageCompetition(
       {Key key,
       @required this.event,
       this.past,
+      this.compId,
       this.maxComp,
       this.eventName,
       this.eventPicture,
@@ -26,12 +27,12 @@ class EventsDetailPagePast extends StatefulWidget {
   _EventPageState createState() => _EventPageState();
 }
 
-class _EventPageState extends State<EventsDetailPagePast> {
+class _EventPageState extends State<EventsDetailPageCompetition> {
   List<Corners> _notes = List<Corners>();
 
   Future<List<Corners>> fetchNotes() async {
-    var url = 'http://superfighter.nl/APP_output_bluecorner.php?event_id=' +
-        widget.event.toString();
+    var url = 'http://superfighter.nl/APP_output_bluecorner_competition.php?event_id=' +
+        widget.event.toString() + '&competition_id=' + widget.compId.toString();
 
     var response = await http.get(url);
 

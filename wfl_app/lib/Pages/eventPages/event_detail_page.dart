@@ -7,7 +7,7 @@ import 'package:wfl_app/model/redbluecorner.dart';
 
 class EventsDetailPage extends StatefulWidget {
   //Declare a field that holds the Event.
-  final int event, past;
+  final int event, past, maxComp;
   final String eventName,
       eventPicture,
       eventDescription,
@@ -20,6 +20,7 @@ class EventsDetailPage extends StatefulWidget {
       {Key key,
       @required this.event,
       this.past,
+      this.maxComp,
       this.eventName,
       this.eventPicture,
       this.eventDescription,
@@ -180,6 +181,41 @@ class _EventPageState extends State<EventsDetailPage> {
               (context, index) => new ListTile(
                 title: new Card(
                   child: Container(
+                    height: 50,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[800],
+                        border:
+                            Border.all(width: 1.0, color: Colors.grey[800])),
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return new GestureDetector(
+                          onTap: () {},
+                          child: new Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            width: 150,
+                            color: Colors.grey[900],
+                            child: Text(
+                              _notes[index].bluecornerCompName,
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: widget.maxComp,
+                    ),
+                  ),
+                ),
+              ),
+              childCount: 1,
+            ),
+          ),
+          new SliverList(
+            delegate: new SliverChildBuilderDelegate(
+              (context, index) => new ListTile(
+                title: new Card(
+                  child: Container(
                     color: Colors.blueGrey[50],
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -230,10 +266,14 @@ class _EventPageState extends State<EventsDetailPage> {
                             child: Column(
                               children: <Widget>[
                                 Text(' '),
-                                Text('VS',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 23)),
+                                Text(_notes[index].redcornerComp),
+                                Text(' '),
+                                Text(
+                                  'VS',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 23),
+                                ),
                               ],
                             ),
                           ),

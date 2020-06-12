@@ -334,9 +334,9 @@ if (!$red_cornerID == 0) {
                 </tr>
                 <tbody id="myTable">';
 
-        $query2 = "SELECT * FROM `athletes` WHERE athlete_id 
-          IN (SELECT athlete_id FROM `athletecompetition` 
-          WHERE competition_id ='$selected_comp')";
+        $query2 = "SELECT * FROM `athletes` WHERE athletes.athlete_id NOT IN (SELECT redcorner FROM `eventcompetition` WHERE event_id = '$event_id')
+                   AND athletes.athlete_id NOT IN (SELECT bluecorner FROM `eventcompetition` WHERE event_id = '$event_id')
+                   AND athletes.athlete_id IN (SELECT athlete_id FROM `athletecompetition` WHERE competition_id ='$selected_comp')";
         $results2 = mysqli_query($db, $query2);
         while ($row = $results2->fetch_assoc()) {
             $picture = $row['athlete_picture'];
