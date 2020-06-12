@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:wfl_app/Pages/eventPages/event_competition_detail_page.dart';
 import 'package:wfl_app/model/redbluecorner.dart';
 
 class EventsDetailPagePast extends StatefulWidget {
@@ -59,6 +60,12 @@ class _EventPageState extends State<EventsDetailPagePast> {
       });
     });
     super.initState();
+    int event = widget.event, maxComp = widget.maxComp;
+    String eventName = widget.eventName,
+        eventPicture = widget.eventPicture,
+        eventDescription = widget.eventDescription,
+        eventDate = widget.eventDate,
+        eventPlace = widget.eventPlace;
     WidgetsBinding.instance.addPostFrameCallback((_) => getSizeAndPosition());
   }
 
@@ -157,14 +164,42 @@ class _EventPageState extends State<EventsDetailPagePast> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return new GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    EventsDetailPageCompetition(
+                                  event: widget.event,
+                                  past: 0,
+                                  maxComp: widget.maxComp,
+                                  compId:
+                                      int.parse(_notes[index].bluecornerCompId),
+                                  compName: _notes[index].bluecornerCompName,
+                                  eventName: widget.eventName,
+                                  eventPicture: widget.eventPicture,
+                                  eventDescription: widget.eventDescription,
+                                  eventDate: widget.eventDate,
+                                  eventPlace: widget.eventPlace,
+                                ),
+                              ),
+                            );
+                          },
                           child: new Container(
+                            alignment: Alignment.center,
                             margin: const EdgeInsets.only(right: 10),
                             width: 150,
                             color: Colors.grey[900],
-                            child: Text(
-                              _notes[index].bluecornerCompName,
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            child: Expanded(
+                              flex: 1,
+                              child: Text(
+                                _notes[index].bluecornerCompName,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                         );

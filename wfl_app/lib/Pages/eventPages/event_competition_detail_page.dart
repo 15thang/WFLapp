@@ -7,7 +7,7 @@ import 'package:wfl_app/model/redbluecorner.dart';
 class EventsDetailPageCompetition extends StatefulWidget {
   //Declare a field that holds the Event.
   final int event, past, maxComp, compId;
-  final String eventName, eventPicture, eventDescription, eventDate, eventPlace;
+  final String eventName, eventPicture, eventDescription, eventDate, eventPlace, compName;
 
   // In the constructor, require a Event.
   EventsDetailPageCompetition(
@@ -16,6 +16,7 @@ class EventsDetailPageCompetition extends StatefulWidget {
       this.past,
       this.compId,
       this.maxComp,
+      this.compName,
       this.eventName,
       this.eventPicture,
       this.eventDescription,
@@ -24,15 +25,18 @@ class EventsDetailPageCompetition extends StatefulWidget {
       : super(key: key);
 
   @override
-  _EventPageState createState() => _EventPageState();
+  _EventPageCompetitionState createState() => _EventPageCompetitionState();
 }
 
-class _EventPageState extends State<EventsDetailPageCompetition> {
+class _EventPageCompetitionState extends State<EventsDetailPageCompetition> {
   List<Corners> _notes = List<Corners>();
 
   Future<List<Corners>> fetchNotes() async {
-    var url = 'http://superfighter.nl/APP_output_bluecorner_competition.php?event_id=' +
-        widget.event.toString() + '&competition_id=' + widget.compId.toString();
+    var url =
+        'http://superfighter.nl/APP_output_bluecorner_competition.php?event_id=' +
+            widget.event.toString() +
+            '&competition_id=' +
+            widget.compId.toString();
 
     var response = await http.get(url);
 
@@ -80,102 +84,15 @@ class _EventPageState extends State<EventsDetailPageCompetition> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            backgroundColor: Colors.black,
-            expandedHeight: 200.0,
             pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(widget.eventName),
-              background: Image.network(
-                widget.eventPicture,
-                fit: BoxFit.cover,
+            backgroundColor: Colors.black,
+            title: Container(
+              child: Column(
+                children: <Widget>[
+                  Text(widget.eventName),
+                  Text('Competition: (' + widget.compName + ')'),
+                ],
               ),
-            ),
-          ),
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-              (context, index) => new ListTile(
-                title: new Card(
-                  child: Container(
-                    color: Colors.grey[500],
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
-                          flex: 5,
-                          child: Container(
-                            padding: const EdgeInsets.only(
-                                top: 7, left: 10, right: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(widget.eventName + ' (Ended)',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                Text(widget.eventDescription),
-                                Container(
-                                  padding: const EdgeInsets.all(5),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          widget.eventDate +
-                                              ' ' +
-                                              widget.eventPlace,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              childCount: 1,
-            ),
-          ),
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-              (context, index) => new ListTile(
-                title: new Card(
-                  child: Container(
-                    height: 50,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        color: Colors.grey[800],
-                        border:
-                            Border.all(width: 1.0, color: Colors.grey[800])),
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return new GestureDetector(
-                          onTap: () {},
-                          child: new Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            width: 150,
-                            color: Colors.grey[900],
-                            child: Text(
-                              _notes[index].bluecornerCompName,
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        );
-                      },
-                      itemCount: widget.maxComp,
-                    ),
-                  ),
-                ),
-              ),
-              childCount: 1,
             ),
           ),
           new SliverList(

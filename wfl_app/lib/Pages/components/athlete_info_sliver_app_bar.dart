@@ -11,6 +11,7 @@ class AthleteSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      pinned: true,
       iconTheme: IconThemeData(
         color: Colors.white,
       ),

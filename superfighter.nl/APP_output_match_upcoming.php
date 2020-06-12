@@ -34,7 +34,8 @@ echo '"match_opponent": "match_opponent", ';
 echo '"match_event_picture": "event_picture", ';
 echo '"match_description": "event_description", ';
 echo '"match_event_place": "event_place", ';
-echo '"match_event_link": "event_link"';
+echo '"match_event_link": "event_link", ';
+echo '"match_event_max_comp": "event_max_comp"';
 echo ' }, ';
 foreach ($match_id as $matchid) {
     $query = "SELECT events.event_name, events.event_date, events.event_description, events.event_place, events.event_link,
@@ -43,6 +44,7 @@ foreach ($match_id as $matchid) {
               WHERE match_id = '$matchid' AND NOT athlete_id = '$athlete_id'";
     $results = mysqli_query($db, $query);
     while ($row = $results->fetch_assoc()) {
+        $eventid = $row['event_id'];
         if (!in_array($row['match_id'], $past_match) && !in_array($row['match_id'], $nodouble)) {
             //no duplicates
             $nodouble[] = $row['match_id'];
@@ -58,7 +60,12 @@ foreach ($match_id as $matchid) {
             echo '"match_event_picture": "'.$row['event_picture'].'", ';
             echo '"match_description": "'.$row['event_description'].'", ';
             echo '"match_event_place": "'.$row['event_place'].'", ';
-            echo '"match_event_link": "'.$row['event_link'].'"';
+            echo '"match_event_link": "'.$row['event_link'].'", ';
+            $query = "SELECT count( DISTINCT competition_id) AS event_max_comp FROM `eventcompetition` WHERE event_id = '$eventid'";
+            $result = mysqli_query($db, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '"match_event_max_comp": "'.$row['event_max_comp'].'"';
+            }
             echo ' }';
             $comma = true;
         }

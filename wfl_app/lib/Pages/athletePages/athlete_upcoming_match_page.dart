@@ -181,6 +181,7 @@ class _UpcomingMatchPageState extends State<UpcomingMatchPage> {
                                 builder: (context) => EventsDetailPage(
                                     event: int.parse(_notes[index].matchEvent),
                                     past: 0,
+                                    maxComp: int.parse(_notes[index].eventMaxComp),
                                     eventName: _notes[index].matchEventName,
                                     eventPicture: _notes[index].eventPicture,
                                     eventDate: _notes[index].matchDate, 

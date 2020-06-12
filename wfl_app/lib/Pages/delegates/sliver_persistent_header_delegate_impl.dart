@@ -5,6 +5,7 @@ class SliverPersistentHeaderDelegateImpl extends SliverPersistentHeaderDelegate 
   final Color color;
 
   const SliverPersistentHeaderDelegateImpl({
+    pinned: true,
     Color color = Colors.transparent,
     @required this.tabBar,
   }) : this.color = color;
