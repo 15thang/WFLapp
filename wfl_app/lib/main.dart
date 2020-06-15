@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import './Pages/HomePage.dart';
 import './Pages/VideoPage.dart';
-import './Pages/Competities.dart';
-import 'Pages/Competities.dart';
 import 'Pages/athletePages/athlete_page.dart';
+import 'Pages/competitionPages/competition.dart';
 import 'Pages/eventPages/event_page.dart';
 
 void main() {
@@ -31,7 +30,7 @@ class MyAppState extends State<MyApp> {
       case 3:
         return VideoPage();
       case 4:
-        return Competities();
+        return Competition();
       default:
         return HomePage();
     }
