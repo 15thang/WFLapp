@@ -4,7 +4,10 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
 $comp_id = $_GET['competition_id'];
 
 $json_array = array();
-$query = "SELECT * FROM `athletecompetition` WHERE competition_id = '$comp_id' ORDER BY `competition`.`competition_id` DESC";
+$query = "SELECT a.*, ac.* 
+FROM `athletes` AS a 
+INNER JOIN `athletecompetition` AS ac ON a.`athlete_id` = ac.`athlete_id` 
+WHERE competition_id = '$comp_id'";
 $result = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $json_array[] = $row;
