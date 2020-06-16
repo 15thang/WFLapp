@@ -2,6 +2,7 @@
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 
 $comp_id = $_GET['competition_id'];
+$only1 = true;
 
 $json_array = array();
 $query = "SELECT a.*, ac.* 
@@ -11,6 +12,11 @@ WHERE competition_id = '$comp_id'";
 $result = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $json_array[] = $row;
+
+    if ($only1) {
+        $json_array[] = $row;
+        $only1 = false;
+    }
 }
 
 echo json_encode($json_array, JSON_PRETTY_PRINT);
