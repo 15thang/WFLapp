@@ -264,7 +264,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                '5 / 1 / 1',
+                                _notes[index].athleteWins + ' / ' + _notes[index].athleteLosses + ' / ' + _notes[index].athleteDraws,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -282,7 +282,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                '3 / 2',
+                                _notes[index].athleteTKO + ' / ' + _notes[index].athleteKO,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -301,7 +301,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                '2',
+                                _notes[index].totalYellowcards,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -319,7 +319,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                '1',
+                                _notes[index].totalRedcards,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -336,7 +336,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                '7',
+                                _notes[index].totalPoints,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -415,7 +415,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                '5 / 1 / 1',
+                                _notes[index].athleteWins + ' / ' + _notes[index].athleteLosses + ' / ' + _notes[index].athleteDraws,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -433,7 +433,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                '3 / 2',
+                                _notes[index].athleteTKO + ' / ' + _notes[index].athleteKO,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -452,7 +452,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                '2',
+                                _notes[index].totalYellowcards,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -470,7 +470,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                '1',
+                                _notes[index].totalRedcards,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -487,7 +487,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                '7',
+                                _notes[index].totalPoints,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,

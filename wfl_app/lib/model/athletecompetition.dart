@@ -9,7 +9,8 @@ class AthleteComp {
       athleteKO,
       athleteTKO,
       totalYellowcards,
-      totalRedcards;
+      totalRedcards,
+      totalPoints;
 
   AthleteComp(
       {this.athleteId,
@@ -22,7 +23,8 @@ class AthleteComp {
       this.athleteKO,
       this.athleteTKO,
       this.totalYellowcards,
-      this.totalRedcards});
+      this.totalRedcards,
+      this.totalPoints});
 
   AthleteComp.fromJson(Map<String, dynamic> json) {
     athleteId = json['athlete_id'];
@@ -36,5 +38,6 @@ class AthleteComp {
     athleteTKO = json['athlete_tko'];
     totalYellowcards = json['athlete_yellowcards'];
     totalRedcards = json['athlete_redcards'];
+    totalPoints = json['athlete_total_points'];
   }
 }
