@@ -26,7 +26,7 @@ echo '"athlete_tko": "totaltko", ';
 echo '"athlete_yellowcards": "totalyellow", ';
 echo '"athlete_redcards": "totalred", ';
 echo '"athlete_total_points": "totalpoints" ';
-echo ' }, <br><br>';
+echo ' }, ';
 
 foreach ($athleteArray as $athlete_id) {
     $totalWins = 0;
@@ -133,19 +133,19 @@ WHERE competition_id = '$comp_id'";
         if ($comma == true) {
             echo ', ';
         }
-        echo '{ <br>';
-        echo '"athlete_id": "'.$athlete_id.'", <br>';
-        echo '"athlete_firstname": "'.$row['athlete_firstname'].'", <br>';
-        echo '"athlete_lastname": "'.$row['athlete_lastname'].'", <br>';
-        echo '"athlete_wins": "'.$totalWins.'", <br>';
-        echo '"athlete_losses": "'.$totalLosses.'", <br>';
-        echo '"athlete_draws": "'.$totalDraws.'", <br>';
-        echo '"athlete_ko": "'.$totalKO.'", <br>';
-        echo '"athlete_tko": "'.$totalTKO.'", <br>';
-        echo '"athlete_yellowcards": "'.$totalYellowcard.'", <br>';
-        echo '"athlete_redcards": "'.$totalRedcard.'", <br>';
-        echo '"athlete_total_points": "'.$points.'" <br>';
-        echo ' }<br>';
+        echo '{ ';
+        echo '"athlete_id": "'.$athlete_id.'", ';
+        echo '"athlete_firstname": "'.$row['athlete_firstname'].'", ';
+        echo '"athlete_lastname": "'.$row['athlete_lastname'].'", ';
+        echo '"athlete_wins": "'.$totalWins.'", ';
+        echo '"athlete_losses": "'.$totalLosses.'", ';
+        echo '"athlete_draws": "'.$totalDraws.'", ';
+        echo '"athlete_ko": "'.$totalKO.'", ';
+        echo '"athlete_tko": "'.$totalTKO.'", ';
+        echo '"athlete_yellowcards": "'.$totalYellowcard.'", ';
+        echo '"athlete_redcards": "'.$totalRedcard.'", ';
+        echo '"athlete_total_points": "'.$points.'" ';
+        echo ' }';
         $comma = true;
     }
 }
