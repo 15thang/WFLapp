@@ -24,7 +24,6 @@ Future launchURL(String url) async {
 }
 
 class _CompetitionPageState extends State<Competition> {
-
   List<Competitions> _notes = List<Competitions>();
 
   Future<List<Competitions>> fetchNotes() async {
@@ -56,9 +55,9 @@ class _CompetitionPageState extends State<Competition> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Competitions'),
-          backgroundColor: Colors.black,
-        ),
+        title: const Text('Competitions'),
+        backgroundColor: Colors.black,
+      ),
       backgroundColor: Colors.grey[800],
       body: ListView.builder(
         itemBuilder: (context, index) {
@@ -78,7 +77,19 @@ class _CompetitionPageState extends State<Competition> {
                 child: Column(
               children: <Widget>[
                 Container(
-                  child: Text(_notes[index].competitionName),
+                  height: 40,
+                  color: Colors.grey[900],
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      _notes[index].competitionName,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
               ],
             )),
