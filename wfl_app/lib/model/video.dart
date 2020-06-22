@@ -1,43 +1,33 @@
 class Video {
-  final String id;
-  final String title;
-  final String videoBeschrijving;
-  final String imageURL;
+  String videoId,
+         videoTitle, 
+         videoEvent, 
+         videoEventName, 
+         videoDescription, 
+         videoType,
+         videoDateAdded,
+         videoLink;
 
   Video({
-    this.id,
-    this.title,
-    this.videoBeschrijving,
-    this.imageURL,
+    this.videoId,
+    this.videoTitle,
+    this.videoEvent,
+    this.videoEventName,
+    this.videoDescription,
+    this.videoType,
+    this.videoDateAdded,
+    this.videoLink
   });
+
+  Video.fromJson(Map<String, dynamic> json) {
+    videoId = json['video_id'];
+    videoTitle = json['video_title'];
+    videoEvent = json['video_event'];
+    videoEventName = json['video_event_name'];
+    videoDescription = json['video_description'];
+    videoType = json['video_type'];
+    videoDateAdded = json['video_date_added'];
+    videoLink = json['video_link'];
+  }
 }
 
-
-
-final List<Video> videoList2 = [
-  Video(
-    id: 'iLnmTe5Q2Qw',
-    imageURL: '',
-    title: 'Video 1',
-    videoBeschrijving: 'Beschrijving 1',
-  ),
-  Video(
-    id: '-lZGxUJdhOA',
-    imageURL: '',
-    title: 'Video 2',
-    videoBeschrijving: 'Beschrijving 1',
-  ),
-  Video(
-    id: 'ANkb_PG-3X0',
-    imageURL: '',
-    title: 'Video 3',
-    videoBeschrijving: 'Beschrijving 1',
-  ),
-  Video(
-    id: 'ANkb_PG-3X0',
-    imageURL: '',
-    title: 'Video 4',
-    videoBeschrijving: 'Beschrijving 1',
-  ),
-
-];
