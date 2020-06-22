@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wfl_app/Pages/VideoDetailPage.dart';
 import 'package:wfl_app/model/video.dart';
 
 class VideoPage extends StatelessWidget {
@@ -12,13 +11,13 @@ final List<Widget> widgets = List(videoList2.length);
     for (var i = 0; i < videoList2.length; i++) {
       widgets[i] = GestureDetector(
           onTap: () {
-            Navigator.push(
+            /*Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => VideoDetailPage(video: videoList2[i]),
               ),
             );
-            print("Container clicked " + i.toString());
+            print("Container clicked " + i.toString());*/
           },
           child: Container(
             child: Column(

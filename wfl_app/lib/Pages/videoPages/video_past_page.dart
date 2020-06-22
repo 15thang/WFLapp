@@ -66,7 +66,7 @@ class _EventPageState extends State<PastEvents> {
         itemBuilder: (context, index) {
           return new GestureDetector(
             onTap: () {
-              Navigator.push(
+              /*Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => VideoDetailPagePast(
@@ -80,7 +80,7 @@ class _EventPageState extends State<PastEvents> {
                     eventPlace: _notes[index].eventPlace,
                   ),
                 ),
-              );
+              );*/
             },
             child: new Card(
               color: Colors.grey,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import './Pages/HomePage.dart';
-import './Pages/VideoPage.dart';
 import 'Pages/athletePages/athlete_page.dart';
 import 'Pages/competitionPages/competition.dart';
 import 'Pages/eventPages/event_page.dart';
+import 'Pages/videoPages/video_page.dart';
 
 void main() {
   runApp(new MaterialApp(
