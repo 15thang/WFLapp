@@ -74,7 +74,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                 Row(
                   children: <Widget>[
                     Expanded(
-                      flex: 1,
+                      flex: 2,
                       child: Container(
                         margin: const EdgeInsets.only(left: 3.0, top: 7),
                         padding: const EdgeInsets.only(left: 5.0),
@@ -111,25 +111,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 3,
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 7),
-                        height: 20,
-                        color: Colors.grey[900],
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'W / L / D',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
+                      flex: 4,
                       child: Container(
                         margin: const EdgeInsets.only(top: 7),
                         height: 20,
@@ -147,10 +129,10 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 1,
+                      flex: 2,
                       child: Container(
                         margin: const EdgeInsets.only(top: 7),
-                        padding: const EdgeInsets.only(left: 7),
+                        padding: const EdgeInsets.only(left: 12),
                         height: 20,
                         color: Colors.grey[900],
                         child: Row(
@@ -165,9 +147,10 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 1,
+                      flex: 2,
                       child: Container(
                         margin: const EdgeInsets.only(top: 7),
+                        padding: const EdgeInsets.only(left: 12),
                         height: 20,
                         color: Colors.grey[900],
                         child: Row(
@@ -182,7 +165,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Container(
                         margin: const EdgeInsets.only(right: 5.0, top: 7),
                         padding: const EdgeInsets.only(right: 5.0),
@@ -216,7 +199,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                     Row(
                       children: <Widget>[
                         Expanded(
-                          flex: 1,
+                          flex: 2,
                           child: Container(
                             padding: const EdgeInsets.only(left: 5.0),
                             height: 40,
@@ -240,7 +223,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 4,
+                          flex: 5,
                           child: Container(
                             height: 40,
                             color: Colors.yellow[700],
@@ -257,25 +240,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 3,
-                          child: Container(
-                            height: 40,
-                            color: Colors.grey[900],
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                _notes[index].athleteWins + ' / ' + _notes[index].athleteLosses + ' / ' + _notes[index].athleteDraws,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
+                          flex: 4,
                           child: Container(
                             height: 40,
                             color: Colors.grey[900],
@@ -293,7 +258,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 1,
+                          flex: 2,
                           child: Container(
                             padding: const EdgeInsets.only(left: 7),
                             height: 40,
@@ -311,7 +276,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 1,
+                          flex: 2,
                           child: Container(
                             padding: const EdgeInsets.only(left: 7),
                             height: 40,
@@ -329,7 +294,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 2,
+                          flex: 3,
                           child: Container(
                             padding: const EdgeInsets.only(right: 5.0),
                             height: 40,
@@ -367,7 +332,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                     Row(
                       children: <Widget>[
                         Expanded(
-                          flex: 1,
+                          flex: 2,
                           child: Container(
                             padding: const EdgeInsets.only(left: 5.0),
                             height: 40,
@@ -391,7 +356,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 4,
+                          flex: 5,
                           child: Container(
                             height: 40,
                             color: Colors.grey[900],
@@ -408,25 +373,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 3,
-                          child: Container(
-                            height: 40,
-                            color: Colors.grey[900],
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                _notes[index].athleteWins + ' / ' + _notes[index].athleteLosses + ' / ' + _notes[index].athleteDraws,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
+                          flex: 4,
                           child: Container(
                             height: 40,
                             color: Colors.grey[900],
@@ -444,7 +391,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 1,
+                          flex: 2,
                           child: Container(
                             padding: const EdgeInsets.only(left: 7),
                             height: 40,
@@ -462,7 +409,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 1,
+                          flex: 2,
                           child: Container(
                             padding: const EdgeInsets.only(left: 7),
                             height: 40,
@@ -480,7 +427,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                           ),
                         ),
                         Expanded(
-                          flex: 2,
+                          flex: 3,
                           child: Container(
                             padding: const EdgeInsets.only(right: 5.0),
                             height: 40,

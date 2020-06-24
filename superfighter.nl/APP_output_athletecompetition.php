@@ -3,10 +3,13 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
 $comp_id = $_GET['competition_id'];
 
 $athleteArray[] = array();
-$query = "SELECT a.*, ac.* 
-FROM `athletes` AS a 
-INNER JOIN `athletecompetition` AS ac ON a.`athlete_id` = ac.`athlete_id` 
-WHERE competition_id = '$comp_id'";
+$query = "SELECT a.athlete_id, SUM(m.points)
+FROM `athletes` AS a
+INNER JOIN `athletecompetition` AS ac ON ac.athlete_id = a.athlete_id
+INNER JOIN `matches` AS m ON m.athlete_id = ac.athlete_id
+WHERE competition_id = '$comp_id'
+GROUP BY a.athlete_id  
+ORDER BY SUM(m.points)  DESC";
 $result = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $athleteArray[] = $row['athlete_id'];
