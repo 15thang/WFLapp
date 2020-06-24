@@ -28,7 +28,7 @@ class MyAppState extends State<MyApp> {
       case 2:
         return AthletePage();
       case 3:
-        return VideoPage();
+        return YoutubePlayerDemoApp();
       case 4:
         return Competition();
       default:
