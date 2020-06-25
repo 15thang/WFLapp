@@ -96,7 +96,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 4,
+                      flex: 5,
                       child: Container(
                         margin: const EdgeInsets.only(top: 7),
                         height: 20,
@@ -132,7 +132,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                       flex: 2,
                       child: Container(
                         margin: const EdgeInsets.only(top: 7),
-                        padding: const EdgeInsets.only(left: 12),
+                        padding: const EdgeInsets.only(left: 7),
                         height: 20,
                         color: Colors.grey[900],
                         child: Row(
@@ -150,7 +150,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                       flex: 2,
                       child: Container(
                         margin: const EdgeInsets.only(top: 7),
-                        padding: const EdgeInsets.only(left: 12),
+                        padding: const EdgeInsets.only(left: 7),
                         height: 20,
                         color: Colors.grey[900],
                         child: Row(
@@ -161,6 +161,24 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                               color: Colors.red,
                             ),
                           ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 7),
+                        height: 20,
+                        color: Colors.grey[900],
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Matches',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
                         ),
                       ),
                     ),
@@ -247,7 +265,9 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                _notes[index].athleteTKO + ' / ' + _notes[index].athleteKO,
+                                _notes[index].athleteTKO +
+                                    ' / ' +
+                                    _notes[index].athleteKO,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -285,6 +305,24 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 _notes[index].totalRedcards,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            padding: const EdgeInsets.only(left: 7),
+                            height: 40,
+                            color: Colors.grey[900],
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(_notes[index].athleteMatchesDone + ' / ' +
+                                _notes[index].athleteMatches,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -380,7 +418,9 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                _notes[index].athleteTKO + ' / ' + _notes[index].athleteKO,
+                                _notes[index].athleteTKO +
+                                    ' / ' +
+                                    _notes[index].athleteKO,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -418,6 +458,24 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 _notes[index].totalRedcards,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            padding: const EdgeInsets.only(left: 7),
+                            height: 40,
+                            color: Colors.grey[900],
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(_notes[index].athleteMatchesDone + ' / ' +
+                                _notes[index].athleteMatches,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,

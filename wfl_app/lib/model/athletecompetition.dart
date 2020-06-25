@@ -3,6 +3,8 @@ class AthleteComp {
       athleteFirstname,
       athleteLastname,
       athleteFullName,
+      athleteMatches,
+      athleteMatchesDone,
       athleteWins,
       athleteLosses,
       athleteDraws,
@@ -17,6 +19,8 @@ class AthleteComp {
       this.athleteFirstname,
       this.athleteLastname,
       this.athleteFullName,
+      this.athleteMatches,
+      this.athleteMatchesDone,
       this.athleteWins,
       this.athleteLosses,
       this.athleteDraws,
@@ -31,13 +35,15 @@ class AthleteComp {
     athleteFirstname = json['athlete_firstname'];
     athleteLastname = json['athlete_lastname'];
     athleteFullName = athleteFirstname + " " + athleteLastname;
-    athleteWins = json['athlete_wins'];
-    athleteLosses = json['athlete_losses'];
-    athleteDraws = json['athlete_draws'];
-    athleteKO = json['athlete_ko'];
-    athleteTKO = json['athlete_tko'];
-    totalYellowcards = json['athlete_yellowcards'];
-    totalRedcards = json['athlete_redcards'];
-    totalPoints = json['athlete_total_points'];
+    athleteMatches = json['athlete_matches'].toString();
+    athleteMatchesDone = json['athlete_matches_done'].toString();
+    athleteWins = json['athlete_wins'].toString();
+    athleteLosses = json['athlete_losses'].toString();
+    athleteDraws = json['athlete_draws'].toString();
+    athleteKO = json['athlete_ko'].toString();
+    athleteTKO = json['athlete_tko'].toString();
+    totalYellowcards = json['athlete_yellowcards'].toString();
+    totalRedcards = json['athlete_redcards'].toString();
+    totalPoints = json['athlete_total_points'].toString();
   }
 }

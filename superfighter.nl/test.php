@@ -17,17 +17,19 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 $arr = 	array(
     array('athlete_id' => 'athlete_id',
-    'athlete_firstname' => 'athlete_firstname',
-    'athlete_lastname' => 'athlete_lastname',
-    'athlete_wins' => 'totalWins',
-    'athlete_losses' => 'totalLosses',
-    'athlete_draws' => 'totalDraws',
-    'athlete_ko' => 'totalKO',
-    'athlete_tko' => 'totalTKO',
-    'athlete_yellowcards' => 'totalYellowcard',
-    'athlete_redcards' => 'totalRedcard',
-    'athlete_total_points' => 'points',
-    'athlete_ranking_score' => 1000
+        'athlete_firstname' => 'athlete_firstname',
+        'athlete_lastname' => 'athlete_lastname',
+        'athlete_matches_done' => 'totalMatchesDone',
+        'athlete_matches' => 'totalMatches',
+        'athlete_wins' => 'totalWins',
+        'athlete_losses' => 'totalLosses',
+        'athlete_draws' => 'totalDraws',
+        'athlete_ko' => 'totalKO',
+        'athlete_tko' => 'totalTKO',
+        'athlete_yellowcards' => 'totalYellowcard',
+        'athlete_redcards' => 'totalRedcard',
+        'athlete_total_points' => 'points',
+        'athlete_ranking_score' => 1000
     ),
 );
 $x = 0;
@@ -42,6 +44,8 @@ foreach ($athleteArray as $athlete_id) {
     $totalRedcard = 0;
     $points = 0;
     $totalscore = 0;
+    $totalMatchesDone = 0;
+    $totalMatches = 0;
 
     $match_id[] = array();
     $query = "SELECT m.* FROM `matches` AS m
@@ -54,86 +58,107 @@ WHERE competition_id = '$comp_id'";
         }
     }
     foreach ($match_id as $matchid) {
-        //atleet
+        $done1 = false;
+        $done2 = false;
+        //kijk of de match al geweest is
         $query = "SELECT * FROM matches WHERE match_id = '$matchid' AND athlete_id = '$athlete_id'";
         $results = mysqli_query($db, $query);
         while ($row = $results->fetch_assoc()) {
-            $totalscore1 = $row['points'];
-
-            if ($row['redyellowcard'] == '1yellowcard') {
-                $totalscore1 -= 1;
-                $loss2 = 0;
-                $totalYellowcard += 1;
-                $points += $row['points'];
-                $totalscore += $row['points'] - 1;
-            } else if ($row['redyellowcard'] == '1redcard') {
-                $loss1 = 1;
-                $totalRedcard += 1;
-                $totalscore -= 2;
-            } else if ($row['redyellowcard'] == '2yellowcard') {
-                $loss1 = 1;
-                $totalYellowcard += 2;
-                $totalscore -= 2;
-            } else {
-                $loss1 = 0;
-                $points += $row['points'];
-                $totalscore += $row['points'];
-            }
-            //method
-            if ($row['ko'] == '1TKO') {
-                $method = 'TKO';
-                $totalTKO += 1;
-                $totalscore += 1;
-            } else if ($row['ko'] == '1KO') {
-                $method = 'KO';
-                $totalKO += 1;
-                $totalscore += 2;
-            } else {
-                $method = 'DEC';
+            $totalMatches++;
+            if ($row['points'] == 0 && $row['redyellowcard'] == 'No cards' && $row['ko'] == 'No KO') {
+                $done1 = true;
             }
         }
-        //tegenstander
         $query = "SELECT * FROM matches WHERE match_id = '$matchid' AND NOT athlete_id = '$athlete_id'";
         $results = mysqli_query($db, $query);
         while ($row = $results->fetch_assoc()) {
-            $opponent = $row['athlete_id'];
-
-            $totalscore2 = $row['points'];
-            if ($row['redyellowcard'] == '1yellowcard') {
-                $totalscore2 -= 1;
-                $loss2 = 0;
-            } else if ($row['redyellowcard'] == '1redcard') {
-                $loss2 = 1;
-            } else if ($row['redyellowcard'] == '2yellowcard') {
-                $loss2 = 1;
-            } else {
-                $loss2 = 0;
-            }
-            //method
-            if ($row['ko'] == '1TKO') {
-                $method2 = 'TKO';
-            } else if ($row['ko'] == '1KO') {
-                $method2 = 'KO';
-            } else {
-                $method2 = 'DEC';
+            if ($row['points'] == 0 && $row['redyellowcard'] == 'No cards' && $row['ko'] == 'No KO') {
+                $done2 = true;
             }
         }
-        $query = "SELECT * FROM athletes WHERE athlete_id = '$opponent'";
-        $results = mysqli_query($db, $query);
-        while ($row = $results->fetch_assoc()) {
-            $opponent = $row['athlete_firstname'].' '.$row['athlete_lastname'];
-        }
+        if ($done1 == false || $done2 == false) {
+            //atleet
+            $query = "SELECT * FROM matches WHERE match_id = '$matchid' AND athlete_id = '$athlete_id'";
+            $results = mysqli_query($db, $query);
+            while ($row = $results->fetch_assoc()) {
+                $totalscore1 = $row['points'];
+                $totalMatchesDone++;
 
-        $done = true;
-        //result
-        if ($loss1 == 1) {
-            $totalLosses += 1;
-        } else if ($loss1 == 0 && $totalscore1 > $totalscore2) {
-            $totalWins += 1;
-        } else if ($loss1 == 0 && $totalscore1 == $totalscore2 && !$totalscore1 == 0) {
-            $totalDraws  += 1;
-        } else if ($loss1 == 0 && $totalscore1 < $totalscore2) {
-            $totalLosses += 1;
+                if ($row['redyellowcard'] == '1yellowcard') {
+                    $totalscore1 -= 1;
+                    $loss2 = 0;
+                    $totalYellowcard += 1;
+                    $points += $row['points'];
+                    $totalscore += $row['points'] - 1;
+                } else if ($row['redyellowcard'] == '1redcard') {
+                    $loss1 = 1;
+                    $totalRedcard += 1;
+                    $totalscore -= 2;
+                } else if ($row['redyellowcard'] == '2yellowcard') {
+                    $loss1 = 1;
+                    $totalYellowcard += 2;
+                    $totalscore -= 2;
+                } else {
+                    $loss1 = 0;
+                    $points += $row['points'];
+                    $totalscore += $row['points'];
+                }
+                //method
+                if ($row['ko'] == '1TKO') {
+                    $method = 'TKO';
+                    $totalTKO += 1;
+                    $totalscore += 1;
+                } else if ($row['ko'] == '1KO') {
+                    $method = 'KO';
+                    $totalKO += 1;
+                    $totalscore += 2;
+                } else {
+                    $method = 'DEC';
+                }
+            }
+            //tegenstander
+            $query = "SELECT * FROM matches WHERE match_id = '$matchid' AND NOT athlete_id = '$athlete_id'";
+            $results = mysqli_query($db, $query);
+            while ($row = $results->fetch_assoc()) {
+                $opponent = $row['athlete_id'];
+
+                $totalscore2 = $row['points'];
+                if ($row['redyellowcard'] == '1yellowcard') {
+                    $totalscore2 -= 1;
+                    $loss2 = 0;
+                } else if ($row['redyellowcard'] == '1redcard') {
+                    $loss2 = 1;
+                } else if ($row['redyellowcard'] == '2yellowcard') {
+                    $loss2 = 1;
+                } else {
+                    $loss2 = 0;
+                }
+                //method
+                if ($row['ko'] == '1TKO') {
+                    $method2 = 'TKO';
+                } else if ($row['ko'] == '1KO') {
+                    $method2 = 'KO';
+                } else {
+                    $method2 = 'DEC';
+                }
+            }
+            $query = "SELECT * FROM athletes WHERE athlete_id = '$opponent'";
+            $results = mysqli_query($db, $query);
+            while ($row = $results->fetch_assoc()) {
+                $opponent = $row['athlete_firstname'] . ' ' . $row['athlete_lastname'];
+            }
+
+            $done = true;
+            //result
+            if ($loss1 == 1) {
+                $totalLosses += 1;
+            } else if ($loss1 == 0 && $totalscore1 > $totalscore2) {
+                $totalWins += 1;
+            } else if ($loss1 == 0 && $totalscore1 == $totalscore2 && !$totalscore1 == 0) {
+                $totalDraws += 1;
+            } else if ($loss1 == 0 && $totalscore1 < $totalscore2) {
+                $totalLosses += 1;
+            }
         }
     }
     $query = "SELECT * FROM `athletes` WHERE athlete_id = '$athlete_id'";
@@ -145,6 +170,8 @@ WHERE competition_id = '$comp_id'";
         $arr[$x] = array('athlete_id' => $row['athlete_id'],
             'athlete_firstname' => $row['athlete_firstname'],
             'athlete_lastname' => $row['athlete_lastname'],
+            'athlete_matches_done' => $totalMatchesDone,
+            'athlete_matches' => $totalMatches,
             'athlete_wins' => $totalWins,
             'athlete_losses' => $totalLosses,
             'athlete_draws' => $totalDraws,
