@@ -3,7 +3,10 @@ class Event {
          eventCompetition, 
          eventName, 
          eventDescription, 
-         eventDate, 
+         eventDate,
+         eventYear,
+         eventMonth,
+         eventDay, 
          eventPlace, 
          eventPicture, 
          eventPicture2,
@@ -16,6 +19,9 @@ class Event {
     this.eventName,
     this.eventDescription,
     this.eventDate,
+    this.eventYear,
+    this.eventMonth,
+    this.eventDay,
     this.eventPlace,
     this.eventPicture,
     this.eventPicture2,
@@ -29,6 +35,9 @@ class Event {
     eventName = json['event_name'];
     eventDescription = json['event_description'];
     eventDate = json['event_date'];
+    eventYear = json['event_year'];
+    eventMonth = json['event_month'];
+    eventDay = json['eventDay'];
     eventPlace = json['event_place'];
     eventPicture = "http://superfighter.nl/" + json['event_picture'];
     eventPicture2 = "http://superfighter.nl/" + json['event_picture2'];
