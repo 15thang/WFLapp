@@ -28,6 +28,7 @@ while ($row = $results->fetch_assoc()) {
         <label>Video type <font color="red">*</font></label><br>
         <select name="video_type" required>
             <option value="'.$row['video_type'].'">'.$row['video_type'].'</option>
+            <option value="Live">Livestream</option>
             <option value="Trailer">Trailer</option>
             <option value="Highlight">Highlight</option>
             <option value="Full fight">Full fight</option>

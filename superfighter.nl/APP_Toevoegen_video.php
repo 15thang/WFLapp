@@ -22,6 +22,7 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
         <label>Video type <font color="red">*</font></label><br>
         <select name="video_type" required>
             <option disabled selected value></option>
+            <option value="Live">Livestream</option>
             <option value="Trailer">Trailer</option>
             <option value="Highlight">Highlight</option>
             <option value="Full fight">Full fight</option>
