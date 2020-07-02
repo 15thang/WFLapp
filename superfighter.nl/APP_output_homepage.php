@@ -11,6 +11,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     if ($only1) {
         $event1_id = $row['event_id'];
         $event1_name = $row['event_name'];
+        $event1_picture = $row['event_picture'];
         $event1_description = $row['event_description'];
         $event1_date = $row['event_date'];
         $event1_year = substr($event1_date, 0, -6);
@@ -32,6 +33,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     if ($only2) {
         $event2_id = $row['event_id'];
         $event2_name = $row['event_name'];
+        $event2_picture = $row['event_picture'];
         $event2_description = $row['event_description'];
         $event2_date = $row['event_date'];
         $event2_ticketlink = $row['event_link'];
@@ -53,6 +55,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     //Eerst volgende evenement boven aan de homepage
     echo '"event1_id": "'.$event1_id.'", ';
     echo '"event1_name": "'.$event1_name.'", ';
+    echo '"event1_picture": "'.$event1_picture.'", ';
     echo '"event1_description": "'.$event1_description.'", ';
     echo '"event1_date": "'.$event1_date.'", ';
     echo '"event1_year": "'.$event1_year.'", ';
@@ -64,6 +67,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     //Evenement dat na eerst volgende evenement komt
     echo '"event2_id": "'.$event2_id.'", ';
     echo '"event2_name": "'.$event2_name.'", ';
+    echo '"event2_picture": "'.$event2_picture.'", ';
     echo '"event2_description": "'.$event2_description.'", ';
     echo '"event2_date": "'.$event2_date.'", ';
     echo '"event2_ticketlink": "'.$event2_ticketlink.'", ';
@@ -83,5 +87,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo ' }';
     $more = true;
 }
+echo " ]";
 
 ?>

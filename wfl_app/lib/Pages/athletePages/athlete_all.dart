@@ -53,7 +53,7 @@ class _All extends State<All> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       backgroundColor: Colors.grey[800],
       body: ListView.builder(
         itemBuilder: (context, index) {
