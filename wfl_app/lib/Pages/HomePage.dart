@@ -91,18 +91,73 @@ class _HomePage extends State<HomePage> {
           new SliverList(
             delegate: new SliverChildBuilderDelegate(
               (context, index) => new AppBar(
+                titleSpacing: 5.0,
+                backgroundColor: Colors.black,
                 title: Container(
-                  child: Text(
-                      'COUNTDOWN ' +
-                          days.toString().padLeft(2, '0') +
-                          ':' +
-                          hrs.toString().padLeft(2, '0') +
-                          ':' +
-                          mins.toString().padLeft(2, '0') +
-                          ':' +
-                          sec.toString().padLeft(2, '0'),
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                      textAlign: TextAlign.center),
+                  alignment: Alignment.center,
+                  height: 100,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 1,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      return Container(
+                        width: 1000,
+                        child: Row(
+                          children: <Widget>[
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Text(
+                                      'Next event: ',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
+                                    Text(
+                                      _notes[index].event1Name,
+                                      style: TextStyle(
+                                          color: Colors.red[900], fontSize: 15),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                    'COUNTDOWN ' +
+                                        days.toString().padLeft(2, '0') +
+                                        ':' +
+                                        hrs.toString().padLeft(2, '0') +
+                                        ':' +
+                                        mins.toString().padLeft(2, '0') +
+                                        ':' +
+                                        sec.toString().padLeft(2, '0'),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 19),
+                                    textAlign: TextAlign.center),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                RaisedButton(
+                                  onPressed: () {
+                                    launchURL(_notes[index].event1TicketLink);
+                                  },
+                                  child: Text(
+                                    'Buy Tickets',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  color: Colors.red[800],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.only(top: 28),
+                      );
+                    },
+                  ),
                 ),
               ),
               childCount: 1,
@@ -188,6 +243,7 @@ class _HomePage extends State<HomePage> {
                       itemBuilder: (BuildContext ctxt, int index) {
                         return Container(
                           width: 120,
+                          height: 120,
                           child: Column(
                             children: <Widget>[
                               Container(
@@ -204,19 +260,130 @@ class _HomePage extends State<HomePage> {
                               Text(_notes[index].athleteNickname),
                             ],
                           ),
-                          margin: EdgeInsets.only(right: 16),
+                          margin: EdgeInsets.only(
+                              left: 5, right: 10, top: 3, bottom: 8),
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors
-                                  .grey[400], //                   <--- border color
-                              width: 2.0,
-                            ),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                spreadRadius: 5,
+                                blurRadius: 2,
+                                offset:
+                                    Offset(0, 3), // changes position of shadow
+                              ),
+                            ],
                           ),
                         );
                       },
                     ),
                     margin: EdgeInsets.only(left: 8, right: 8),
+                  ),
+                ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
+              ),
+              childCount: 1,
+            ),
+          ),
+          new SliverList(
+            delegate: new SliverChildBuilderDelegate(
+              (context, index) => new ListTile(
+                title: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 10000,
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Following event: ',
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  Text(
+                                      _notes[index].event1Name,
+                                      style: TextStyle(
+                                          color: Colors.red[900]),
+                                    )
+                                ],
+                              ),
+                              margin: EdgeInsets.only(top: 8),
+                            ),
+                            Divider(color: Colors.black)
+                          ],
+                        ),
+                        margin: EdgeInsets.only(left: 8, right: 8),
+                      ),
+                      Container(
+                        height: 220,
+                        decoration: BoxDecoration(
+                          image: new DecorationImage(
+                              image:
+                                  new NetworkImage(_notes[index].event2Picture),
+                              fit: BoxFit.fill),
+                        ),
+                        margin: EdgeInsets.only(left: 8, right: 8),
+                      ),
+                      Container(
+                        color: Colors.blueGrey[100],
+                        margin: EdgeInsets.only(left: 8, right: 8),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              flex: 5,
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.only(top: 7, left: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(_notes[index].event2Name,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    Text(_notes[index].event2Date),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                margin: const EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.all(5),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    RaisedButton(
+                                      onPressed: () {
+                                        launchURL(
+                                            _notes[index].event2TicketLink);
+                                      },
+                                      child: Text(
+                                        'Buy Tickets',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      color: Colors.lightBlue[400],
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
