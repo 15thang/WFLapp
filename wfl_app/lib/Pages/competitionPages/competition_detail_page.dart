@@ -119,7 +119,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'TKO / KO',
+                            'TKO/KO',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

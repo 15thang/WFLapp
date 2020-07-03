@@ -187,6 +187,7 @@ class _HomePage extends State<HomePage> {
                       itemCount: _notes.length,
                       itemBuilder: (BuildContext ctxt, int index) {
                         return Container(
+                          width: 120,
                           child: Column(
                             children: <Widget>[
                               Container(
@@ -203,7 +204,15 @@ class _HomePage extends State<HomePage> {
                               Text(_notes[index].athleteNickname),
                             ],
                           ),
-                          margin: EdgeInsets.only(left: 8, right: 8),
+                          margin: EdgeInsets.only(right: 16),
+                          padding: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors
+                                  .grey[400], //                   <--- border color
+                              width: 2.0,
+                            ),
+                          ),
                         );
                       },
                     ),
