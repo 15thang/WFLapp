@@ -164,7 +164,6 @@ WHERE competition_id = '$comp_id'";
     $results = mysqli_query($db, $query);
     while ($row = $results->fetch_assoc()) {
         $stats[] = array();
-        $kaas = 'kaasman';
         $x++;
         $arr[$x] = array('athlete_id' => $row['athlete_id'],
             'athlete_firstname' => $row['athlete_firstname'],
