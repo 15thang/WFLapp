@@ -304,7 +304,7 @@ class _HomePage extends State<HomePage> {
                                     textAlign: TextAlign.left,
                                   ),
                                   Text(
-                                      _notes[index].event1Name,
+                                      _notes[index].event2Name,
                                       style: TextStyle(
                                           color: Colors.red[900]),
                                     )
