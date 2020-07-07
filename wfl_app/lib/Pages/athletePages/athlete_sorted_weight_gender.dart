@@ -131,6 +131,11 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
               athleteGrade = "J";
               break;
           }
+          //Als ster 1 is, wordt het een ster
+          String athleteStar = _notes[index].athleteStar.toString();
+          if (athleteStar == "1") {
+            athleteStar = "★";
+          }
           return new GestureDetector(
             onTap: () {
               Navigator.push(
@@ -227,6 +232,33 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                                   '"  ' +
                                                   athleteGrade,
                                               style: TextStyle(fontSize: 17)),
+                                        ),
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 7.0),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Text(athleteStar,
+                                                  style: TextStyle(
+                                                    fontSize: 22,
+                                                    color: Colors.yellow[700],
+                                                    shadows: <Shadow>[
+                                                      Shadow(
+                                                          offset:
+                                                              Offset(0.0, 0.0),
+                                                          blurRadius: 3.0,
+                                                          color: Colors.black),
+                                                    ],
+                                                  )),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    top: 5.0),
+                                                child: Text(_notes[index].athleteStars,
+                                                    style: TextStyle(
+                                                        fontSize: 17)),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
