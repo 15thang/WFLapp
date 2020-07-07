@@ -24,9 +24,9 @@ class YoutubePlayerDemoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Youtube Player Flutter',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
         appBarTheme: const AppBarTheme(
-          color: Colors.blueAccent,
+          color: Colors.redAccent,
           textTheme: TextTheme(
             headline6: TextStyle(
               color: Colors.white,
@@ -36,7 +36,7 @@ class YoutubePlayerDemoApp extends StatelessWidget {
           ),
         ),
         iconTheme: const IconThemeData(
-          color: Colors.blueAccent,
+          color: Colors.redAccent,
         ),
       ),
       home: MyHomePage(),
@@ -208,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       filled: true,
                       hintStyle: const TextStyle(
                         fontWeight: FontWeight.w300,
-                        color: Colors.blueAccent,
+                        color: Colors.redAccent,
                       ),
                       suffixIcon: IconButton(
                         icon: const Icon(Icons.clear),
@@ -267,7 +267,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       FullScreenButton(
                         controller: _controller,
-                        color: Colors.blueAccent,
+                        color: Colors.redAccent,
                       ),
                       IconButton(
                         icon: const Icon(Icons.skip_next),
@@ -338,7 +338,7 @@ class _MyHomePageState extends State<MyHomePage> {
       text: TextSpan(
         text: '$title : ',
         style: const TextStyle(
-          color: Colors.blueAccent,
+          color: Colors.redAccent,
           fontWeight: FontWeight.bold,
         ),
         children: [
@@ -380,7 +380,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _loadCueButton(String action) {
     return Expanded(
       child: MaterialButton(
-        color: Colors.blueAccent,
+        color: Colors.redAccent,
         onPressed: _isPlayerReady
             ? () {
                 if (_idController.text.isNotEmpty) {
@@ -424,7 +424,7 @@ class _MyHomePageState extends State<MyHomePage> {
             fontSize: 16.0,
           ),
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.redAccent,
         behavior: SnackBarBehavior.floating,
         elevation: 1.0,
         shape: RoundedRectangleBorder(

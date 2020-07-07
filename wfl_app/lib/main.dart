@@ -3,7 +3,7 @@ import './Pages/HomePage.dart';
 import 'Pages/athletePages/athlete_page.dart';
 import 'Pages/competitionPages/competition.dart';
 import 'Pages/eventPages/event_page.dart';
-import 'Pages/videoPages/video_page.dart';
+import 'Pages/videoPages/video_live_page.dart';
 
 void main() {
   runApp(new MaterialApp(
