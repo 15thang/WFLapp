@@ -63,7 +63,7 @@ class Athlete {
     athleteTKO = json['athlete_tko'];
     totalYellowcards = json['athlete_yellowcards'];
     totalRedcards = json['athlete_redcards'];
-    athleteStar = json['athlete_star'];
+    athleteStar = json['athlete_star'].toString();
     athleteStars = json['athlete_stars'];
   }
 }

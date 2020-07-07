@@ -19,6 +19,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         'athlete_picture2' => $row['athlete_picture2'],
         'athlete_id' => $row['athlete_id'],
         'athlete_firstname' => $row['athlete_firstname'],
+        'athlete_lastname' => $row['athlete_lastname'],
         'athlete_nickname' => $row['athlete_nickname'],
         'athlete_day_of_birth' => $row['athlete_day_of_birth'],
         'athlete_nationality' => $row['athlete_nationality'],
@@ -37,8 +38,9 @@ while ($row = mysqli_fetch_assoc($result)) {
         'athlete_last_title' => '',
     );
 }
-
+echo '[ ';
 $noDuplicates[] = array();
+$more = false;
 $keys = array_keys($arr);
 for($i = 0; $i < count($arr); $i++) {
     foreach($arr[$keys[$i]] as $key => $value) {
@@ -46,6 +48,9 @@ for($i = 0; $i < count($arr); $i++) {
         $result = mysqli_query($db, $query);
         while ($row = mysqli_fetch_assoc($result)) {
             if ($row['athlete_id'] == $value && !in_array($i, $noDuplicates)) {
+                if ($more) {
+                    echo ', ';
+                }
                 $athlete_id = $row['athlete_id'];
                 $athlete_stars = $row['athlete_stars'];
                 $last_title = "";
@@ -53,6 +58,9 @@ for($i = 0; $i < count($arr); $i++) {
                 $athlete_yellowstar = 0;
                 if (!$row['athlete_stars'] == 0) {
                     $athlete_yellowstar = 1;
+                } else {
+                    $athlete_yellowstar = "";
+                    $athlete_stars = "";
                 }
 
                 $replacements = array('athlete_stars' => $athlete_stars,
@@ -61,9 +69,12 @@ for($i = 0; $i < count($arr); $i++) {
 
                 $array = array_replace($arr[$i], $replacements);
                 $noDuplicates[] = $i;
+
                 echo json_encode($array, JSON_PRETTY_PRINT);
+                $more = true;
             }
         }
     }
 }
+echo ' ]';
 ?>
