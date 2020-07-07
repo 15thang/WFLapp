@@ -86,6 +86,11 @@ class AthletesInfoPage extends StatelessWidget {
               athleteGrade = "J";
               break;
           }
+          //Als ster 1 is, wordt het een ster
+          String athleteStar = athlete.athleteStar.toString();
+          if (athleteStar == "1") {
+            athleteStar = "★";
+          }
           return new GestureDetector(
             child: new Card(
               color: Colors.grey[900],
@@ -109,26 +114,47 @@ class AthletesInfoPage extends StatelessWidget {
                             height: 130,
                             decoration: BoxDecoration(
                               image: new DecorationImage(
-                                  image:
-                                      new NetworkImage(athlete.athleteProfilePicture),
+                                  image: new NetworkImage(
+                                      athlete.athleteProfilePicture),
                                   fit: BoxFit.cover),
                             ),
-                            child: Expanded(
-                              child: Align(
-                                alignment: FractionalOffset.bottomCenter,
-                                child: Container(
-                                  height: 7,
-                                  color: Colors.red[900],
-                                ),
+                            child: Container(
+                              alignment: Alignment.topLeft,
+                              child: Row(
+                                children: <Widget>[
+                                  Text(athleteStar,
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        color: Colors.yellow[700],
+                                        shadows: <Shadow>[
+                                          Shadow(
+                                              offset: Offset(0.0, 0.0),
+                                              blurRadius: 3.0,
+                                              color: Colors.black),
+                                        ],
+                                      )),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 5.0),
+                                    child: Text(athlete.athleteStars,
+                                        style: TextStyle(fontSize: 17)),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, bottom: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
+                              Text(
+                                athlete.athleteTitle,
+                                style: TextStyle(
+                                    color: Colors.yellow,
+                                    backgroundColor: Colors.red[900]),
+                              ),
                               Text(athlete.athleteFullName,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,

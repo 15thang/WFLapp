@@ -7,5 +7,8 @@ $query = "INSERT INTO athletetitles (athlete_id, title)
       	  VALUES('$athlete_id', '$title')";
 mysqli_query($db, $query);
 
+$query = "UPDATE `athletes` SET title = '$title' WHERE athlete_id = '$athlete_id'";
+mysqli_query($db, $query);
+
 header("Location: http://superfighter.nl/APP_athlete_info.php?athlete_id=".$athlete_id);
 ?>

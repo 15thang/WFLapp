@@ -180,6 +180,15 @@ class _W95p extends State<W95p> {
                                             .athleteProfilePicture),
                                         fit: BoxFit.cover),
                                   ),
+                                  child: Container(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text(
+                                      _notes[index].athleteTitle,
+                                      style: TextStyle(
+                                          color: Colors.yellow,
+                                          backgroundColor: Colors.red[900]),
+                                    ),
+                                  ),
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
@@ -253,7 +262,8 @@ class _W95p extends State<W95p> {
                                               Container(
                                                 margin: const EdgeInsets.only(
                                                     top: 5.0),
-                                                child: Text(_notes[index].athleteStars,
+                                                child: Text(
+                                                    _notes[index].athleteStars,
                                                     style: TextStyle(
                                                         fontSize: 17)),
                                               ),

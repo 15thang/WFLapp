@@ -5,6 +5,7 @@ class Athlete {
       athleteFirstname,
       athleteLastname,
       athleteNickname,
+      athleteTitle,
       athleteDayOfBirth,
       athleteNationality,
       athleteDescription,
@@ -27,6 +28,8 @@ class Athlete {
       this.athleteId,
       this.athleteFirstname,
       this.athleteLastname,
+      this.athleteNickname,
+      this.athleteTitle,
       this.athleteDayOfBirth,
       this.athleteNationality,
       this.athleteDescription,
@@ -50,6 +53,7 @@ class Athlete {
     athleteFirstname = json['athlete_firstname'];
     athleteLastname = json['athlete_lastname'];
     athleteNickname = json['athlete_nickname'];
+    athleteTitle = json['athlete_title'];
     athleteDayOfBirth = json['athlete_day_of_birth'];
     athleteNationality = json['athlete_nationality'];
     athleteDescription = json['athlete_description'];

@@ -22,6 +22,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         'athlete_firstname' => $row['athlete_firstname'],
         'athlete_lastname' => $row['athlete_lastname'],
         'athlete_nickname' => $row['athlete_nickname'],
+        'athlete_title' => $row['title'],
         'athlete_day_of_birth' => $row['athlete_day_of_birth'],
         'athlete_nationality' => $row['athlete_nationality'],
         'athlete_description' => $row['athlete_description'],

@@ -176,6 +176,15 @@ class _All extends State<All> {
                                             .athleteProfilePicture),
                                         fit: BoxFit.cover),
                                   ),
+                                  child: Container(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text(
+                                      _notes[index].athleteTitle,
+                                      style: TextStyle(
+                                          color: Colors.yellow,
+                                          backgroundColor: Colors.red[900]),
+                                    ),
+                                  ),
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
@@ -249,7 +258,8 @@ class _All extends State<All> {
                                               Container(
                                                 margin: const EdgeInsets.only(
                                                     top: 5.0),
-                                                child: Text(_notes[index].athleteStars,
+                                                child: Text(
+                                                    _notes[index].athleteStars,
                                                     style: TextStyle(
                                                         fontSize: 17)),
                                               ),
