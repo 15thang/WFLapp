@@ -28,7 +28,7 @@ class _AthletesDetailPageState extends State<AthletesDetailPage>
     super.initState();
     var name = widget.athlete.athleteFullName;
         _pages = [
-          Tuple3('Info', AthletesInfoPage(athlete: widget.athlete), name.toString()),
+          Tuple3('Info', AthletesInfoPage(athleteID: int.parse(widget.athlete.athleteId)), name.toString()),
       Tuple3('Match history', AthletesCompPage(athlete: widget.athlete), name.toString()),
     ];
     _tabController = TabController(length: _pages.length, vsync: this);

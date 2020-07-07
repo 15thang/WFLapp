@@ -1,14 +1,58 @@
+import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/athletes.dart';
 
-class AthletesInfoPage extends StatelessWidget {
-  // Declare a field that holds the Athlete.
-  final Athlete athlete;
+class AthletesInfoPage extends StatefulWidget {
+  final int athleteID;
 
-  // In the constructor, require a Athlete.
-  AthletesInfoPage({Key key, @required this.athlete}) : super(key: key);
+  const AthletesInfoPage({Key key, @required this.athleteID}) : super(key: key);
+
+  @override
+  _AthletesInfoPage createState() => _AthletesInfoPage();
+}
+
+//Future is to launch URL buttons (like buy ticket)
+Future launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url, forceWebView: true, forceSafariVC: true);
+  } else {
+    print("Can't Launch");
+  }
+}
+
+class _AthletesInfoPage extends State<AthletesInfoPage> {
+  List<Athlete> _notes = List<Athlete>();
+
+  Future<List<Athlete>> fetchNotes() async {
+    var url =
+        'http://superfighter.nl/APP_output_athlete_info.php?athlete_id=' +
+            widget.athleteID.toString();
+    var response = await http.get(url);
+
+    var notes = List<Athlete>();
+
+    if (response.statusCode == 200) {
+      var notesJson = json.decode(response.body);
+      for (var noteJson in notesJson) {
+        notes.add(Athlete.fromJson(noteJson));
+      }
+    }
+    return notes;
+  }
+
+  @override
+  void initState() {
+    fetchNotes().then((value) {
+      setState(() {
+        _notes.addAll(value);
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +60,7 @@ class AthletesInfoPage extends StatelessWidget {
       backgroundColor: Colors.grey[800],
       body: ListView.builder(
         itemBuilder: (context, index) {
-          String athleteWeightclass = athlete.athleteWeightclass;
+          String athleteWeightclass = _notes[index].athleteWeightclass;
           switch (athleteWeightclass) {
             case "0":
               athleteWeightclass = "";
@@ -65,7 +109,7 @@ class AthletesInfoPage extends StatelessWidget {
               break;
           }
           //switch case om de nummers naar letters te veranderen
-          String athleteGrade = athlete.athleteGrade;
+          String athleteGrade = _notes[index].athleteGrade;
           switch (athleteGrade) {
             case "0":
               athleteGrade = "";
@@ -87,7 +131,7 @@ class AthletesInfoPage extends StatelessWidget {
               break;
           }
           //Als ster 1 is, wordt het een ster
-          String athleteStar = athlete.athleteStar.toString();
+          String athleteStar = _notes[index].athleteStar.toString();
           if (athleteStar == "1") {
             athleteStar = "★";
           }
@@ -115,7 +159,7 @@ class AthletesInfoPage extends StatelessWidget {
                             decoration: BoxDecoration(
                               image: new DecorationImage(
                                   image: new NetworkImage(
-                                      athlete.athleteProfilePicture),
+                                      _notes[index].athleteProfilePicture),
                                   fit: BoxFit.cover),
                             ),
                             child: Container(
@@ -135,7 +179,7 @@ class AthletesInfoPage extends StatelessWidget {
                                       )),
                                   Container(
                                     margin: const EdgeInsets.only(top: 5.0),
-                                    child: Text(athlete.athleteStars,
+                                    child: Text(_notes[index].athleteStars,
                                         style: TextStyle(fontSize: 17)),
                                   ),
                                 ],
@@ -150,24 +194,24 @@ class AthletesInfoPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                athlete.athleteTitle,
+                                _notes[index].athleteTitle,
                                 style: TextStyle(
                                     color: Colors.yellow,
                                     backgroundColor: Colors.red[900]),
                               ),
-                              Text(athlete.athleteFullName,
+                              Text(_notes[index].athleteFullName,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white)),
-                              Text(athlete.athleteNationality,
+                              Text(_notes[index].athleteNationality,
                                   style: TextStyle(color: Colors.white)),
-                              Text(athlete.athleteDayOfBirth,
+                              Text(_notes[index].athleteDayOfBirth,
                                   style: TextStyle(color: Colors.white)),
                               Text(athleteWeightclass + '" ' + athleteGrade,
                                   style: TextStyle(color: Colors.white)),
                               Container(
                                 margin: const EdgeInsets.only(top: 5.0),
-                                child: Text(athlete.athleteDescription,
+                                child: Text(_notes[index].athleteDescription,
                                     style: TextStyle(color: Colors.white)),
                               ),
                               Container(
@@ -223,7 +267,7 @@ class AthletesInfoPage extends StatelessWidget {
                                               ),
                                             ),
                                             child: Text(
-                                                athlete.athleteWins.toString(),
+                                                _notes[index].athleteWins.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
@@ -259,7 +303,7 @@ class AthletesInfoPage extends StatelessWidget {
                                               ),
                                             ),
                                             child: Text(
-                                                athlete.athleteTKO.toString(),
+                                                _notes[index].athleteTKO.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -304,7 +348,7 @@ class AthletesInfoPage extends StatelessWidget {
                                               ),
                                             ),
                                             child: Text(
-                                                athlete.athleteLosses
+                                                _notes[index].athleteLosses
                                                     .toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
@@ -341,7 +385,7 @@ class AthletesInfoPage extends StatelessWidget {
                                               ),
                                             ),
                                             child: Text(
-                                                athlete.athleteKO.toString(),
+                                                _notes[index].athleteKO.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -390,7 +434,7 @@ class AthletesInfoPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                child: Text(athlete.athleteDraws.toString(),
+                                child: Text(_notes[index].athleteDraws.toString(),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16)),
