@@ -90,71 +90,100 @@ class _HomePage extends State<HomePage> {
         slivers: <Widget>[
           new SliverList(
             delegate: new SliverChildBuilderDelegate(
-              (context, index) => new AppBar(
-                titleSpacing: 5.0,
-                backgroundColor: Colors.black,
-                title: Container(
+              (context, index) => new Container(
+                color: Colors.black,
+                child: Container(
                   alignment: Alignment.center,
-                  height: 100,
+                  height: 325,
                   child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
                     itemCount: 1,
                     itemBuilder: (BuildContext ctxt, int index) {
                       return Container(
-                        width: 1000,
-                        child: Row(
+                        child: Column(
                           children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Text(
-                                      'Next event: ',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15),
-                                    ),
-                                    Text(
-                                      _notes[index].event1Name,
-                                      style: TextStyle(
-                                          color: Colors.red[900], fontSize: 15),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                    'COUNTDOWN ' +
-                                        days.toString().padLeft(2, '0') +
-                                        ':' +
-                                        hrs.toString().padLeft(2, '0') +
-                                        ':' +
-                                        mins.toString().padLeft(2, '0') +
-                                        ':' +
-                                        sec.toString().padLeft(2, '0'),
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 19),
-                                    textAlign: TextAlign.center),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                RaisedButton(
-                                  onPressed: () {
-                                    launchURL(_notes[index].event1TicketLink);
-                                  },
-                                  child: Text(
-                                    'Buy Tickets',
-                                    style: TextStyle(
-                                      color: Colors.white,
+                            Container(
+                              padding: EdgeInsets.only(left: 8, right: 12, top: 15, bottom: 17),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    flex: 5,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          children: <Widget>[
+                                            Text(
+                                              'Next event: ',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15),
+                                            ),
+                                            Text(
+                                              _notes[index].event1Name,
+                                              style: TextStyle(
+                                                  color: Colors.red[900],
+                                                  fontSize: 15),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                            'COUNTDOWN ' +
+                                                days
+                                                    .toString()
+                                                    .padLeft(2, '0') +
+                                                ':' +
+                                                hrs.toString().padLeft(2, '0') +
+                                                ':' +
+                                                mins
+                                                    .toString()
+                                                    .padLeft(2, '0') +
+                                                ':' +
+                                                sec.toString().padLeft(2, '0'),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 19),
+                                            textAlign: TextAlign.center),
+                                      ],
                                     ),
                                   ),
-                                  color: Colors.red[800],
-                                ),
-                              ],
+                                  Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      alignment: Alignment.centerRight,
+                                      child: Column(
+                                        children: <Widget>[
+                                          RaisedButton(
+                                            onPressed: () {
+                                              launchURL(_notes[index]
+                                                  .event1TicketLink);
+                                            },
+                                            child: Text(
+                                              'Buy Tickets',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            color: Colors.red[800],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 220,
+                              decoration: BoxDecoration(
+                                image: new DecorationImage(
+                                    image: new NetworkImage(
+                                        _notes[index].event1Picture),
+                                    fit: BoxFit.fill),
+                              ),
                             ),
                           ],
                         ),
-                        padding: EdgeInsets.only(top: 28),
                       );
                     },
                   ),
@@ -169,15 +198,6 @@ class _HomePage extends State<HomePage> {
                 title: Container(
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        height: 220,
-                        decoration: BoxDecoration(
-                          image: new DecorationImage(
-                              image:
-                                  new NetworkImage(_notes[index].event1Picture),
-                              fit: BoxFit.fill),
-                        ),
-                      ),
                       Row(
                         children: <Widget>[
                           Expanded(
@@ -304,10 +324,9 @@ class _HomePage extends State<HomePage> {
                                     textAlign: TextAlign.left,
                                   ),
                                   Text(
-                                      _notes[index].event2Name,
-                                      style: TextStyle(
-                                          color: Colors.red[900]),
-                                    )
+                                    _notes[index].event2Name,
+                                    style: TextStyle(color: Colors.red[900]),
+                                  )
                                 ],
                               ),
                               margin: EdgeInsets.only(top: 8),
