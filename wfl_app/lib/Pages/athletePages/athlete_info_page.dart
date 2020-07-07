@@ -28,9 +28,8 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
   List<Athlete> _notes = List<Athlete>();
 
   Future<List<Athlete>> fetchNotes() async {
-    var url =
-        'http://superfighter.nl/APP_output_athlete_info.php?athlete_id=' +
-            widget.athleteID.toString();
+    var url = 'http://superfighter.nl/APP_output_athlete_info.php?athlete_id=' +
+        widget.athleteID.toString();
     var response = await http.get(url);
 
     var notes = List<Athlete>();
@@ -135,326 +134,384 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
           if (athleteStar == "1") {
             athleteStar = "★";
           }
-          return new GestureDetector(
-            child: new Card(
-              color: Colors.grey[900],
-              elevation: 5,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      color: Colors.grey[900],
+          if (index == 0) {
+            return new GestureDetector(
+              child: new Card(
+                color: Colors.grey[900],
+                elevation: 5,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        color: Colors.grey[900],
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          child: Container(
-                            width: 130,
-                            height: 130,
-                            decoration: BoxDecoration(
-                              image: new DecorationImage(
-                                  image: new NetworkImage(
-                                      _notes[index].athleteProfilePicture),
-                                  fit: BoxFit.cover),
-                            ),
+                    Expanded(
+                      flex: 5,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
                             child: Container(
-                              alignment: Alignment.topLeft,
-                              child: Row(
-                                children: <Widget>[
-                                  Text(athleteStar,
-                                      style: TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.yellow[700],
-                                        shadows: <Shadow>[
-                                          Shadow(
-                                              offset: Offset(0.0, 0.0),
-                                              blurRadius: 3.0,
-                                              color: Colors.black),
-                                        ],
-                                      )),
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 5.0),
-                                    child: Text(_notes[index].athleteStars,
-                                        style: TextStyle(fontSize: 17)),
-                                  ),
-                                ],
+                              width: 130,
+                              height: 130,
+                              decoration: BoxDecoration(
+                                image: new DecorationImage(
+                                    image: new NetworkImage(
+                                        _notes[index].athleteProfilePicture),
+                                    fit: BoxFit.cover),
                               ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, bottom: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                _notes[index].athleteTitle,
-                                style: TextStyle(
-                                    color: Colors.yellow,
-                                    backgroundColor: Colors.red[900]),
-                              ),
-                              Text(_notes[index].athleteFullName,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white)),
-                              Text(_notes[index].athleteNationality,
-                                  style: TextStyle(color: Colors.white)),
-                              Text(_notes[index].athleteDayOfBirth,
-                                  style: TextStyle(color: Colors.white)),
-                              Text(athleteWeightclass + '" ' + athleteGrade,
-                                  style: TextStyle(color: Colors.white)),
-                              Container(
-                                margin: const EdgeInsets.only(top: 5.0),
-                                child: Text(_notes[index].athleteDescription,
-                                    style: TextStyle(color: Colors.white)),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                    top: 10.0, bottom: 5.0),
-                                child: Text('STATS',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 2,
-                                  ),
-                                ),
+                              child: Container(
+                                alignment: Alignment.topLeft,
                                 child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    Expanded(
-                                      flex: 1,
-                                      child: Column(
-                                        children: <Widget>[
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              border: Border(
-                                                right: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text('WINS',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[600],
-                                              border: Border(
-                                                right: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text(
-                                                _notes[index].athleteWins.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
-                                                    fontSize: 22)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              border: Border(
-                                                right: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text('TKO',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[600],
-                                              border: Border(
-                                                right: BorderSide(
-                                                  width: 1,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text(
-                                                _notes[index].athleteTKO.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16)),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 1,
-                                      child: Column(
-                                        children: <Widget>[
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              border: Border(
-                                                left: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text('LOSSES',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[600],
-                                              border: Border(
-                                                left: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text(
-                                                _notes[index].athleteLosses
-                                                    .toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
-                                                    fontSize: 22)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              border: Border(
-                                                left: BorderSide(
-                                                  width: 1,
-                                                ),
-                                                bottom: BorderSide(
-                                                  width: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text('KO',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white)),
-                                          ),
-                                          Container(
-                                            width: 1000,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[600],
-                                              border: Border(
-                                                left: BorderSide(
-                                                  width: 1,
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text(
-                                                _notes[index].athleteKO.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16)),
-                                          ),
-                                        ],
-                                      ),
+                                    Text(athleteStar,
+                                        style: TextStyle(
+                                          fontSize: 22,
+                                          color: Colors.yellow[700],
+                                          shadows: <Shadow>[
+                                            Shadow(
+                                                offset: Offset(0.0, 0.0),
+                                                blurRadius: 3.0,
+                                                color: Colors.black),
+                                          ],
+                                        )),
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 5.0),
+                                      child: Text(_notes[index].athleteStars,
+                                          style: TextStyle(fontSize: 17)),
                                     ),
                                   ],
                                 ),
                               ),
-                              Container(
-                                width: 1000,
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    left: BorderSide(
-                                      width: 2,
-                                    ),
-                                    right: BorderSide(
-                                      width: 2,
-                                    ),
-                                    bottom: BorderSide(
-                                      width: 2,
-                                    ),
-                                  ),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, bottom: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  _notes[index].athleteTitle,
+                                  style: TextStyle(
+                                      color: Colors.yellow,
+                                      backgroundColor: Colors.red[900]),
                                 ),
-                                child: Text('DRAW',
-                                    textAlign: TextAlign.center,
+                                Text(_notes[index].athleteFullName,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white)),
-                              ),
-                              Container(
-                                width: 1000,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[600],
-                                  border: Border(
-                                    left: BorderSide(
-                                      width: 2,
-                                    ),
-                                    right: BorderSide(
-                                      width: 2,
-                                    ),
-                                    bottom: BorderSide(
+                                Text(_notes[index].athleteNationality,
+                                    style: TextStyle(color: Colors.white)),
+                                Text(_notes[index].athleteDayOfBirth,
+                                    style: TextStyle(color: Colors.white)),
+                                Text(athleteWeightclass + '" ' + athleteGrade,
+                                    style: TextStyle(color: Colors.white)),
+                                Container(
+                                  margin: const EdgeInsets.only(top: 5.0),
+                                  child: Text(_notes[index].athleteDescription,
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(
+                                      top: 10.0, bottom: 5.0),
+                                  child: Text('STATS',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white)),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
                                       width: 2,
                                     ),
                                   ),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Expanded(
+                                        flex: 1,
+                                        child: Column(
+                                          children: <Widget>[
+                                            Container(
+                                              width: 1000,
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  right: BorderSide(
+                                                    width: 1,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text('WINS',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white)),
+                                            ),
+                                            Container(
+                                              width: 1000,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[600],
+                                                border: Border(
+                                                  right: BorderSide(
+                                                    width: 1,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                  _notes[index]
+                                                      .athleteWins
+                                                      .toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                      fontSize: 22)),
+                                            ),
+                                            Container(
+                                              width: 1000,
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  right: BorderSide(
+                                                    width: 1,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text('TKO',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white)),
+                                            ),
+                                            Container(
+                                              width: 1000,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[600],
+                                                border: Border(
+                                                  right: BorderSide(
+                                                    width: 1,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                  _notes[index]
+                                                      .athleteTKO
+                                                      .toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 16)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Column(
+                                          children: <Widget>[
+                                            Container(
+                                              width: 1000,
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  left: BorderSide(
+                                                    width: 1,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text('LOSSES',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white)),
+                                            ),
+                                            Container(
+                                              width: 1000,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[600],
+                                                border: Border(
+                                                  left: BorderSide(
+                                                    width: 1,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                  _notes[index]
+                                                      .athleteLosses
+                                                      .toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                      fontSize: 22)),
+                                            ),
+                                            Container(
+                                              width: 1000,
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  left: BorderSide(
+                                                    width: 1,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text('KO',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white)),
+                                            ),
+                                            Container(
+                                              width: 1000,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[600],
+                                                border: Border(
+                                                  left: BorderSide(
+                                                    width: 1,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                  _notes[index]
+                                                      .athleteKO
+                                                      .toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 16)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                child: Text(_notes[index].athleteDraws.toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16)),
-                              ),
-                            ],
+                                Container(
+                                  width: 1000,
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      left: BorderSide(
+                                        width: 2,
+                                      ),
+                                      right: BorderSide(
+                                        width: 2,
+                                      ),
+                                      bottom: BorderSide(
+                                        width: 2,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Text('DRAW',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white)),
+                                ),
+                                Container(
+                                  width: 1000,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[600],
+                                    border: Border(
+                                      left: BorderSide(
+                                        width: 2,
+                                      ),
+                                      right: BorderSide(
+                                        width: 2,
+                                      ),
+                                      bottom: BorderSide(
+                                        width: 2,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Text(
+                                      _notes[index].athleteDraws.toString(),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 16)),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(),
-                  ),
-                ],
+                    Expanded(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            return new GestureDetector(
+              child: new Card(
+                color: Colors.grey[900],
+                elevation: 5,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.only(
+                                left: 10, right: 10, bottom: 7),
+                      child: Text(athleteStar,
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.yellow[700],
+                            shadows: <Shadow>[
+                              Shadow(
+                                  offset: Offset(0.0, 0.0),
+                                  blurRadius: 3.0,
+                                  color: Colors.black),
+                            ],
+                          )),
+                    ),
+                    Container(
+                      child: Text(
+                        _notes[index].athleteLastTitle,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          shadows: <Shadow>[
+                            Shadow(
+                                offset: Offset(0.0, 0.0),
+                                blurRadius: 3.0,
+                                color: Colors.black),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
         },
-        itemCount: 1,
+        itemCount: _notes.length,
       ),
     );
   }
