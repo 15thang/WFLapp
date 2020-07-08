@@ -39,18 +39,18 @@ class YoutubePlayerDemoApp extends StatelessWidget {
           color: Colors.redAccent,
         ),
       ),
-      home: MyHomePage(),
+      home: Livestreams(),
     );
   }
 }
 
 /// Homepage
-class MyHomePage extends StatefulWidget {
+class Livestreams extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _Livestreams createState() => _Livestreams();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _Livestreams extends State<Livestreams> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   YoutubePlayerController _controller;
   TextEditingController _idController;
