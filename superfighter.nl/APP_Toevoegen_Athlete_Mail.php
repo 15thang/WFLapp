@@ -5,12 +5,9 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
 <head>
     <link rel="stylesheet" type="text/css" href="css/APP_CSS.css">
 </head>
-<div>
-    <a href="APP_website2.php">Back to overview</a><br><br>
-</div>
 <div id="field">
     <form name="form1" method="post" action="mail_verwerking.php" enctype="multipart/form-data">
-        <h3>Add Athlete (eMail)</h3>
+        <h3>Add Athlete !(eMail)!</h3>
         <label>Name athlete <font color="red">*</font></label><br>
         <input type="text" name="athlete_name" required><br>
         <label>Last name athlete <font color="red">*</font></label><br>
@@ -24,10 +21,6 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
             <option value="Female">Female</option>
         </select>
         <br>
-        <label>Profile picture</label><br>
-        <input type="file" name="athlete_picture"><br>
-        <label>Event picture</label><br>
-        <input type="file" name="athlete_picture2"><br>
         <label>Weight athlete (kg) <font color="red">*</font></label><br>
         <input type="number" name="athlete_weight" placeholder="0kg" required><br>
         <label>Weightclass <font color="red">*</font></label><br>
@@ -364,8 +357,7 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
 </div>
 <div id="field" style="padding: 40px; margin-top: 330px; margin-left: -190px;">
     <div class="input-group" style="float: left;">
-        <input type="submit" name="Verzenden" id="Verzenden" value="Verzenden" />
+        <button type="submit" class="btn" name="add_athlete">Add athlete</button>
     </div>
-
 </div>
 </form>

@@ -9,7 +9,7 @@ echo'
 		<button class="ssbutton" type="submit" name="info">Add to Database</button>
 	</form>
 	
-	<form action="APP_Toevoegen_Athlete_Mail.php" method=post>
+	<form action="APP_Toevoegen_Athlete_Mail.html" method=post>
 		<button class="ssbutton" type="submit" name="info">Mail test</button>
 	</form>
 	
