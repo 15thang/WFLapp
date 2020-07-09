@@ -6,11 +6,11 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/event.dart';
 
-class PastEvents extends StatefulWidget {
-  const PastEvents({Key key}) : super(key: key);
+class PastVideos extends StatefulWidget {
+  const PastVideos({Key key}) : super(key: key);
 
   @override
-  _EventPageState createState() => _EventPageState();
+  _PastVideosState createState() => _PastVideosState();
 }
 
 //Future is to launch URL buttons (like buy ticket)
@@ -22,7 +22,7 @@ Future launchURL(String url) async {
   }
 }
 
-class _EventPageState extends State<PastEvents> {
+class _PastVideosState extends State<PastVideos> {
   List<Event> _notes = List<Event>();
 
   Future launchURL(String url) async {

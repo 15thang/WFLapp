@@ -7,8 +7,8 @@ import 'package:wfl_app/model/competition.dart';
 
 import 'competition_detail_page.dart';
 
-class Competition extends StatefulWidget {
-  const Competition({Key key}) : super(key: key);
+class CompetitionPage extends StatefulWidget {
+  const CompetitionPage({Key key}) : super(key: key);
 
   @override
   _CompetitionPageState createState() => _CompetitionPageState();
@@ -23,7 +23,7 @@ Future launchURL(String url) async {
   }
 }
 
-class _CompetitionPageState extends State<Competition> {
+class _CompetitionPageState extends State<CompetitionPage> {
   List<Competitions> _notes = List<Competitions>();
 
   Future<List<Competitions>> fetchNotes() async {
@@ -54,10 +54,6 @@ class _CompetitionPageState extends State<Competition> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Competitions'),
-        backgroundColor: Colors.black,
-      ),
       backgroundColor: Colors.grey[800],
       body: ListView.builder(
         itemBuilder: (context, index) {
