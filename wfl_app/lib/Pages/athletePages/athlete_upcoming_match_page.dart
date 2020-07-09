@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:wfl_app/Pages/eventPages/event_detail_page.dart';
-import 'package:wfl_app/model/athletes.dart';
 import 'package:wfl_app/model/match_upcoming.dart';
 
 class UpcomingMatchPage extends StatefulWidget {
   //Declare a field that holds the Athlete.
-  final Athlete athlete;
+  final int athleteId;
 
   // In the constructor, require a Athlete.
-  UpcomingMatchPage({Key key, @required this.athlete}) : super(key: key);
+  UpcomingMatchPage({Key key, @required this.athleteId}) : super(key: key);
 
   @override
   _UpcomingMatchPageState createState() => _UpcomingMatchPageState();
@@ -23,7 +22,7 @@ class _UpcomingMatchPageState extends State<UpcomingMatchPage> {
   Future<List<MatchU>> fetchNotes() async {
     var url =
         'http://superfighter.nl/APP_output_match_upcoming.php?athlete_id=' +
-            '${widget.athlete.athleteId}';
+            '${widget.athleteId}';
 
     var response = await http.get(url);
 

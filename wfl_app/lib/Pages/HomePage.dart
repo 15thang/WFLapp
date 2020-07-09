@@ -6,6 +6,9 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/homepage.dart';
 
+import 'athletePages/athlete_detail_page.dart';
+import 'eventPages/event_detail_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
 
@@ -102,7 +105,8 @@ class _HomePage extends State<HomePage> {
                         child: Column(
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.only(left: 8, right: 12, top: 15, bottom: 17),
+                              padding: EdgeInsets.only(
+                                  left: 8, right: 12, top: 15, bottom: 17),
                               child: Row(
                                 children: <Widget>[
                                   Expanded(
@@ -173,13 +177,35 @@ class _HomePage extends State<HomePage> {
                                 ],
                               ),
                             ),
-                            Container(
-                              height: 220,
-                              decoration: BoxDecoration(
-                                image: new DecorationImage(
-                                    image: new NetworkImage(
-                                        _notes[index].event1Picture),
-                                    fit: BoxFit.fill),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => EventsDetailPage(
+                                      event: int.parse(_notes[index].event1Id),
+                                      past: 0,
+                                      maxComp: int.parse(
+                                          _notes[index].event1MaxComp),
+                                      eventName: _notes[index].event1Name,
+                                      eventPicture: _notes[index].event1Picture,
+                                      eventDescription:
+                                          _notes[index].event1Description,
+                                      eventDate: _notes[index].event1Date,
+                                      eventPlace: _notes[index].event1Place,
+                                      eventLink: _notes[index].event1TicketLink,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                height: 220,
+                                decoration: BoxDecoration(
+                                  image: new DecorationImage(
+                                      image: new NetworkImage(
+                                          _notes[index].event1Picture),
+                                      fit: BoxFit.fill),
+                                ),
                               ),
                             ),
                           ],
@@ -261,39 +287,63 @@ class _HomePage extends State<HomePage> {
                       scrollDirection: Axis.horizontal,
                       itemCount: _notes.length,
                       itemBuilder: (BuildContext ctxt, int index) {
-                        return Container(
-                          width: 120,
-                          height: 120,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                height: 100,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  image: new DecorationImage(
-                                      image: new NetworkImage(
-                                          _notes[index].athletePicture),
-                                      fit: BoxFit.fill),
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AthletesDetailPage(
+                                  athleteId: int.parse(_notes[index].athleteId),
+                                  athleteFullName:
+                                      _notes[index].athleteFullName,
+                                  athleteWins:
+                                      int.parse(_notes[index].athleteWins),
+                                  athleteLosses:
+                                      int.parse(_notes[index].athleteLosses),
+                                  athleteDraws:
+                                      int.parse(_notes[index].athleteDraws),
+                                  athleteYellowcards:
+                                      int.parse(_notes[index].totalYellowcards),
+                                  athleteRedcards:
+                                      int.parse(_notes[index].totalRedcards),
                                 ),
                               ),
-                              Text(_notes[index].athleteFullName),
-                              Text(_notes[index].athleteNickname),
-                            ],
-                          ),
-                          margin: EdgeInsets.only(
-                              left: 5, right: 10, top: 3, bottom: 8),
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                spreadRadius: 5,
-                                blurRadius: 2,
-                                offset:
-                                    Offset(0, 3), // changes position of shadow
-                              ),
-                            ],
+                            );
+                          },
+                          child: Container(
+                            width: 120,
+                            height: 120,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  height: 100,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    image: new DecorationImage(
+                                        image: new NetworkImage(
+                                            _notes[index].athletePicture),
+                                        fit: BoxFit.fill),
+                                  ),
+                                ),
+                                Text(_notes[index].athleteFullName),
+                                Text(_notes[index].athleteNickname),
+                              ],
+                            ),
+                            margin: EdgeInsets.only(
+                                left: 5, right: 10, top: 3, bottom: 8),
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 5,
+                                  blurRadius: 2,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
@@ -309,7 +359,25 @@ class _HomePage extends State<HomePage> {
           new SliverList(
             delegate: new SliverChildBuilderDelegate(
               (context, index) => new ListTile(
-                title: Container(
+                title: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EventsDetailPage(
+                          event: int.parse(_notes[index].event2Id),
+                          past: 0,
+                          maxComp: int.parse(_notes[index].event2MaxComp),
+                          eventName: _notes[index].event2Name,
+                          eventPicture: _notes[index].event2Picture,
+                          eventDescription: _notes[index].event2Description,
+                          eventDate: _notes[index].event2Date,
+                          eventPlace: _notes[index].event2Place,
+                          eventLink: _notes[index].event2TicketLink,
+                        ),
+                      ),
+                    );
+                  },
                   child: Column(
                     children: <Widget>[
                       Container(

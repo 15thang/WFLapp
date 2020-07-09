@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 import 'package:wfl_app/Pages/delegates/sliver_persistent_header_delegate_impl.dart';
-import 'package:wfl_app/model/athletes.dart';
 import 'athlete_match_history_page.dart';
 import 'athlete_upcoming_match_page.dart';
 
 class AthletesCompPage extends StatefulWidget {
   // Declare a field that holds the Athlete.
-  final Athlete athlete;
+  final int athleteId,
+      athleteWins,
+      athleteLosses,
+      athleteDraws,
+      athleteYellowcards,
+      athleteRedcards;
 
   // In the constructor, require a Athlete.
-  AthletesCompPage({Key key, @required this.athlete}) : super(key: key);
+  AthletesCompPage(
+      {Key key,
+      @required this.athleteId,
+      this.athleteWins,
+      this.athleteLosses,
+      this.athleteDraws,
+      this.athleteYellowcards,
+      this.athleteRedcards})
+      : super(key: key);
 
   @override
   _AthletesCompPageState createState() => _AthletesCompPageState();
@@ -26,9 +38,18 @@ class _AthletesCompPageState extends State<AthletesCompPage>
   void initState() {
     super.initState();
     _pages = [
-      Tuple3('History', MatchHistoryPage(athlete: widget.athlete),
+      Tuple3(
+          'History',
+          MatchHistoryPage(
+            athleteId: widget.athleteId,
+            athleteWins: widget.athleteWins,
+            athleteLosses: widget.athleteLosses,
+            athleteDraws: widget.athleteDraws,
+            athleteYellowcards: widget.athleteYellowcards,
+            athleteRedcards: widget.athleteRedcards,
+          ),
           Icon(Icons.image)),
-      Tuple3('Upcoming matches', UpcomingMatchPage(athlete: widget.athlete),
+      Tuple3('Upcoming matches', UpcomingMatchPage(athleteId: widget.athleteId),
           Icon(Icons.image)),
     ];
     _tabController = TabController(length: _pages.length, vsync: this);

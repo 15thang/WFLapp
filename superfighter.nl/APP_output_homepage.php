@@ -18,10 +18,16 @@ while ($row = mysqli_fetch_assoc($result)) {
         $event1_month = substr($event1_date, 5, -3);
         $event1_day = substr($event1_date, 8);
         $event1_ticketlink = $row['event_link'];
+        $event1_place = $row['event_place'];
         $query = "SELECT * FROM `videos` WHERE video_type = 'Live' AND video_event = '$event1_id' ORDER BY video_id DESC";
         $result = mysqli_query($db, $query);
         while ($row = mysqli_fetch_assoc($result)) {
             $event1_live_link = $row['video_link'];
+        }
+        $query = "SELECT count( DISTINCT competition_id) AS event_max_comp FROM `eventcompetition` WHERE event_id = '$event1_id'";
+        $result = mysqli_query($db, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $event1_max_comp = $row['event_max_comp'];
         }
         $only1 = false;
     }
@@ -37,7 +43,13 @@ while ($row = mysqli_fetch_assoc($result)) {
         $event2_description = $row['event_description'];
         $event2_date = $row['event_date'];
         $event2_ticketlink = $row['event_link'];
+        $event2_place = $row['event_place'];
         $only2 = false;
+        $query = "SELECT count( DISTINCT competition_id) AS event_max_comp FROM `eventcompetition` WHERE event_id = '$event2_id'";
+        $result = mysqli_query($db, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $event2_max_comp = $row['event_max_comp'];
+        }
     }
 }
 echo "[ ";
@@ -63,6 +75,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '"event1_day": "'.$event1_day.'", ';
     echo '"event1_ticketlink": "'.$event1_ticketlink.'", ';
     echo '"event1_live_link": "'.$event1_live_link.'", ';
+    echo '"event1_place": "'.$event1_place.'", ';
+    echo '"event1_max_comp": "'.$event1_max_comp.'", ';
 
     //Evenement dat na eerst volgende evenement komt
     echo '"event2_id": "'.$event2_id.'", ';
@@ -71,6 +85,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '"event2_description": "'.$event2_description.'", ';
     echo '"event2_date": "'.$event2_date.'", ';
     echo '"event2_ticketlink": "'.$event2_ticketlink.'", ';
+    echo '"event2_place": "'.$event2_place.'", ';
+    echo '"event2_max_comp": "'.$event2_max_comp.'", ';
 
     //Atleten uit eerst volgende evenement
     echo '"athlete_id": "'.$row['athlete_id'].'", ';
@@ -82,7 +98,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '"athlete_grade": "'.$row['athlete_grade'].'", ';
     echo '"athlete_wins": "'.$row['athlete_wins'].'", ';
     echo '"athlete_losses": "'.$row['athlete_losses'].'", ';
-    echo '"athlete_draws": "'.$row['athlete_draws'].'"';
+    echo '"athlete_draws": "'.$row['athlete_draws'].'", ';
+    echo '"total_yellowcards": "'.$row['athlete_yellowcards'].'", ';
+    echo '"total_redcards": "'.$row['athlete_redcards'].'"';
 
     echo ' }';
     $more = true;

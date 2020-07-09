@@ -141,8 +141,15 @@ class _W95p extends State<W95p> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      AthletesDetailPage(athlete: _notes[index]),
+                  builder: (context) => AthletesDetailPage(
+                    athleteId: int.parse(_notes[index].athleteId),
+                    athleteFullName: _notes[index].athleteFullName,
+                    athleteWins: int.parse(_notes[index].athleteWins),
+                    athleteLosses: int.parse(_notes[index].athleteLosses),
+                    athleteDraws: int.parse(_notes[index].athleteDraws),
+                    athleteYellowcards: int.parse(_notes[index].totalYellowcards),
+                    athleteRedcards: int.parse(_notes[index].totalRedcards),
+                  ),
                 ),
               );
             },

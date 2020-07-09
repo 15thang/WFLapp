@@ -9,12 +9,16 @@ class Homepage {
       event1Day,
       event1TicketLink,
       event1LiveLink,
+      event1Place,
+      event1MaxComp,
       event2Id,
       event2Name,
       event2Picture,
       event2Description,
       event2Date,
       event2TicketLink,
+      event2Place,
+      event2MaxComp,
       athleteId,
       athleteFirstname,
       athleteLastname,
@@ -25,7 +29,9 @@ class Homepage {
       athleteGrade,
       athleteWins,
       athleteLosses,
-      athleteDraws;
+      athleteDraws,
+      totalYellowcards,
+      totalRedcards;
 
   Homepage(
       {this.event1Id,
@@ -38,12 +44,16 @@ class Homepage {
       this.event1Day,
       this.event1TicketLink,
       this.event1LiveLink,
+      this.event1Place,
+      this.event1MaxComp,
       this.event2Id,
       this.event2Name,
       this.event2Picture,
       this.event2Description,
       this.event2Date,
       this.event2TicketLink,
+      this.event2Place,
+      this.event2MaxComp,
       this.athleteId,
       this.athleteFirstname,
       this.athleteLastname,
@@ -54,7 +64,9 @@ class Homepage {
       this.athleteGrade,
       this.athleteWins,
       this.athleteLosses,
-      this.athleteDraws});
+      this.athleteDraws,
+      this.totalYellowcards,
+      this.totalRedcards});
 
   Homepage.fromJson(Map<String, dynamic> json) {
     event1Id = json['event1_id'];
@@ -67,12 +79,18 @@ class Homepage {
     event1Day = json['event1_day'];
     event1TicketLink = json['event1_ticketlink'];
     event1LiveLink = json['event1_live_link'];
+    event1Place = json['event1_place'];
+    event1MaxComp = json['event1_max_comp'];
+
     event2Id = json['event2_id'];
     event2Name = json['event2_name'];
     event2Picture = "http://superfighter.nl/" + json['event2_picture'];
     event2Description = json['event2_description'];
     event2Date = json['event2_date'];
     event2TicketLink = json['event2_ticketlink'];
+    event2Place = json['event2_place'];
+    event2MaxComp = json['event2_max_comp'];
+
     athleteId = json['athlete_id'];
     athleteFirstname = json['athlete_firstname'];
     athleteLastname = json['athlete_lastname'];
@@ -84,5 +102,7 @@ class Homepage {
     athleteWins = json['athlete_wins'];
     athleteLosses = json['athlete_losses'];
     athleteDraws = json['athlete_draws'];
+    totalYellowcards = json['total_yellowcards'];
+    totalRedcards = json['total_redcards'];
   }
 }

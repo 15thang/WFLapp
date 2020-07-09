@@ -8,10 +8,25 @@ import 'athlete_info_page.dart';
 
 class AthletesDetailPage extends StatefulWidget {
   // Declare a field that holds the Athlete.
-  final Athlete athlete;
+  final int athleteId,
+      athleteWins,
+      athleteLosses,
+      athleteDraws,
+      athleteYellowcards,
+      athleteRedcards;
+  final String athleteFullName;
 
   // In the constructor, require a Athlete.
-  AthletesDetailPage({Key key, @required this.athlete}) : super(key: key);
+  AthletesDetailPage(
+      {Key key,
+      @required this.athleteId,
+      this.athleteFullName,
+      this.athleteWins,
+      this.athleteLosses,
+      this.athleteDraws,
+      this.athleteYellowcards,
+      this.athleteRedcards})
+      : super(key: key);
 
   @override
   _AthletesDetailPageState createState() => _AthletesDetailPageState();
@@ -26,10 +41,20 @@ class _AthletesDetailPageState extends State<AthletesDetailPage>
   @override
   void initState() {
     super.initState();
-    var name = widget.athlete.athleteFullName;
-        _pages = [
-          Tuple3('Info', AthletesInfoPage(athleteID: int.parse(widget.athlete.athleteId)), name.toString()),
-      Tuple3('Match history', AthletesCompPage(athlete: widget.athlete), name.toString()),
+    _pages = [
+      Tuple3('Info', AthletesInfoPage(athleteID: widget.athleteId),
+          widget.athleteFullName),
+      Tuple3(
+          'Match history',
+          AthletesCompPage(
+            athleteId: widget.athleteId,
+            athleteWins: widget.athleteWins,
+            athleteLosses: widget.athleteLosses,
+            athleteDraws: widget.athleteDraws,
+            athleteYellowcards: widget.athleteYellowcards,
+            athleteRedcards: widget.athleteRedcards,
+          ),
+          widget.athleteFullName),
     ];
     _tabController = TabController(length: _pages.length, vsync: this);
     _tabController.addListener(() => setState(() {}));

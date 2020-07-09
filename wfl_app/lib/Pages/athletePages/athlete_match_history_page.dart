@@ -7,10 +7,23 @@ import 'package:wfl_app/model/match_history.dart';
 
 class MatchHistoryPage extends StatefulWidget {
   //Declare a field that holds the Athlete.
-  final Athlete athlete;
+  final int athleteId,
+      athleteWins,
+      athleteLosses,
+      athleteDraws,
+      athleteYellowcards,
+      athleteRedcards;
 
   // In the constructor, require a Athlete.
-  MatchHistoryPage({Key key, @required this.athlete}) : super(key: key);
+  MatchHistoryPage(
+      {Key key,
+      @required this.athleteId,
+      this.athleteWins,
+      this.athleteLosses,
+      this.athleteDraws,
+      this.athleteYellowcards,
+      this.athleteRedcards})
+      : super(key: key);
 
   @override
   _MatchHistoryPageState createState() => _MatchHistoryPageState();
@@ -22,7 +35,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
   Future<List<MatchH>> fetchNotes() async {
     var url =
         'http://superfighter.nl/APP_output_match_history.php?athlete_id=' +
-            '${widget.athlete.athleteId}';
+            '${widget.athleteId}';
 
     var response = await http.get(url);
 
@@ -98,7 +111,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                               child: Row(
                                 children: <Widget>[
                                   Text(
-                                    'W/L/D: ${widget.athlete.athleteWins}/${widget.athlete.athleteLosses}/${widget.athlete.athleteDraws}',
+                                    'W/L/D: ${widget.athleteWins}/${widget.athleteLosses}/${widget.athleteDraws}',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white,
@@ -189,7 +202,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                               child: Row(
                                 children: <Widget>[
                                   Text(
-                                    '${widget.athlete.totalYellowcards} ',
+                                    '${widget.athleteYellowcards} ',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16),
                                   ),
@@ -200,7 +213,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                                     margin: const EdgeInsets.only(right: 15.0),
                                   ),
                                   Text(
-                                    '${widget.athlete.totalRedcards} ',
+                                    '${widget.athleteRedcards} ',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16),
                                   ),
