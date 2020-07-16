@@ -172,7 +172,7 @@ $results = mysqli_query($db, $query);
         $query = "DELETE FROM competition WHERE competition_name = '$comp_name' AND event0 = 0";
         mysqli_query($db, $query);
 
-        header("location: http://localhost/php/WFLapp/APP_competition.php");
+        header("location: http://superfighter.nl/APP_competition.php");
         ob_flush();
     }
 

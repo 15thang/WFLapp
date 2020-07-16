@@ -45,5 +45,6 @@ h3 {
     margin-left: 15%;
     height: 500px;
     width: 70%;
-    background-color: blue;
+    background-color: darkgrey;
+    overflow: auto;
 }
