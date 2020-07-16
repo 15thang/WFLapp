@@ -165,7 +165,7 @@ class _HomePage extends State<HomePage> {
                                             child: Text(
                                               'Buy Tickets',
                                               style: TextStyle(
-                                                color: Colors.white,
+                                                color: Colors.white, fontSize: 12
                                               ),
                                             ),
                                             color: Colors.red[800],
