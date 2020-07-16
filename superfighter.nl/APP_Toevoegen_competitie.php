@@ -70,31 +70,46 @@ $results = mysqli_query($db, $query);
                         $athlete_weightclassA = "";
                         break;
                     case "1":
-                        $athlete_weightclassA = "Heavyweight";
+                        $athlete_weightclassA = "95+";
                         break;
                     case "2":
-                        $athlete_weightclassA = "Light Heavyweight";
+                        $athlete_weightclassA = "95";
                         break;
                     case "3":
-                        $athlete_weightclassA = "Middleweight";
+                        $athlete_weightclassA = "84";
                         break;
                     case "4":
-                        $athlete_weightclassA = "Welterweight";
+                        $athlete_weightclassA = "77";
                         break;
                     case "5":
-                        $athlete_weightclassA = "Lightweight";
+                        $athlete_weightclassA = "70";
                         break;
                     case "6":
-                        $athlete_weightclassA = "Featherweight";
+                        $athlete_weightclassA = "65";
                         break;
                     case "7":
-                        $athlete_weightclassA = "Bantamweight";
+                        $athlete_weightclassA = "61";
                         break;
                     case "8":
-                        $athlete_weightclassA = "Flyweight";
+                        $athlete_weightclassA = "56";
                         break;
                     case "9":
-                        $athlete_weightclassA = "Strawweight";
+                        $athlete_weightclassA = "52";
+                        break;
+                    case "10":
+                        $athlete_weightclassA = "48";
+                        break;
+                    case "11":
+                        $athlete_weightclassA = "44";
+                        break;
+                    case "12":
+                        $athlete_weightclassA = "40";
+                        break;
+                    case "13":
+                        $athlete_weightclassA = "36";
+                        break;
+                    case "14":
+                        $athlete_weightclassA = "32";
                         break;
                 }
 
