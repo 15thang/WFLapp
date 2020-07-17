@@ -1,13 +1,7 @@
 <?php
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 
-$query = "SELECT id, naam, email FROM testmail";
-$result = mysqli_query($db, $query);
-$mailArray[] = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    //$id = $row['id'];
-    $mailArray[] = $row['email'];
-}
+$mailArray = array_unique($_SESSION['emailArray']);
 $noMore = false;
 
 // Import PHPMailer classes into the global namespace

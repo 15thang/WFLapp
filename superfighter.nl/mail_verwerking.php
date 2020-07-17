@@ -80,7 +80,7 @@ try {
     // 0 = off (for production use)
     // 1 = client messages
     // 2 = client and server messages
-    $mail->SMTPDebug = 2;
+    $mail->SMTPDebug = 0;
     $mail->isSMTP();
     $mail->Host = gethostbyname('smtp.gmail.com');//'smtp.gmail.com';
     $mail->SMTPAuth = true;
@@ -99,7 +99,7 @@ try {
 
     //Recipients
     $mail->setFrom('novaphptest@gmail.com', 'superfighter.nl');
-    $mail->addAddress('153061@novacollege.nl');
+    $mail->addAddress('tim@worldfightingleague.com');
 
     //Content
     $mail->isHTML(true);
