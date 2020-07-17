@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wfl_app/Pages/morePages/more_page.dart';
 import './Pages/HomePage.dart';
 import 'Pages/athletePages/athlete_page.dart';
 import 'Pages/competitionPages/competition_page.dart';
@@ -32,6 +33,8 @@ class MyAppState extends State<MyApp> {
         return YoutubePlayerDemoApp();
       case 4:
         return Competition();
+      case 5:
+        return Morepage();
       default:
         return HomePage();
     }
@@ -54,7 +57,6 @@ class MyAppState extends State<MyApp> {
             _selectedPage = value;
             setState(() {});
           },
-
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
