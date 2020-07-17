@@ -134,6 +134,16 @@ class _MorePage extends State<MorePage> {
                               margin: EdgeInsets.only(left: 8),
                             ),
                           ),
+                          Container(
+                            height: 55,
+                            width: 170,
+                            decoration: BoxDecoration(
+                              image: new DecorationImage(
+                                  image: new NetworkImage(
+                                      'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
+                                  fit: BoxFit.fill),
+                            ),
+                          ),
                           Expanded(
                             flex: 5,
                             child: Container(
@@ -323,6 +333,16 @@ class _MorePage extends State<MorePage> {
                           ],
                         ),
                         margin: EdgeInsets.only(left: 8, right: 8),
+                      ),
+                      Container(
+                        height: 55,
+                        width: 170,
+                        decoration: BoxDecoration(
+                          image: new DecorationImage(
+                              image: new NetworkImage(
+                                  'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
+                              fit: BoxFit.fill),
+                        ),
                       ),
                     ],
                   ),
