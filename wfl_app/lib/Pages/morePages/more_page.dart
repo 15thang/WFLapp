@@ -94,7 +94,7 @@ class _MorePage extends State<MorePage> {
                 color: Colors.black,
                 child: Container(
                   alignment: Alignment.center,
-                  height: 75,
+                  height: 25,
                   child: ListView.builder(
                     itemCount: 1,
                     itemBuilder: (BuildContext ctxt, int index) {
@@ -150,7 +150,158 @@ class _MorePage extends State<MorePage> {
                             Container(
                               width: 10000,
                               child: Text(
-                                'Featured athletes:',
+                                'Other Pages:',
+                                style: TextStyle(fontSize: 30),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                            Divider(color: Colors.black)
+                          ],
+                        ),
+                        margin: EdgeInsets.only(left: 8, right: 8),
+                      ),
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 10000,
+                              child: RaisedButton(
+                                onPressed: () {
+                                  launchURL('https://wfltickets.com/');
+                                },
+                                child: Text(
+                                  'Official Website',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                color: Colors.red[800],
+                              ),
+                            ),
+                            Divider(color: Colors.black)
+                          ],
+                        ),
+                        margin: EdgeInsets.only(left: 8, right: 8),
+                      ),
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 10000,
+                              child: RaisedButton(
+                                onPressed: () {
+                                  launchURL(
+                                      'https://www.eventbrite.nl/o/world-fighting-league-28797683507');
+                                },
+                                child: Text(
+                                  'Buy Tickets',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                color: Colors.green[800],
+                              ),
+                            ),
+                            Divider(color: Colors.black)
+                          ],
+                        ),
+                        margin: EdgeInsets.only(left: 8, right: 8),
+                      ),
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 10000,
+                              child: RaisedButton(
+                                onPressed: () {
+                                  launchURL(
+                                      'https://www.facebook.com/WorldFightingLeague');
+                                },
+                                child: Text(
+                                  'Facebook',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                color: Colors.blue[800],
+                              ),
+                            ),
+                            Divider(color: Colors.black)
+                          ],
+                        ),
+                        margin: EdgeInsets.only(left: 8, right: 8),
+                      ),
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 10000,
+                              child: RaisedButton(
+                                onPressed: () {
+                                  launchURL(
+                                      'https://www.instagram.com/worldfightingleagueofficial/');
+                                },
+                                child: Text(
+                                  'Instagram',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                color: Colors.black12,
+                              ),
+                            ),
+                            Divider(color: Colors.black)
+                          ],
+                        ),
+                        margin: EdgeInsets.only(left: 8, right: 8),
+                      ),
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 10000,
+                              child: RaisedButton(
+                                onPressed: () {
+                                  launchURL(
+                                      'https://www.youtube.com/channel/UCCXoNOI32UE3DtK9fR4GDfA');
+                                },
+                                child: Text(
+                                  'YouTube',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                                color: Colors.red,
+                              ),
+                            ),
+                            Divider(color: Colors.black)
+                          ],
+                        ),
+                        margin: EdgeInsets.only(left: 8, right: 8),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            flex: 5,
+                            child: Container(
+                              height: 5,
+                              color: Colors.redAccent[700],
+                              margin: EdgeInsets.only(left: 8),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 5,
+                            child: Container(
+                              height: 5,
+                              color: Colors.blue[900],
+                              margin: EdgeInsets.only(right: 8),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 10000,
+                              child: Text(
+                                'Terms of Service:',
+                                style: TextStyle(fontSize: 25),
                                 textAlign: TextAlign.left,
                               ),
                             ),
