@@ -6,6 +6,7 @@ import 'Pages/competitionPages/competition_page.dart';
 import 'Pages/competitionPages/ongoing_competitionpage.dart';
 import 'Pages/eventPages/event_page.dart';
 import 'Pages/videoPages/video_live_page.dart';
+import 'Pages/morePages/more_page.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -34,7 +35,7 @@ class MyAppState extends State<MyApp> {
       case 4:
         return Competition();
       case 5:
-        return Morepage();
+        return MorePage();
       default:
         return HomePage();
     }
@@ -93,4 +94,6 @@ class MyAppState extends State<MyApp> {
   }
 
   static color(MaterialColor red) {}
+
+  Widget morepage() {}
 }
