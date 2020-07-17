@@ -2,6 +2,17 @@
 ob_start();
 session_start();
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
+
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+//Load composer's autoloader
+require 'vendor/autoload.php';
+
+const SECRET = "geheimpje";
 ?>
 <link rel="stylesheet" type="text/css" href="css/wflapp.css">
 <link rel="stylesheet" type="text/css" href="css/APP_athlete_CSS.css">
@@ -260,24 +271,26 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
 </div>
 <div id="center">
     <h2>WFL E-Mail</h2>
-    <table id="mailerTabel">
-        <tr>
-            <td><h3>Onderwerp</h3></td>
-            <td><input type="text" name="mail_subject" id="mail_subject"/></td>
-        </tr>
-        <tr>
-            <td><h3>Bericht</h3></td>
-            <td><textarea name="mail_message" id="bericht" cols="45" rows="40"></textarea></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <div align="center">
-                    <input class="ssbutton" type="submit" name="send_mail" id="send_mail" value="Send mail" />
-                </div>
-            </td>
-        </tr>
-    </table>
+    <form name="form_send" method="post" action="" enctype="multipart/form-data">
+        <table id="mailerTabel">
+            <tr>
+                <td><h3>Onderwerp</h3></td>
+                <td><input type="text" name="mail_subject" id="mail_subject"/></td>
+            </tr>
+            <tr>
+                <td><h3>Bericht</h3></td>
+                <td><textarea name="mail_message" id="bericht" cols="45" rows="40"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div align="center">
+                        <input class="ssbutton" type="submit" name="send_mail" id="send_mail" value="Send mail" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 <div id="side">
     <h2>Mail to:</h2>
@@ -546,3 +559,63 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
         }
     }
 </script>
+
+<?php
+//PHP MAILER
+if (isset($_POST['send_mail'])) {
+    $mailArray = array_unique($_SESSION['emailArray']);
+    if (!empty($mailArray)) {
+        $subject = ($_POST['mail_subject']);
+        $message = ($_POST['mail_message']);
+
+        $i = 0;
+
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        foreach ($mailArray as $data) {
+            try {
+                //Server settings
+                //Enable SMTP debugging
+                // 0 = off (for production use)
+                // 1 = client messages
+                // 2 = client and server messages
+                $mail->SMTPDebug = 0;
+                $mail->isSMTP();
+                $mail->Host = gethostbyname('smtp.gmail.com');//'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'novaphptest@gmail.com';
+                $mail->Password = phptest123;
+                $mail->SMTPSecure = 'tls';
+                $mail->SMTPAuth = true;
+                $mail->Port = 587;
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+                //Recipients
+                $mail->setFrom('novaphptest@gmail.com', 'World Fighting League');
+                $mail->ClearAllRecipients();
+                $mail->addAddress($data);
+
+                //Content
+                $mail->isHTML(true);
+                $mail->Subject = $subject;
+                $i++;
+                $mail->Body = $message;
+                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                $mail->send();
+                echo '<p style="color: white; font-size: 20px;">Message has been sent to '.$data.'</p>';
+            } catch (Exception $e) {
+                echo '<p style="color: white; font-size: 20px;">Message could not be sent.</p>';
+                echo '<p style="color: white; font-size: 20px;">Mailer Error: ' . $mail->ErrorInfo . '</p>';
+            }
+        }
+        unset($_SESSION['emailArray']);
+    } else {
+        echo "<script type='text/javascript'>alert('No E-Mail adresses found.')</script>";
+    }
+}
+?>
