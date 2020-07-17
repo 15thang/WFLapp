@@ -1,5 +1,6 @@
 <?php
 ob_start();
+session_start();
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 ?>
 <link rel="stylesheet" type="text/css" href="css/wflapp.css">
@@ -14,82 +15,100 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
 </section><br><br><br>
 <div id="side">
     <h2>Select:</h2>
-    <button class="ssbutton" onclick="toggleHideAthlete()">Athlete E-Mail</button><br>
-    <div id="athleteMail" class="mailContainer" style="display: none">
-        <input type="submit" value="Add E-Mail to mail-list" name="add_athlete_to_mail">
-        <input id="myInput" type="text" placeholder="Search..">
-        <table id="table_format" class="table table-bordered">
-            <tr>
-                <th class="skip-filter" style="text-decoration: underline">Select</th>
-                <th class="skip-filter">Name</th>
-                <th>Filter weightclass...</th>
-                <th>Filter grade...</th>
-                <th class="skip-filter">E-Mail</th>
-            </tr>
-            <?php
-            $query = "SELECT * FROM `athletes` ORDER BY athlete_grade ASC,athlete_weight DESC, athlete_weightclass, athlete_lastname ASC";
-            $results = mysqli_query($db, $query);
-            while ($row = $results->fetch_assoc()) {
-                $athlete_id = $row['athlete_id'];
-                $value = $row['athlete_id'];
-//switch case om de nummers naar letters te veranderen
-                switch ($row['athlete_grade']) {
-                    case "0":
-                        $athlete_grade_letter = "";
-                        break;
-                    case "1":
-                        $athlete_grade_letter = "A";
-                        break;
-                    case "2":
-                        $athlete_grade_letter = "B";
-                        break;
-                    case "3":
-                        $athlete_grade_letter = "C";
-                        break;
-                    case "4":
-                        $athlete_grade_letter = "N";
-                        break;
-                    case "5":
-                        $athlete_grade_letter = "J";
-                        break;
-                }
-                //switch case om nummers naar namen te veranderen
-                switch ($row['athlete_weightclass']) {
-                    case "0":
-                        $athlete_weightclassA = "";
-                        break;
-                    case "1":
-                        $athlete_weightclassA = "Heavyweight";
-                        break;
-                    case "2":
-                        $athlete_weightclassA = "Light Heavyweight";
-                        break;
-                    case "3":
-                        $athlete_weightclassA = "Middleweight";
-                        break;
-                    case "4":
-                        $athlete_weightclassA = "Welterweight";
-                        break;
-                    case "5":
-                        $athlete_weightclassA = "Lightweight";
-                        break;
-                    case "6":
-                        $athlete_weightclassA = "Featherweight";
-                        break;
-                    case "7":
-                        $athlete_weightclassA = "Bantamweight";
-                        break;
-                    case "8":
-                        $athlete_weightclassA = "Flyweight";
-                        break;
-                    case "9":
-                        $athlete_weightclassA = "Strawweight";
-                        break;
-                }
-                echo '<tbody id="myTable">
+    <button class="ssbutton2" onclick="toggleHideManualButtons()">Select manually</button>
+    <div id="manualButtons" style="display: none">
+        <button class="ssbutton" onclick="toggleHideAthlete()">Athlete E-Mail</button><br>
+        <div id="athleteMail" class="mailContainer" style="display: none">
+            <form name="form1" method="post" action="" enctype="multipart/form-data">
+                <input type="submit" value="Add E-Mail to mail-list" name="add_mail_a">
+                <input id="myInput" type="text" placeholder="Search..">
+                <table id="table_format" class="table table-bordered">
+                    <tr>
+                        <th class="skip-filter" style="text-decoration: underline">Select</th>
+                        <th class="skip-filter">Name</th>
+                        <th>Filter weightclass...</th>
+                        <th>Filter grade...</th>
+                        <th class="skip-filter">E-Mail</th>
+                    </tr>
+                    <?php
+                    $query = "SELECT * FROM `athletes` ORDER BY athlete_grade ASC,athlete_weight DESC, athlete_weightclass, athlete_lastname ASC";
+                    $results = mysqli_query($db, $query);
+                    while ($row = $results->fetch_assoc()) {
+                        $athlete_id = $row['athlete_id'];
+                        $value = $row['athlete_id'];
+                        //switch case om de nummers naar letters te veranderen
+                        switch ($row['athlete_grade']) {
+                            case "0":
+                                $athlete_grade_letter = "";
+                                break;
+                            case "1":
+                                $athlete_grade_letter = "A";
+                                break;
+                            case "2":
+                                $athlete_grade_letter = "B";
+                                break;
+                            case "3":
+                                $athlete_grade_letter = "C";
+                                break;
+                            case "4":
+                                $athlete_grade_letter = "N";
+                                break;
+                            case "5":
+                                $athlete_grade_letter = "J";
+                                break;
+                        }
+                        //switch case om nummers naar namen te veranderen
+                        switch ($row['athlete_weightclass']) {
+                            case "0":
+                                $athlete_weightclassA = "";
+                                break;
+                            case "1":
+                                $athlete_weightclassA = "95+";
+                                break;
+                            case "2":
+                                $athlete_weightclassA = "95";
+                                break;
+                            case "3":
+                                $athlete_weightclassA = "84";
+                                break;
+                            case "4":
+                                $athlete_weightclassA = "77";
+                                break;
+                            case "5":
+                                $athlete_weightclassA = "70";
+                                break;
+                            case "6":
+                                $athlete_weightclassA = "65";
+                                break;
+                            case "7":
+                                $athlete_weightclassA = "61";
+                                break;
+                            case "8":
+                                $athlete_weightclassA = "56";
+                                break;
+                            case "9":
+                                $athlete_weightclassA = "52";
+                                break;
+                            case "10":
+                                $athlete_weightclassA = "48";
+                                break;
+                            case "11":
+                                $athlete_weightclassA = "44";
+                                break;
+                            case "12":
+                                $athlete_weightclassA = "40";
+                                break;
+                            case "13":
+                                $athlete_weightclassA = "36";
+                                break;
+                            case "14":
+                                $athlete_weightclassA = "32";
+                                break;
+                        }
+                        echo '<tbody id="myTable">
                 <tr>
                 <td>'.$row['athlete_id'].'
-                <input type="checkbox" name="checkComp[]" value="'.$value.'" onclick="checkBoxColorRow(this);"/></td>
+                <input type="checkbox" name="checkAthlete[]" value="'.$value.'" onclick="checkBoxColorRow(this);"/></td>
                 <td>'.$row['athlete_firstname'].' '.$row['athlete_lastname'].'</td>
                 <td>'.$athlete_weightclassA .'</td>
                 <td>'.$athlete_grade_letter.'</div></td>
@@ -97,101 +116,319 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
                 </td>
               </tr>
               </tbody>';
-            }
-            ?>
-        </table>
-    </div>
-    <button class="ssbutton" onclick="toggleHideGym()">Coach / Gym E-Mail</button><br>
-    <div id="gymMail" class="mailContainer" style="display: none">
-        <input type="submit" value="Add E-Mail to mail-list" name="add_athlete_to_mail">
-        <input id="myInput2" type="text" placeholder="Search..">
-        <table id="table_format" class="table table-bordered">
-            <tr>
-                <th class="skip-filter" style="text-decoration: underline">Select</th>
-                <th class="skip-filter">Name</th>
-                <th class="skip-filter">Gym</th>
-                <th class="skip-filter">E-Mail</th>
-            </tr>
-            <?php
-            $query = "SELECT * FROM `gym`";
-            $results = mysqli_query($db, $query);
-            while ($row = $results->fetch_assoc()) {
-                $athlete_id = $row['id'];
-                $value = $row['id'];
+                    }
+                    ?>
+                </table>
+            </form>
+        </div>
+        <button class="ssbutton" onclick="toggleHideGym()">Coach / Gym E-Mail</button><br>
+        <div id="gymMail" class="mailContainer" style="display: none">
+            <form name="form2" method="post" action="" enctype="multipart/form-data">
+                <input type="submit" value="Add E-Mail to mail-list" name="add_mail_b">
+                <input id="myInput2" type="text" placeholder="Search..">
+                <table id="table_format" class="table table-bordered">
+                    <tr>
+                        <th class="skip-filter" style="text-decoration: underline">Select</th>
+                        <th class="skip-filter">Name</th>
+                        <th class="skip-filter">Gym</th>
+                        <th class="skip-filter">E-Mail</th>
+                    </tr>
+                    <?php
+                    $query = "SELECT * FROM `gym`";
+                    $results = mysqli_query($db, $query);
+                    while ($row = $results->fetch_assoc()) {
+                        $athlete_id = $row['id'];
+                        $value = $row['id'];
 
-                echo '<tbody id="myTable">
+                        echo '<tbody id="myTable">
                 <tr>
                 <td>'.$row['id'].'
-                <input type="checkbox" name="checkComp[]" value="'.$value.'" onclick="checkBoxColorRow(this);"/></td>
+                <input type="checkbox" name="checkGym[]" value="'.$value.'" onclick="checkBoxColorRow(this);"/></td>
                 <td>'.$row['coach_name'].'</td>
                 <td>'.$row['gym_name'].'</td>
                 <td>'.$row['coach_email'].'</td>
                 </td>
               </tr>
               </tbody>';
-            }
-            ?>
-        </table>
-    </div>
-    <button class="ssbutton" onclick="toggleHideNews()">Nieuwsbrief</button><br>
-    <div id="newsMail" class="mailContainer" style="display: none">
-        <input type="submit" value="Add E-Mail to mail-list" name="add_athlete_to_mail">
-        <input id="myInput3" type="text" placeholder="Search..">
-        <table id="table_format" class="table table-bordered">
-            <tr>
-                <th class="skip-filter" style="text-decoration: underline">Select</th>
-                <th class="skip-filter">Name</th>
-                <th class="skip-filter">E-Mail</th>
-            </tr>
-            <?php
-            $query = "SELECT * FROM `testmail`";
-            $results = mysqli_query($db, $query);
-            while ($row = $results->fetch_assoc()) {
-                $athlete_id = $row['id'];
-                $value = $row['id'];
+                    }
+                    ?>
+                </table>
+            </form>
+        </div>
+        <button class="ssbutton" onclick="toggleHideNews()">Nieuwsbrief</button><br>
+        <div id="newsMail" class="mailContainer" style="display: none">
+            <form name="form3" method="post" action="" enctype="multipart/form-data">
+                <input type="submit" value="Add E-Mail to mail-list" name="add_mail_c">
+                <input id="myInput3" type="text" placeholder="Search..">
+                <table id="table_format" class="table table-bordered">
+                    <tr>
+                        <th class="skip-filter" style="text-decoration: underline">Select</th>
+                        <th class="skip-filter">Name</th>
+                        <th class="skip-filter">E-Mail</th>
+                    </tr>
+                    <?php
+                    $query = "SELECT * FROM `testmail`";
+                    $results = mysqli_query($db, $query);
+                    while ($row = $results->fetch_assoc()) {
+                        $athlete_id = $row['id'];
+                        $value = $row['id'];
 
-                echo '<tbody id="myTable">
+                        echo '<tbody id="myTable">
                 <tr>
                 <td>'.$row['id'].'
-                <input type="checkbox" name="checkComp[]" value="'.$value.'" onclick="checkBoxColorRow(this);"/></td>
+                <input type="checkbox" name="checkNews[]" value="'.$value.'" onclick="checkBoxColorRow(this);"/></td>
                 <td>'.$row['naam'].'</td>
                 <td>'.$row['email'].'</td>
                 </td>
               </tr>
               </tbody>';
-            }
-            ?>
-        </table>
+                    }
+                    ?>
+                </table>
+            </form>
+        </div>
     </div>
+    <button class="ssbutton2" onclick="toggleHideCompetition()">Select all from competition</button>
+    <div id="competitionMail" class="mailContainer" style="display: none">
+        <form name="form_comp" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Add E-Mail to mail-list" name="add_mail_1">
+            <input id="myInput_comp" type="text" placeholder="Search..">
+            <table id="table_format" class="table table-bordered">
+                <tr>
+                    <th class="skip-filter" style="text-decoration: underline">Select</th>
+                    <th class="skip-filter">Competition</th>
+                </tr>
+                <?php
+                $query = "SELECT * FROM `competition` ORDER BY competition_id DESC";
+                $results = mysqli_query($db, $query);
+                while ($row = $results->fetch_assoc()) {
+                    $competition_id = $row['competition_id'];
+                    $value = $row['competition_id'];
+                    echo '<tbody id="myTable">
+                <tr>
+                <td>'.$row['competition_id'].'
+                <input type="checkbox" name="checkComp[]" value="'.$value.'" onclick="checkBoxColorRow(this);"/></td>
+                <td>'.$row['competition_name'].'</td>
+                </td>
+              </tr>
+              </tbody>';
+                }
+                ?>
+            </table>
+        </form>
+    </div>
+    <button class="ssbutton2" onclick="toggleHideEvent()">Select all from event</button>
+    <div id="eventMail" class="mailContainer" style="display: none">
+        <form name="form_event" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Add E-Mail to mail-list" name="add_mail_2">
+            <input id="myInput_event" type="text" placeholder="Search..">
+            <table id="table_format" class="table table-bordered">
+                <tr>
+                    <th class="skip-filter" style="text-decoration: underline">Select</th>
+                    <th class="skip-filter">Event</th>
+                </tr>
+                <?php
+                $query = "SELECT * FROM `events` WHERE NOT event_name = 'event_0' ORDER BY event_id DESC";
+                $results = mysqli_query($db, $query);
+                while ($row = $results->fetch_assoc()) {
+                        $event_id = $row['event_id'];
+                        $value = $row['event_id'];
+                        echo '<tbody id="myTable">
+                <tr>
+                <td>'.$value.'
+                <input type="checkbox" name="checkEvent[]" value="'.$value.'" onclick="checkBoxColorRow(this);"/></td>
+                <td>'.$row['event_name'].'</td>
+                </td>
+              </tr>
+              </tbody>';
+
+                }
+                ?>
+            </table>
+        </form>
+    </div>
+    <form name="form_event" method="post" action="" enctype="multipart/form-data">
+        <input type="submit" class="ssbutton3" value="+ Select ALL athletes" name="add_mail_3">
+    </form>
+    <form name="form_event" method="post" action="" enctype="multipart/form-data">
+        <input type="submit" class="ssbutton3" value="+ Select ALL trainers" name="add_mail_4">
+    </form>
+    <form name="form_event" method="post" action="" enctype="multipart/form-data">
+        <input type="submit" class="ssbutton3" value="+ Select ALL newsletter" name="add_mail_5">
+    </form>
+
 </div>
 <div id="center">
     <h2>WFL E-Mail</h2>
     <table id="mailerTabel">
         <tr>
             <td><h3>Onderwerp</h3></td>
-            <td><input type="text" name="naam_van" id="mail_subject"/></td>
+            <td><input type="text" name="mail_subject" id="mail_subject"/></td>
         </tr>
         <tr>
             <td><h3>Bericht</h3></td>
-            <td><textarea name="bericht" id="bericht" cols="45" rows="40"></textarea></td>
+            <td><textarea name="mail_message" id="bericht" cols="45" rows="40"></textarea></td>
         </tr>
         <tr>
-            <td><div align="center">
-                    <input type="submit" name="Verzenden" id="Verzenden" value="Verzenden" />
-                </div></td>
-            <td><div align="center">
-                    <input type="reset" name="Wissen" id="Wissen" value="Wissen" />
-                </div></td>
+            <td></td>
+            <td>
+                <div align="center">
+                    <input class="ssbutton" type="submit" name="send_mail" id="send_mail" value="Send mail" />
+                </div>
+            </td>
         </tr>
     </table>
 </div>
 <div id="side">
     <h2>Mail to:</h2>
     <h3>(hier komt lijst met alle emails die geselecteerd zijn)</h3>
+    <?php
+    if (empty($_SESSION['emailArray'])) {
+        $_SESSION['emailArray'] = array();
+    }
+    //mail for athlete to array
+    if(isset($_POST['add_mail_a'])){
+        if(!empty($_POST['checkAthlete'])) {
+            foreach($_POST['checkAthlete'] as $value){
+                $query = "SELECT * FROM `athletes` WHERE athlete_id = '$value'";
+                $results = mysqli_query($db, $query);
+                while ($row = $results->fetch_assoc()) {
+                    array_push($_SESSION['emailArray'], $row['athlete_email']);
+                }
+            }
+        }
+        $arr = array_unique($_SESSION['emailArray']);
+        $whereIn = implode('<br>', $arr);
+        echo '<form name="form_delete" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Remove emails" name="delete">
+        </form>'.$whereIn;
+    }
+    //gym/coach mail
+    if(isset($_POST['add_mail_b'])){
+        if(!empty($_POST['checkGym'])) {
+            foreach($_POST['checkGym'] as $value){
+                $query = "SELECT * FROM `gym` WHERE id = '$value'";
+                $results = mysqli_query($db, $query);
+                while ($row = $results->fetch_assoc()) {
+                    array_push($_SESSION['emailArray'], $row['coach_email']);
+
+                }
+            }
+        }
+        $arr = array_unique($_SESSION['emailArray']);
+        $whereIn = implode('<br>', $arr);
+        echo '<form name="form_delete" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Remove emails" name="delete">
+        </form>'.$whereIn;
+    }
+    //news mail
+    if(isset($_POST['add_mail_c'])){
+        if(!empty($_POST['checkNews'])) {
+            foreach($_POST['checkNews'] as $value){
+                $query = "SELECT * FROM `testmail` WHERE id = '$value'";
+                $results = mysqli_query($db, $query);
+                while ($row = $results->fetch_assoc()) {
+                    array_push($_SESSION['emailArray'], $row['email']);
+                }
+            }
+        }
+        $arr = array_unique($_SESSION['emailArray']);
+        $whereIn = implode('<br>', $arr);
+        echo '<form name="form_delete" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Remove emails" name="delete">
+        </form>'.$whereIn;
+    }
+    //all athlete mails from competition to array
+    if (isset($_POST['add_mail_1'])){
+        if(!empty($_POST['checkComp'])) {
+            foreach($_POST['checkComp'] as $value){
+                $query = "SELECT * FROM `athletes` WHERE athlete_id IN (SELECT athlete_id FROM `athletecompetition` WHERE competition_id = '$value')";
+                $results = mysqli_query($db, $query);
+                while ($row = $results->fetch_assoc()) {
+                    array_push($_SESSION['emailArray'], $row['athlete_email']);
+                }
+            }
+        }
+        $arr = array_unique($_SESSION['emailArray']);
+        $whereIn = implode('<br>', $arr);
+        echo '<form name="form_delete" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Remove emails" name="delete">
+        </form>'.$whereIn;
+    }
+    //all athlete mails from competition in event, to array
+    if (isset($_POST['add_mail_2'])){
+        if(!empty($_POST['checkEvent'])) {
+            foreach($_POST['checkEvent'] as $value){
+                $query = "SELECT * FROM `athletes` WHERE athlete_id IN (SELECT athlete_id FROM `athletecompetition` WHERE competition_id IN (SELECT competition_id FROM eventcompetition WHERE event_id = 124))";
+                $results = mysqli_query($db, $query);
+                while ($row = $results->fetch_assoc()) {
+                    array_push($_SESSION['emailArray'], $row['athlete_email']);
+                }
+            }
+        }
+        $arr = array_unique($_SESSION['emailArray']);
+        $whereIn = implode('<br>', $arr);
+        echo '<form name="form_delete" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Remove emails" name="delete">
+        </form>'.$whereIn;
+    }
+    //all athletes to array
+    if (isset($_POST['add_mail_3'])){
+        $query = "SELECT * FROM `athletes`";
+        $results = mysqli_query($db, $query);
+        while ($row = $results->fetch_assoc()) {
+            array_push($_SESSION['emailArray'], $row['athlete_email']);
+        }
+        $arr = array_unique($_SESSION['emailArray']);
+        $whereIn = implode('<br>', $arr);
+        echo '<form name="form_delete" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Remove emails" name="delete">
+        </form>'.$whereIn;
+    }
+    //all trainers/coaches to array
+    if (isset($_POST['add_mail_4'])){
+        $query = "SELECT * FROM `gym`";
+        $results = mysqli_query($db, $query);
+        while ($row = $results->fetch_assoc()) {
+            array_push($_SESSION['emailArray'], $row['coach_email']);
+        }
+        $arr = array_unique($_SESSION['emailArray']);
+        $whereIn = implode('<br>', $arr);
+        echo '<form name="form_delete" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Remove emails" name="delete">
+        </form>'.$whereIn;
+    }
+    //all newsletter subscribers emails to array
+    if (isset($_POST['add_mail_5'])){
+        $query = "SELECT * FROM `testmail`";
+        $results = mysqli_query($db, $query);
+        while ($row = $results->fetch_assoc()) {
+            array_push($_SESSION['emailArray'], $row['email']);
+        }
+        $arr = array_unique($_SESSION['emailArray']);
+        $whereIn = implode('<br>', $arr);
+        echo '<form name="form_delete" method="post" action="" enctype="multipart/form-data">
+            <input type="submit" value="Remove emails" name="delete">
+        </form>'.$whereIn;
+    }
+
+    if (isset($_POST['delete'])) {
+        unset($_SESSION['emailArray']);
+        header("Refresh:0");
+    }
+    ?>
 </div>
 
 <!-- Hide/Show containers -->
 <script>
+    function toggleHideManualButtons() {
+        var x = document.getElementById("manualButtons");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
     function toggleHideAthlete() {
         var x = document.getElementById("athleteMail");
         if (x.style.display === "block") {
@@ -210,6 +447,22 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
     }
     function toggleHideNews() {
         var x = document.getElementById("newsMail");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+    function toggleHideCompetition() {
+        var x = document.getElementById("competitionMail");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+    function toggleHideEvent() {
+        var x = document.getElementById("eventMail");
         if (x.style.display === "block") {
             x.style.display = "none";
         } else {
@@ -256,6 +509,22 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
     });
     $(document).ready(function(){
         $("#myInput3").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    $(document).ready(function(){
+        $("#myInput_comp").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    $(document).ready(function(){
+        $("#myInput_event").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $("#myTable tr").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
