@@ -28,10 +28,10 @@ Future launchURL(String url) async {
 class _HomePage extends State<HomePage> {
   List<Homepage> _notes = List<Homepage>();
 
-  DateTime startTime = DateTime(2020, 07, 25);
+  DateTime startTime = DateTime(2020, 07, 20, 11, 42);
   Duration remaining = DateTime.now().difference(DateTime.now());
   Timer t;
-  int days = 0, hrs = 0, mins = 0, sec = 0;
+  int days = 0, hrs = 0, mins = 0, sec = 0, sum = 1;
 
   Future launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -72,15 +72,29 @@ class _HomePage extends State<HomePage> {
   startTimer() async {
     t = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
-        remaining = DateTime.now().difference(startTime);
-        mins = 60 - remaining.inMinutes;
-        sec = 60 - remaining.inSeconds;
-        hrs = mins >= 60 ? mins ~/ 60 : 0;
-        days = hrs >= 24 ? hrs ~/ 24 : 0;
-        hrs = hrs % 24;
-        hrs = hrs - 1;
-        mins = mins % 60;
-        sec = sec % 60;
+        if (sum > 0) {
+          remaining = DateTime.now().difference(startTime);
+          mins = 60 - remaining.inMinutes;
+          sec = 60 - remaining.inSeconds;
+          hrs = mins >= 60 ? mins ~/ 60 : 0;
+          days = hrs >= 24 ? hrs ~/ 24 : 0;
+          hrs = hrs % 24;
+          hrs = hrs - 1;
+          mins = mins % 60;
+          sec = sec % 60;
+          sum = days + hrs + mins + sec;
+        } else {
+          t.cancel();
+          sum = days + hrs + mins + sec;
+        }
+        if (days < 0 || hrs < 0 || mins < 0) {
+          t.cancel();
+          days = 0;
+          hrs = 0;
+          mins = 0;
+          sec = 0;
+          sum = 0;
+        }
       });
     });
   }
@@ -132,22 +146,19 @@ class _HomePage extends State<HomePage> {
                                           ],
                                         ),
                                         Text(
-                                            'COUNTDOWN ' +
-                                                days
-                                                    .toString()
-                                                    .padLeft(2, '0') +
-                                                ':' +
-                                                hrs.toString().padLeft(2, '0') +
-                                                ':' +
-                                                mins
-                                                    .toString()
-                                                    .padLeft(2, '0') +
-                                                ':' +
-                                                sec.toString().padLeft(2, '0'),
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 19),
-                                            textAlign: TextAlign.center),
+                                          'COUNTDOWN ' +
+                                              days.toString().padLeft(2, '0') +
+                                              ':' +
+                                              hrs.toString().padLeft(2, '0') +
+                                              ':' +
+                                              mins.toString().padLeft(2, '0') +
+                                              ':' +
+                                              sec.toString().padLeft(2, '0'),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 19),
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -177,37 +188,47 @@ class _HomePage extends State<HomePage> {
                                 ],
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => EventsDetailPage(
-                                      event: int.parse(_notes[index].event1Id),
-                                      past: 0,
-                                      maxComp: int.parse(
-                                          _notes[index].event1MaxComp),
-                                      eventName: _notes[index].event1Name,
-                                      eventPicture: _notes[index].event1Picture,
-                                      eventDescription:
-                                          _notes[index].event1Description,
-                                      eventDate: _notes[index].event1Date,
-                                      eventPlace: _notes[index].event1Place,
-                                      eventLink: _notes[index].event1TicketLink,
+                            (sum > 0)
+                                ? GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              EventsDetailPage(
+                                            event: int.parse(
+                                                _notes[index].event1Id),
+                                            past: 0,
+                                            maxComp: int.parse(
+                                                _notes[index].event1MaxComp),
+                                            eventName: _notes[index].event1Name,
+                                            eventPicture:
+                                                _notes[index].event1Picture,
+                                            eventDescription:
+                                                _notes[index].event1Description,
+                                            eventDate: _notes[index].event1Date,
+                                            eventPlace:
+                                                _notes[index].event1Place,
+                                            eventLink:
+                                                _notes[index].event1TicketLink,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 220,
+                                      decoration: BoxDecoration(
+                                        image: new DecorationImage(
+                                            image: new NetworkImage(
+                                                _notes[index].event1Picture),
+                                            fit: BoxFit.fill),
+                                      ),
                                     ),
+                                  )
+                                : Container(
+                                    height: 220,
+                                    color: Colors.green,
                                   ),
-                                );
-                              },
-                              child: Container(
-                                height: 220,
-                                decoration: BoxDecoration(
-                                  image: new DecorationImage(
-                                      image: new NetworkImage(
-                                          _notes[index].event1Picture),
-                                      fit: BoxFit.fill),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                       );
@@ -260,7 +281,7 @@ class _HomePage extends State<HomePage> {
                             Container(
                               width: 10000,
                               child: Text(
-                                'Featured athletes:',
+                                'Featured athletes: ',
                                 textAlign: TextAlign.left,
                               ),
                             ),
