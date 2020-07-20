@@ -165,8 +165,8 @@ class _HomePage extends State<HomePage> {
                                             child: Text(
                                               'Buy Tickets',
                                               style: TextStyle(
-                                                color: Colors.white, fontSize: 12
-                                              ),
+                                                  color: Colors.white,
+                                                  fontSize: 12),
                                             ),
                                             color: Colors.red[800],
                                           ),
@@ -468,6 +468,16 @@ class _HomePage extends State<HomePage> {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      Container(
+                        height: 55,
+                        width: 170,
+                        decoration: BoxDecoration(
+                          image: new DecorationImage(
+                              image: new NetworkImage(
+                                  'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
+                              fit: BoxFit.fill),
                         ),
                       ),
                     ],
