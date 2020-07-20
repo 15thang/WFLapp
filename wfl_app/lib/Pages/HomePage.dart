@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/homepage.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'athletePages/athlete_detail_page.dart';
 import 'eventPages/event_detail_page.dart';
@@ -28,10 +29,19 @@ Future launchURL(String url) async {
 class _HomePage extends State<HomePage> {
   List<Homepage> _notes = List<Homepage>();
 
-  DateTime startTime = DateTime(2020, 07, 20, 11, 42);
+  DateTime startTime = DateTime(2020, 07, 20, 15, 27);
   Duration remaining = DateTime.now().difference(DateTime.now());
   Timer t;
   int days = 0, hrs = 0, mins = 0, sec = 0, sum = 1;
+
+  YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: '5qap5aO4i9A', // id youtube video
+    flags: YoutubePlayerFlags(
+      autoPlay: false,
+      isLive: true,
+      mute: false,
+    ),
+  );
 
   Future launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -109,9 +119,8 @@ class _HomePage extends State<HomePage> {
             delegate: new SliverChildBuilderDelegate(
               (context, index) => new Container(
                 color: Colors.black,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 325,
+                child: AspectRatio(
+                  aspectRatio: 11 / 9,
                   child: ListView.builder(
                     itemCount: 1,
                     itemBuilder: (BuildContext ctxt, int index) {
@@ -188,47 +197,53 @@ class _HomePage extends State<HomePage> {
                                 ],
                               ),
                             ),
-                            (sum > 0)
-                                ? GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              EventsDetailPage(
-                                            event: int.parse(
-                                                _notes[index].event1Id),
-                                            past: 0,
-                                            maxComp: int.parse(
-                                                _notes[index].event1MaxComp),
-                                            eventName: _notes[index].event1Name,
-                                            eventPicture:
-                                                _notes[index].event1Picture,
-                                            eventDescription:
-                                                _notes[index].event1Description,
-                                            eventDate: _notes[index].event1Date,
-                                            eventPlace:
-                                                _notes[index].event1Place,
-                                            eventLink:
-                                                _notes[index].event1TicketLink,
+                            AspectRatio(
+                              aspectRatio: 16 / 9,
+                              child: (sum > 0)
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                EventsDetailPage(
+                                              event: int.parse(
+                                                  _notes[index].event1Id),
+                                              past: 0,
+                                              maxComp: int.parse(
+                                                  _notes[index].event1MaxComp),
+                                              eventName:
+                                                  _notes[index].event1Name,
+                                              eventPicture:
+                                                  _notes[index].event1Picture,
+                                              eventDescription: _notes[index]
+                                                  .event1Description,
+                                              eventDate:
+                                                  _notes[index].event1Date,
+                                              eventPlace:
+                                                  _notes[index].event1Place,
+                                              eventLink: _notes[index]
+                                                  .event1TicketLink,
+                                            ),
                                           ),
+                                        );
+                                      },
+                                      child: Container(
+                                        height: 220,
+                                        decoration: BoxDecoration(
+                                          image: new DecorationImage(
+                                              image: new NetworkImage(
+                                                  _notes[index].event1Picture),
+                                              fit: BoxFit.fill),
                                         ),
-                                      );
-                                    },
-                                    child: Container(
-                                      height: 220,
-                                      decoration: BoxDecoration(
-                                        image: new DecorationImage(
-                                            image: new NetworkImage(
-                                                _notes[index].event1Picture),
-                                            fit: BoxFit.fill),
                                       ),
+                                    )
+                                  : YoutubePlayer(
+                                      controller: _controller,
+                                      showVideoProgressIndicator: true,
+                                      progressIndicatorColor: Colors.red,
                                     ),
-                                  )
-                                : Container(
-                                    height: 220,
-                                    color: Colors.green,
-                                  ),
+                            ),
                           ],
                         ),
                       );
