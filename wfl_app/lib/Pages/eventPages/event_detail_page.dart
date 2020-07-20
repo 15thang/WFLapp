@@ -259,7 +259,6 @@ class _EventPageState extends State<EventsDetailPage> {
                         Expanded(
                           flex: 1,
                           child: Container(
-                            width: 130,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
@@ -296,7 +295,6 @@ class _EventPageState extends State<EventsDetailPage> {
                         Expanded(
                           flex: 1,
                           child: Container(
-                            width: 111.4,
                             alignment: Alignment.center,
                             child: Column(
                               children: <Widget>[
@@ -317,44 +315,37 @@ class _EventPageState extends State<EventsDetailPage> {
                         Expanded(
                           flex: 1,
                           child: Container(
-                            width: 130,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 //blue corner
-                                Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 130,
-                                      height: 130,
-                                      child: new Transform(
-                                        alignment: Alignment.center,
-                                        transform:
-                                            Matrix4.rotationY(3.14159265359),
-                                        child: Image(
-                                            image: new NetworkImage(
-                                                _notes[index]
-                                                    .bluecornerPicture),
-                                            fit: BoxFit.cover),
-                                      ),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        gradient: LinearGradient(
-                                          begin: FractionalOffset.topCenter,
-                                          end: FractionalOffset.bottomCenter,
-                                          colors: [
-                                            Colors.grey.withOpacity(0.0),
-                                            Colors.black.withOpacity(0.5)
-                                          ],
-                                          stops: [0.0, 1.0],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                Container(
+                                  width: 130,
+                                  height: 130,
+                                  child: new Transform(
+                                    alignment: Alignment.center,
+                                    transform: Matrix4.rotationY(3.14159265359),
+                                    child: Image(
+                                        image: new NetworkImage(
+                                            _notes[index].bluecornerPicture),
+                                        fit: BoxFit.cover),
+                                  ),
                                 ),
                                 Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    gradient: LinearGradient(
+                                      begin: FractionalOffset.topCenter,
+                                      end: FractionalOffset.bottomCenter,
+                                      colors: [
+                                        Colors.grey.withOpacity(0.0),
+                                        Colors.black.withOpacity(0.5)
+                                      ],
+                                      stops: [0.0, 1.0],
+                                    ),
+                                  ),
+                                ),
+                                 Container(
                                   padding: const EdgeInsets.all(10),
                                   height: 90,
                                   child: Column(

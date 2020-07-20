@@ -71,8 +71,8 @@ class _EventPageState extends State<UpcomingEvents> {
                     maxComp: int.parse(_notes[index].eventMaxComp),
                     eventName: _notes[index].eventName,
                     eventPicture: _notes[index].eventPicture,
-                    eventDescription: _notes[index].eventDescription, 
-                    eventDate: _notes[index].eventDate, 
+                    eventDescription: _notes[index].eventDescription,
+                    eventDate: _notes[index].eventDate,
                     eventPlace: _notes[index].eventPlace,
                     eventLink: _notes[index].eventTicketLink,
                   ),
@@ -84,25 +84,23 @@ class _EventPageState extends State<UpcomingEvents> {
               elevation: 5,
               child: Column(
                 children: <Widget>[
-                  Container(
+                  AspectRatio(
+                    aspectRatio: 13 / 9,
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(5),
-                                      topRight: Radius.circular(5)),
-                                  image: new DecorationImage(
-                                      image: new NetworkImage(
-                                          _notes[index].eventPicture),
-                                      fit: BoxFit.cover),
-                                ),
-                              ),
-                            ],
+                        AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5)),
+                              image: new DecorationImage(
+                                  image: new NetworkImage(
+                                      _notes[index].eventPicture),
+                                  fit: BoxFit.cover),
+                            ),
                           ),
                         ),
                         Container(
@@ -136,21 +134,25 @@ class _EventPageState extends State<UpcomingEvents> {
                                   margin: const EdgeInsets.only(left: 6.0),
                                   padding: const EdgeInsets.all(5),
                                   child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      RaisedButton(
-                                        onPressed: () {
-                                          launchURL(
-                                              _notes[index].eventTicketLink);
-                                        },
-                                        child: Text(
-                                          'Buy Tickets',
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          margin: const EdgeInsets.only(
+                                              left: 4, right: 4),
+                                          child: RaisedButton(
+                                            onPressed: () {
+                                              launchURL(_notes[index].eventTicketLink);
+                                            },
+                                            child: Text(
+                                              'Buy Tickets',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            color: Colors.lightBlue[400],
                                           ),
                                         ),
-                                        color: Colors.lightBlue[400],
                                       ),
                                       SizedBox(
                                         height: 10,

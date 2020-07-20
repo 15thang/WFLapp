@@ -23,6 +23,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         $result = mysqli_query($db, $query);
         while ($row = mysqli_fetch_assoc($result)) {
             $event1_live_link = $row['video_link'];
+            $event1_live_link =  str_replace("https://www.youtube.com/embed/","",$event1_live_link);
         }
         $query = "SELECT count( DISTINCT competition_id) AS event_max_comp FROM `eventcompetition` WHERE event_id = '$event1_id'";
         $result = mysqli_query($db, $query);
