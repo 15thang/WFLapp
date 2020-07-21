@@ -168,7 +168,7 @@ class _All extends State<All> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Expanded(
-                            flex: 1,
+                            flex: 11,
                             child: Stack(
                               children: <Widget>[
                                 Container(
@@ -194,6 +194,8 @@ class _All extends State<All> {
                                   ),
                                 ),
                                 Container(
+                                  width: 174,
+                                  height: 174,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     gradient: LinearGradient(
@@ -211,21 +213,20 @@ class _All extends State<All> {
                             ),
                           ),
                           Expanded(
-                            flex: 1,
+                            flex: 14,
                             child: Container(
                               padding: const EdgeInsets.all(10),
-                              height: 174,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(_notes[index].athleteFullName,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 18)),
+                                          fontSize: 17)),
                                   Text(_notes[index].athleteNickname,
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic,
-                                          fontSize: 18)),
+                                          fontSize: 17)),
                                   Container(
                                     margin: const EdgeInsets.only(top: 5.0),
                                     child: Column(
@@ -233,9 +234,9 @@ class _All extends State<All> {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(_notes[index].athleteNationality,
-                                            style: TextStyle(fontSize: 17)),
+                                            style: TextStyle(fontSize: 16)),
                                         Text(_notes[index].athleteDayOfBirth,
-                                            style: TextStyle(fontSize: 17)),
+                                            style: TextStyle(fontSize: 16)),
                                         Container(
                                           margin:
                                               const EdgeInsets.only(top: 5.0),
@@ -243,7 +244,7 @@ class _All extends State<All> {
                                               athleteWeightclass +
                                                   '"  ' +
                                                   athleteGrade,
-                                              style: TextStyle(fontSize: 17)),
+                                              style: TextStyle(fontSize: 16)),
                                         ),
                                         Container(
                                           margin:
