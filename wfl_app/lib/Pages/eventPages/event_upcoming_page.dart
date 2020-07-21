@@ -82,92 +82,86 @@ class _EventPageState extends State<UpcomingEvents> {
             child: new Card(
               color: Colors.blueGrey[100],
               elevation: 5,
-              child: Column(
-                children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 13 / 9,
-                    child: Column(
-                      children: <Widget>[
-                        AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: Container(
-                            height: 200,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(5)),
-                              image: new DecorationImage(
-                                  image: new NetworkImage(
-                                      _notes[index].eventPicture),
-                                  fit: BoxFit.cover),
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              topRight: Radius.circular(5)),
+                          image: new DecorationImage(
+                              image:
+                                  new NetworkImage(_notes[index].eventPicture),
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 65,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Expanded(
+                            flex: 5,
+                            child: Container(
+                              padding: const EdgeInsets.only(top: 7, left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(_notes[index].eventName,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  Text(_notes[index].eventDate),
+                                  Text(_notes[index].eventPlace),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Expanded(
-                                flex: 5,
-                                child: Container(
-                                  padding:
-                                      const EdgeInsets.only(top: 7, left: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(_notes[index].eventName,
+                          Expanded(
+                            flex: 3,
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 6.0),
+                              padding: const EdgeInsets.all(5),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      margin: const EdgeInsets.only(
+                                          left: 4, right: 4),
+                                      child: RaisedButton(
+                                        onPressed: () {
+                                          launchURL(
+                                              _notes[index].eventTicketLink);
+                                        },
+                                        child: Text(
+                                          'Buy Tickets',
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      Text(_notes[index].eventDate),
-                                      Text(_notes[index].eventPlace),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Container(
-                                  margin: const EdgeInsets.only(left: 6.0),
-                                  padding: const EdgeInsets.all(5),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 4, right: 4),
-                                          child: RaisedButton(
-                                            onPressed: () {
-                                              launchURL(_notes[index].eventTicketLink);
-                                            },
-                                            child: Text(
-                                              'Buy Tickets',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            color: Colors.lightBlue[400],
+                                            color: Colors.white,
                                           ),
                                         ),
+                                        color: Colors.lightBlue[400],
                                       ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

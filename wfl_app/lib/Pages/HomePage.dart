@@ -29,7 +29,7 @@ Future launchURL(String url) async {
 class _HomePage extends State<HomePage> {
   List<Homepage> _notes = List<Homepage>();
 
-  DateTime startTime = DateTime(2020, 07, 20, 15, 27);
+  DateTime startTime = DateTime(2020, 07, 21, 12, 05);
   Duration remaining = DateTime.now().difference(DateTime.now());
   Timer t;
   int days = 0, hrs = 0, mins = 0, sec = 0, sum = 1;
@@ -117,149 +117,121 @@ class _HomePage extends State<HomePage> {
         slivers: <Widget>[
           new SliverList(
             delegate: new SliverChildBuilderDelegate(
-              (context, index) => new Container(
-                color: Colors.black,
-                child: AspectRatio(
-                  aspectRatio: 11 / 9,
-                  child: ListView.builder(
-                    itemCount: 1,
-                    itemBuilder: (BuildContext ctxt, int index) {
-                      return Container(
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: 8, right: 12, top: 15, bottom: 17),
-                              child: Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    flex: 5,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Row(
-                                          children: <Widget>[
-                                            Text(
-                                              'Next event: ',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 15),
-                                            ),
-                                            Text(
-                                              _notes[index].event1Name,
-                                              style: TextStyle(
-                                                  color: Colors.red[900],
-                                                  fontSize: 15),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          'COUNTDOWN ' +
-                                              days.toString().padLeft(2, '0') +
-                                              ':' +
-                                              hrs.toString().padLeft(2, '0') +
-                                              ':' +
-                                              mins.toString().padLeft(2, '0') +
-                                              ':' +
-                                              sec.toString().padLeft(2, '0'),
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 19),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Container(
-                                      alignment: Alignment.centerRight,
-                                      child: Column(
-                                        children: <Widget>[
-                                          RaisedButton(
-                                            onPressed: () {
-                                              launchURL(_notes[index]
-                                                  .event1TicketLink);
-                                            },
-                                            child: Text(
-                                              'Buy Tickets',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12),
-                                            ),
-                                            color: Colors.red[800],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            AspectRatio(
-                              aspectRatio: 16 / 9,
-                              child: (sum > 0)
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                EventsDetailPage(
-                                              event: int.parse(
-                                                  _notes[index].event1Id),
-                                              past: 0,
-                                              maxComp: int.parse(
-                                                  _notes[index].event1MaxComp),
-                                              eventName:
-                                                  _notes[index].event1Name,
-                                              eventPicture:
-                                                  _notes[index].event1Picture,
-                                              eventDescription: _notes[index]
-                                                  .event1Description,
-                                              eventDate:
-                                                  _notes[index].event1Date,
-                                              eventPlace:
-                                                  _notes[index].event1Place,
-                                              eventLink: _notes[index]
-                                                  .event1TicketLink,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        height: 220,
-                                        decoration: BoxDecoration(
-                                          image: new DecorationImage(
-                                              image: new NetworkImage(
-                                                  _notes[index].event1Picture),
-                                              fit: BoxFit.fill),
-                                        ),
-                                      ),
-                                    )
-                                  : YoutubePlayer(
-                                      controller: _controller,
-                                      showVideoProgressIndicator: true,
-                                      progressIndicatorColor: Colors.red,
-                                    ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              childCount: 1,
-            ),
-          ),
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
               (context, index) => new ListTile(
                 title: Container(
                   child: Column(
                     children: <Widget>[
+                      Container(
+                        color: Colors.black,
+                        transform: Matrix4.translationValues(0.0, -3.6, 0.0),
+                        padding: EdgeInsets.only(
+                            left: 8, right: 12, top: 25, bottom: 17),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Text(
+                                        'Next event: ',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 15),
+                                      ),
+                                      Text(
+                                        _notes[index].event1Name,
+                                        style: TextStyle(
+                                            color: Colors.red[900],
+                                            fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    'COUNTDOWN ' +
+                                        days.toString().padLeft(2, '0') +
+                                        ':' +
+                                        hrs.toString().padLeft(2, '0') +
+                                        ':' +
+                                        mins.toString().padLeft(2, '0') +
+                                        ':' +
+                                        sec.toString().padLeft(2, '0'),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 19),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.only(left: 4, right: 4),
+                                child: RaisedButton(
+                                  onPressed: () {
+                                    launchURL(_notes[index].event2TicketLink);
+                                  },
+                                  child: Text(
+                                    'Buy Tickets',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  color: Colors.red[800],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: Container(
+                          transform: Matrix4.translationValues(0.0, -3.6, 0.0),
+                          child: (sum > 0)
+                              ? GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => EventsDetailPage(
+                                          event:
+                                              int.parse(_notes[index].event1Id),
+                                          past: 0,
+                                          maxComp: int.parse(
+                                              _notes[index].event1MaxComp),
+                                          eventName: _notes[index].event1Name,
+                                          eventPicture:
+                                              _notes[index].event1Picture,
+                                          eventDescription:
+                                              _notes[index].event1Description,
+                                          eventDate: _notes[index].event1Date,
+                                          eventPlace: _notes[index].event1Place,
+                                          eventLink:
+                                              _notes[index].event1TicketLink,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 220,
+                                    decoration: BoxDecoration(
+                                      image: new DecorationImage(
+                                          image: new NetworkImage(
+                                              _notes[index].event1Picture),
+                                          fit: BoxFit.fill),
+                                    ),
+                                  ),
+                                )
+                              : YoutubePlayer(
+                                  controller: _controller,
+                                  showVideoProgressIndicator: true,
+                                  progressIndicatorColor: Colors.red,
+                                ),
+                        ),
+                      ),
                       Row(
                         children: <Widget>[
                           Expanded(
@@ -440,15 +412,17 @@ class _HomePage extends State<HomePage> {
                         ),
                         margin: EdgeInsets.only(left: 8, right: 8),
                       ),
-                      Container(
-                        height: 220,
-                        decoration: BoxDecoration(
-                          image: new DecorationImage(
-                              image:
-                                  new NetworkImage(_notes[index].event2Picture),
-                              fit: BoxFit.fill),
+                      AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: new DecorationImage(
+                                image: new NetworkImage(
+                                    _notes[index].event2Picture),
+                                fit: BoxFit.fill),
+                          ),
+                          margin: EdgeInsets.only(left: 8, right: 8),
                         ),
-                        margin: EdgeInsets.only(left: 8, right: 8),
                       ),
                       Container(
                         color: Colors.blueGrey[100],
@@ -478,28 +452,19 @@ class _HomePage extends State<HomePage> {
                             Expanded(
                               flex: 3,
                               child: Container(
-                                margin: const EdgeInsets.only(left: 6.0),
-                                padding: const EdgeInsets.all(5),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    RaisedButton(
-                                      onPressed: () {
-                                        launchURL(
-                                            _notes[index].event2TicketLink);
-                                      },
-                                      child: Text(
-                                        'Buy Tickets',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      color: Colors.lightBlue[400],
+                                margin:
+                                    const EdgeInsets.only(left: 4, right: 4),
+                                child: RaisedButton(
+                                  onPressed: () {
+                                    launchURL(_notes[index].event2TicketLink);
+                                  },
+                                  child: Text(
+                                    'Buy Tickets',
+                                    style: TextStyle(
+                                      color: Colors.white,
                                     ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
+                                  ),
+                                  color: Colors.lightBlue[400],
                                 ),
                               ),
                             ),
