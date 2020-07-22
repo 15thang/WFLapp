@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AthleteSliverAppBar extends StatelessWidget {
-  final String _title;
-
-  const AthleteSliverAppBar(
-    this._title, {
+  const AthleteSliverAppBar({
     Key key,
   }) : super(key: key);
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 import 'package:wfl_app/Pages/components/athlete_info_sliver_app_bar.dart';
 import 'package:wfl_app/Pages/delegates/sliver_persistent_header_delegate_impl.dart';
-import 'package:wfl_app/model/athletes.dart';
 import 'athlete_competition_history.dart';
 import 'athlete_info_page.dart';
 

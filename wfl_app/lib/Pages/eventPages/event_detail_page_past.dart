@@ -60,13 +60,6 @@ class _EventPageState extends State<EventsDetailPagePast> {
       });
     });
     super.initState();
-    int event = widget.event, maxComp = widget.maxComp;
-    String eventName = widget.eventName,
-        eventPicture = widget.eventPicture,
-        eventDescription = widget.eventDescription,
-        eventDate = widget.eventDate,
-        eventPlace = widget.eventPlace;
-    WidgetsBinding.instance.addPostFrameCallback((_) => getSizeAndPosition());
   }
 
   getSizeAndPosition() {

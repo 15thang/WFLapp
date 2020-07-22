@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:wfl_app/model/athletes.dart';
 import 'package:wfl_app/model/match_history.dart';
 
 class MatchHistoryPage extends StatefulWidget {

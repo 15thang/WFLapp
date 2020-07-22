@@ -25,8 +25,6 @@ Future launchURL(String url) async {
 }
 
 class _EventPageState extends State<UpcomingEvents> {
-  static String routeName;
-
   List<Event> _notes = List<Event>();
 
   Future<List<Event>> fetchNotes() async {

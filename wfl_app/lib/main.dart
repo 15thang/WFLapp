@@ -3,7 +3,6 @@ import 'package:wfl_app/Pages/morePages/more_page.dart';
 import './Pages/HomePage.dart';
 import 'Pages/athletePages/athlete_page.dart';
 import 'Pages/competitionPages/competition_page.dart';
-import 'Pages/competitionPages/ongoing_competitionpage.dart';
 import 'Pages/eventPages/event_page.dart';
 import 'Pages/videoPages/video_live_page.dart';
 import 'Pages/morePages/more_page.dart';
@@ -94,6 +93,4 @@ class MyAppState extends State<MyApp> {
   }
 
   static color(MaterialColor red) {}
-
-  Widget morepage() {}
 }

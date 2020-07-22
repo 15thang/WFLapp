@@ -4,8 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/athletecompetition.dart';
-import 'package:wfl_app/model/athletes.dart';
-import 'package:wfl_app/model/competition.dart';
 
 class CompetitionDetailPage extends StatefulWidget {
   final int id;

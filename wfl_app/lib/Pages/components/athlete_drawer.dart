@@ -29,6 +29,8 @@ class AthleteDrawer extends StatelessWidget {
 
   UserAccountsDrawerHeader _buildDrawerHeader(BuildContext context) {
     return UserAccountsDrawerHeader(
+      accountName: Text(''),
+      accountEmail: Text(''),
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,

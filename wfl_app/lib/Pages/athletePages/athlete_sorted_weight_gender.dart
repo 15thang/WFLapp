@@ -65,7 +65,6 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
-    double _height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Center(
