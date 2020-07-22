@@ -270,18 +270,18 @@ class _W95p extends State<W95p> {
                                           ),
                                           Container(
                                             margin:
-                                                const EdgeInsets.only(top: 7.0),
+                                                const EdgeInsets.only(top: 0.0),
                                             child: Row(
                                               children: <Widget>[
                                                 Text(athleteStar,
                                                     style: TextStyle(
-                                                      fontSize: 22,
-                                                      color: Colors.yellow[700],
+                                                      fontSize: 32,
+                                                      color: Colors.yellow[500],
                                                       shadows: <Shadow>[
                                                         Shadow(
                                                             offset: Offset(
                                                                 0.0, 0.0),
-                                                            blurRadius: 3.0,
+                                                            blurRadius: 20.0,
                                                             color:
                                                                 Colors.black),
                                                       ],
@@ -293,7 +293,7 @@ class _W95p extends State<W95p> {
                                                       _notes[index]
                                                           .athleteStars,
                                                       style: TextStyle(
-                                                          fontSize: 17)),
+                                                          fontSize: 20)),
                                                 ),
                                               ],
                                             ),
@@ -516,18 +516,18 @@ class _W95p extends State<W95p> {
                                         ),
                                         Container(
                                           margin:
-                                              const EdgeInsets.only(top: 7.0),
+                                              const EdgeInsets.only(top: 0.0),
                                           child: Row(
                                             children: <Widget>[
                                               Text(athleteStar,
                                                   style: TextStyle(
-                                                    fontSize: 22,
-                                                    color: Colors.yellow[700],
+                                                    fontSize: 32,
+                                                    color: Colors.yellow[500],
                                                     shadows: <Shadow>[
                                                       Shadow(
                                                           offset:
                                                               Offset(0.0, 0.0),
-                                                          blurRadius: 3.0,
+                                                          blurRadius: 20.0,
                                                           color: Colors.black),
                                                     ],
                                                   )),
@@ -537,7 +537,7 @@ class _W95p extends State<W95p> {
                                                 child: Text(
                                                     _notes[index].athleteStars,
                                                     style: TextStyle(
-                                                        fontSize: 17)),
+                                                        fontSize: 20)),
                                               ),
                                             ],
                                           ),

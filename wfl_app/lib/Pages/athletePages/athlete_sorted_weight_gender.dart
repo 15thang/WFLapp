@@ -10,7 +10,9 @@ import 'athlete_detail_page.dart';
 class AthleteWeightGender extends StatefulWidget {
   final int weight, grade, gender;
 
-  const AthleteWeightGender({Key key, @required this.weight, this.gender, this.grade}) : super(key: key);
+  const AthleteWeightGender(
+      {Key key, @required this.weight, this.gender, this.grade})
+      : super(key: key);
 
   @override
   _AthleteWeightGender createState() => _AthleteWeightGender();
@@ -31,7 +33,11 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
   Future<List<Athlete>> fetchNotes() async {
     var url =
         'http://superfighter.nl/APP_output_athlete_sort_weight_gender.php?weight=' +
-            widget.weight.toString() + '&gender=' + widget.gender.toString() + '&grade=' + widget.grade.toString();
+            widget.weight.toString() +
+            '&gender=' +
+            widget.gender.toString() +
+            '&grade=' +
+            widget.grade.toString();
     var response = await http.get(url);
 
     var notes = List<Athlete>();
@@ -270,18 +276,18 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                           ),
                                           Container(
                                             margin:
-                                                const EdgeInsets.only(top: 7.0),
+                                                const EdgeInsets.only(top: 0.0),
                                             child: Row(
                                               children: <Widget>[
                                                 Text(athleteStar,
                                                     style: TextStyle(
-                                                      fontSize: 22,
-                                                      color: Colors.yellow[700],
+                                                      fontSize: 32,
+                                                      color: Colors.yellow[500],
                                                       shadows: <Shadow>[
                                                         Shadow(
                                                             offset: Offset(
                                                                 0.0, 0.0),
-                                                            blurRadius: 3.0,
+                                                            blurRadius: 20.0,
                                                             color:
                                                                 Colors.black),
                                                       ],
@@ -293,7 +299,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                                       _notes[index]
                                                           .athleteStars,
                                                       style: TextStyle(
-                                                          fontSize: 17)),
+                                                          fontSize: 20)),
                                                 ),
                                               ],
                                             ),
@@ -516,18 +522,18 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                         ),
                                         Container(
                                           margin:
-                                              const EdgeInsets.only(top: 7.0),
+                                              const EdgeInsets.only(top: 0.0),
                                           child: Row(
                                             children: <Widget>[
                                               Text(athleteStar,
                                                   style: TextStyle(
-                                                    fontSize: 22,
-                                                    color: Colors.yellow[700],
+                                                    fontSize: 32,
+                                                    color: Colors.yellow[500],
                                                     shadows: <Shadow>[
                                                       Shadow(
                                                           offset:
                                                               Offset(0.0, 0.0),
-                                                          blurRadius: 3.0,
+                                                          blurRadius: 20.0,
                                                           color: Colors.black),
                                                     ],
                                                   )),
@@ -537,7 +543,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                                 child: Text(
                                                     _notes[index].athleteStars,
                                                     style: TextStyle(
-                                                        fontSize: 17)),
+                                                        fontSize: 20)),
                                               ),
                                             ],
                                           ),
