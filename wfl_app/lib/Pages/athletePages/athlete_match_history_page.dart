@@ -156,7 +156,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                               child: Row(
                                 children: <Widget>[
                                   Text(
-                                    'Total points: 9',
+                                    'Total points: ' + _notes[index].matchPoints,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white,
@@ -301,28 +301,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        margin: const EdgeInsets.only(right: 5.0),
-                        padding: const EdgeInsets.only(right: 5.0),
-                        height: 20,
-                        child: Text(
-                          'Round',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[900],
-                          borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(5),
-                            topRight: Radius.circular(5),
-                          ),
-                        ),
+                        
                       ),
                     ),
                   ],
@@ -364,13 +343,6 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                         flex: 1,
                         child: Text(
                           _notes[index].matchMethod,
-                          style: TextStyle(color: Colors.grey[900]),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          _notes[index].matchRound,
                           style: TextStyle(color: Colors.grey[900]),
                         ),
                       ),

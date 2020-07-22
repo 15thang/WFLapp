@@ -29,7 +29,7 @@ Future launchURL(String url) async {
 class _HomePage extends State<HomePage> {
   List<Homepage> _notes = List<Homepage>();
 
-  DateTime startTime = DateTime(2020, 07, 21, 12, 05);
+  DateTime startTime = DateTime(2020, 07, 22, 10, 40);
   Duration remaining = DateTime.now().difference(DateTime.now());
   Timer t;
   int days = 0, hrs = 0, mins = 0, sec = 0, sum = 1;
@@ -55,8 +55,8 @@ class _HomePage extends State<HomePage> {
     var url = 'http://superfighter.nl/APP_output_homepage.php';
 
     var response = await http.get(url);
-
-    var notes = List<Homepage>();
+    
+    var notes =List<Homepage>();
 
     if (response.statusCode == 200) {
       var notesJson = json.decode(response.body);

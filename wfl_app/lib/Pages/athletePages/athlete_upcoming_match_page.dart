@@ -110,20 +110,6 @@ class _UpcomingMatchPageState extends State<UpcomingMatchPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 3,
-                      child: Container(
-                        height: 20,
-                        color: Colors.grey[900],
-                        child: Text(
-                          'Blok',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                      ),
-                    ),
-                    Expanded(
                       flex: 5,
                       child: Container(
                         margin: const EdgeInsets.only(right: 5.0),
@@ -197,13 +183,6 @@ class _UpcomingMatchPageState extends State<UpcomingMatchPage> {
                         flex: 4,
                         child: Text(
                           _notes[index].matchDate,
-                          style: TextStyle(color: Colors.grey[900]),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          'Blok ' + _notes[index].matchBlok,
                           style: TextStyle(color: Colors.grey[900]),
                         ),
                       ),

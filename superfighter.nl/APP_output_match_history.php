@@ -2,12 +2,14 @@
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 $athlete_id = $_GET['athlete_id'];
 
+$totalPoints = 0;
 $match_id[] = array();
 $query = "SELECT * FROM `matches` WHERE athlete_id = '$athlete_id'";
 $results = mysqli_query($db, $query);
 while ($row = $results->fetch_assoc()) {
     if (!$row['athlete_grade'] == 0 && !$row['athlete_weightclass'] == 0) {
         $match_id[] = $row['match_id'];
+        $totalPoints += $row['points'];
     }
 }
 
@@ -15,17 +17,20 @@ $comma = false;
 echo "[ ";
 echo '{ ';
 echo '"match_date": "date", ';
+echo '"match_points": "'.$totalPoints.'", ';
 echo '"match_result": "result", ';
 echo '"match_opponent": "opponent", ';
-echo '"match_method": "method", ';
-echo '"match_round": "round" ';
+echo '"match_method": "method" ';
 echo ' }, ';
 foreach ($match_id as $matchid) {
     //atleet
-    $query = "SELECT * FROM matches WHERE match_id = '$matchid' AND athlete_id = '$athlete_id'";
+    $query = "SELECT m.*, e.event_date FROM matches AS m
+INNER JOIN `events`AS e ON m.event_id = e.event_id
+WHERE m.match_id = '$matchid' AND m.athlete_id = '$athlete_id'";
     $results = mysqli_query($db, $query);
     while ($row = $results->fetch_assoc()) {
         $totalscore1 = $row['points'];
+        $date = $row['event_date'];
         if ($row['redyellowcard'] == '1yellowcard') {
             $totalscore1 -= 1;
             $loss1 = 0;
@@ -88,10 +93,6 @@ foreach ($match_id as $matchid) {
         $done = false;
     }
 
-    //moet nog aan gewerkt worden
-    $date = 'N/A';
-    $round = 'N/A';
-
     $stats[] = array();
     if ($done == true) {
         if ($outcome == 'Win') {
@@ -101,10 +102,10 @@ foreach ($match_id as $matchid) {
             }
             echo '{ ';
             echo '"match_date": "'.$date.'", ';
+            echo '"match_points": "'.$totalPoints.'", ';
             echo '"match_result": "'.$outcome.'", ';
             echo '"match_opponent": "'.$opponent.'", ';
-            echo '"match_method": "'.$method.'", ';
-            echo '"match_round": "'.$round.'" ';
+            echo '"match_method": "'.$method.'" ';
             echo ' }';
             $comma = true;
         } else {
@@ -115,10 +116,10 @@ foreach ($match_id as $matchid) {
             }
             echo '{ ';
             echo '"match_date": "'.$date.'", ';
+            echo '"match_points": "'.$totalPoints.'", ';
             echo '"match_result": "'.$outcome.'", ';
             echo '"match_opponent": "'.$opponent.'", ';
-            echo '"match_method": "'.$method.'", ';
-            echo '"match_round": "'.$round.'" ';
+            echo '"match_method": "'.$method.'" ';
             echo ' }';
             $comma = true;
         }
