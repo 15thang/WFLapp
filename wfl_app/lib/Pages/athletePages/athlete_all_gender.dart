@@ -214,7 +214,7 @@ class _AllGender extends State<AllGender> {
                                         _notes[index].athleteTitle,
                                         style: TextStyle(
                                             color: Colors.yellow,
-                                            backgroundColor: Colors.red[900]),
+                                            backgroundColor: Colors.red[900], fontSize: 13.5),
                                       ),
                                     ),
                                   ),
@@ -460,7 +460,7 @@ class _AllGender extends State<AllGender> {
                                       _notes[index].athleteTitle,
                                       style: TextStyle(
                                           color: Colors.yellow,
-                                          backgroundColor: Colors.red[900]),
+                                          backgroundColor: Colors.red[900], fontSize: 13.5),
                                     ),
                                   ),
                                 ),
