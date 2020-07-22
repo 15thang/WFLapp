@@ -134,7 +134,7 @@ class _EventPageState extends State<EventsDetailPage> {
                                         CrossAxisAlignment.center,
                                     children: <Widget>[
                                       Expanded(
-                                        flex: 2,
+                                        flex: 3,
                                         child: Text(
                                           widget.eventDate +
                                               ' ' +
@@ -144,7 +144,7 @@ class _EventPageState extends State<EventsDetailPage> {
                                         ),
                                       ),
                                       Expanded(
-                                        flex: 1,
+                                        flex: 2,
                                         child: Container(
                                           margin: const EdgeInsets.only(
                                               left: 4, right: 4),
@@ -245,6 +245,7 @@ class _EventPageState extends State<EventsDetailPage> {
               (context, index) => new ListTile(
                 title: new Card(
                   child: Container(
+                    height: 240,
                     color: Colors.blueGrey[50],
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -268,7 +269,7 @@ class _EventPageState extends State<EventsDetailPage> {
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(10),
-                                  height: 90,
+                                  height: 110,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,

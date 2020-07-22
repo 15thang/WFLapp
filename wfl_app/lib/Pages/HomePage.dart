@@ -123,7 +123,7 @@ class _HomePage extends State<HomePage> {
                     children: <Widget>[
                       Container(
                         color: Colors.black,
-                        transform: Matrix4.translationValues(0.0, -3.6, 0.0),
+                        transform: Matrix4.translationValues(0.0, -3.7, 0.0),
                         padding: EdgeInsets.only(
                             left: 8, right: 12, top: 25, bottom: 17),
                         child: Row(

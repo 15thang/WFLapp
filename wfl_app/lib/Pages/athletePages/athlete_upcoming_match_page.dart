@@ -140,6 +140,7 @@ class _UpcomingMatchPageState extends State<UpcomingMatchPage> {
               onTap: () {},
               child: new Card(
                 child: Container(
+                  height: 35,
                   decoration: BoxDecoration(
                       color: Colors.grey[400],
                       borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -149,6 +150,7 @@ class _UpcomingMatchPageState extends State<UpcomingMatchPage> {
                         flex: 4,
                         child: GestureDetector(
                           child: Container(
+                            height: 35,
                             margin: const EdgeInsets.only(right: 10.0),
                             child: Text(
                               ' ' + _notes[index].matchEventName,
