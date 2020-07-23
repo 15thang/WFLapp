@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/homepage.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 import 'athletePages/athlete_detail_page.dart';
 import 'eventPages/event_detail_page.dart';
 
@@ -29,19 +28,8 @@ Future launchURL(String url) async {
 class _HomePage extends State<HomePage> {
   List<Homepage> _notes = List<Homepage>();
 
-  DateTime startTime = DateTime(2020, 07, 22, 10, 40);
-  Duration remaining = DateTime.now().difference(DateTime.now());
   Timer t;
   int days = 0, hrs = 0, mins = 0, sec = 0, sum = 1;
-
-  YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: '5qap5aO4i9A', // id youtube video
-    flags: YoutubePlayerFlags(
-      autoPlay: false,
-      isLive: true,
-      mute: false,
-    ),
-  );
 
   Future launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -53,14 +41,10 @@ class _HomePage extends State<HomePage> {
 
   Future<List<Homepage>> fetchNotes() async {
     var url = 'http://superfighter.nl/APP_output_homepage.php';
-
     var response = await http.get(url);
-    
-    var notes =List<Homepage>();
-
+    var notes = List<Homepage>();
     if (response.statusCode == 200) {
       var notesJson = json.decode(response.body);
-
       for (var noteJson in notesJson) {
         notes.add(Homepage.fromJson(noteJson));
       }
@@ -68,44 +52,45 @@ class _HomePage extends State<HomePage> {
     return notes;
   }
 
+  YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: '5qap5aO4i9A', // id youtube video
+    flags: YoutubePlayerFlags(
+      autoPlay: false,
+      isLive: true,
+      mute: false,
+    ),
+  );
+
   @override
   void initState() {
     fetchNotes().then((value) {
       setState(() {
         _notes.addAll(value);
+        startTimer();
       });
+      
     });
     super.initState();
-    startTimer();
   }
 
   startTimer() async {
     t = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        if (sum > 0) {
-          remaining = DateTime.now().difference(startTime);
-          mins = 60 - remaining.inMinutes;
-          sec = 60 - remaining.inSeconds;
-          hrs = mins >= 60 ? mins ~/ 60 : 0;
-          days = hrs >= 24 ? hrs ~/ 24 : 0;
-          hrs = hrs % 24;
-          hrs = hrs - 1;
+      DateTime startTime = DateTime(int.parse(_notes[1].event1Year), int.parse(_notes[1].event1Month), int.parse(_notes[1].event1Day));
+      Duration remaining = startTime.difference(DateTime.now());
+      print(remaining);
+      if (remaining.inMilliseconds > 0) {
+        setState(() {
+          mins = remaining.inMinutes;
+          sec = remaining.inSeconds;
+          hrs = remaining.inMinutes ~/ 60;
+          days = remaining.inDays;
           mins = mins % 60;
           sec = sec % 60;
           sum = days + hrs + mins + sec;
-        } else {
-          t.cancel();
-          sum = days + hrs + mins + sec;
-        }
-        if (days < 0 || hrs < 0 || mins < 0) {
-          t.cancel();
-          days = 0;
-          hrs = 0;
-          mins = 0;
-          sec = 0;
-          sum = 0;
-        }
-      });
+        });
+      } else {
+        t.cancel();
+      }
     });
   }
 
