@@ -30,6 +30,7 @@ class _HomePage extends State<HomePage> {
 
   Timer t;
   int days = 0, hrs = 0, mins = 0, sec = 0, sum = 1;
+  YoutubePlayerController _controller;
 
   Future launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -51,15 +52,6 @@ class _HomePage extends State<HomePage> {
     }
     return notes;
   }
-
-  YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: '5qap5aO4i9A', // id youtube video
-    flags: YoutubePlayerFlags(
-      autoPlay: false,
-      isLive: true,
-      mute: false,
-    ),
-  );
 
   @override
   void initState() {
@@ -95,6 +87,14 @@ class _HomePage extends State<HomePage> {
         t.cancel();
         setState(() {
           sum = 0;
+          _controller = YoutubePlayerController(
+            initialVideoId: _notes[1].event1LiveLink, // id youtube video
+            flags: YoutubePlayerFlags(
+              autoPlay: false,
+              isLive: true,
+              mute: false,
+            ),
+          );
         });
       }
     });
