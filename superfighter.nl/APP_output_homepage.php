@@ -17,6 +17,9 @@ while ($row = mysqli_fetch_assoc($result)) {
         $event1_year = substr($event1_date, 0, -6);
         $event1_month = substr($event1_date, 5, -3);
         $event1_day = substr($event1_date, 8);
+        $event_time = str_replace(":00.0000","",$row['event_time']);
+        $event1_hour = substr($event_time, 0, -3);
+        $event1_minute = substr($event_time, 3);
         $event1_ticketlink = $row['event_link'];
         $event1_place = $row['event_place'];
         $query = "SELECT * FROM `videos` WHERE video_type = 'Live' AND video_event = '$event1_id' ORDER BY video_id DESC";
@@ -74,6 +77,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '"event1_year": "'.$event1_year.'", ';
     echo '"event1_month": "'.$event1_month.'", ';
     echo '"event1_day": "'.$event1_day.'", ';
+    echo '"event1_hour": "'.$event1_hour.'", ';
+    echo '"event1_minute": "'.$event1_minute.'", ';
     echo '"event1_ticketlink": "'.$event1_ticketlink.'", ';
     echo '"event1_live_link": "'.$event1_live_link.'", ';
     echo '"event1_place": "'.$event1_place.'", ';

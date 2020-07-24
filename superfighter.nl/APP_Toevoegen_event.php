@@ -17,6 +17,8 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
         <input type="text" name="event_name"><br>
         <label>Day of event</label><br>
         <input type="date" name="event_date" min="2000-01-01" max="2030-01-01"><br>
+        <label>Time of event</label><br>
+        <input type="time" name="event_time" value="17:00"><br>
         <label>Place</label><br>
         <input type="text" name="event_place"><br>
         <label>Description</label><br>
@@ -44,6 +46,7 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
     if (isset($_POST['add_event'])) {
         $event_name = ($_POST['event_name']);
         $event_date = date('Y-m-d', strtotime($_POST['event_date']));
+        $event_time = $_POST['event_time'];
         $event_description = ($_POST['event_description']);
         $event_place = ($_POST['event_place']);
         $event_link = ($_POST['event_link']);
@@ -84,8 +87,8 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
 
         }
 
-        $query = "INSERT INTO events (event_name, event_date, event_description, event_place , event_picture, event_picture2, event_link) 
-  			  VALUES('$event_name', '$event_date', '$event_description', '$event_place' , '$dst', '$dst2', '$event_link')";
+        $query = "INSERT INTO events (event_name, event_date, event_time, event_description, event_place , event_picture, event_picture2, event_link) 
+  			  VALUES('$event_name', '$event_date', '$event_time','$event_description', '$event_place' , '$dst', '$dst2', '$event_link')";
         mysqli_query($db, $query);
 
         header("Location: APP_events.php");

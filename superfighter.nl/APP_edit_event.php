@@ -19,6 +19,7 @@ while ($row = $results->fetch_assoc()) {
     //Dit is de bestaande foto voor het geval er geen nieuwe foto wordt geupload.
     $event_picture = $row['event_picture'];
     $event_picture2 = $row['event_picture2'];
+    $event_time = str_replace(":00.0000","",$row['event_time']);
     //Als event_link de standaard link bevat, is het leeg
     if ($row['event_link'] == "https://www.eventbrite.nl/o/world-fighting-league-28797683507") {
         $event_link = "";
@@ -34,6 +35,8 @@ while ($row = $results->fetch_assoc()) {
         <input type="text" name="event_name" value="' . $row['event_name'] . '"><br>
 		<label>Day of event</label><br>
         <input type="date" name="event_date" min="2000-01-01" max="2030-01-01" value="' . $row['event_date'] . '"><br>
+        <label>Time of event</label><br>
+        <input type="time" name="event_time" value="'.$event_time.'"><br>
         <label>Place</label><br>
         <input type="text" name="event_place" value="' . $row['event_place'] . '"><br>
 		<label>Description</label><br>
@@ -62,6 +65,7 @@ while ($row = $results->fetch_assoc()) {
     if (isset($_POST['add_event'])) {
         $event_name = ($_POST['event_name']);
         $event_date = date('Y-m-d', strtotime($_POST['event_date']));
+        $event_time = $_POST['event_time'];
         $event_description = ($_POST['event_description']);
         $event_place = ($_POST['event_place']);
         $event_link = ($_POST['event_link']);
@@ -100,7 +104,7 @@ while ($row = $results->fetch_assoc()) {
             move_uploaded_file($_FILES["event_picture2"]["tmp_name"], $dst2);
         }
 
-        $query = "UPDATE events SET event_name = '$event_name', event_date = '$event_date', event_description = '$event_description',
+        $query = "UPDATE events SET event_name = '$event_name', event_date = '$event_date', event_time = '$event_time', event_description = '$event_description',
                   event_place = '$event_place', event_picture = '$dst', event_picture2 = '$dst2', event_link = '$event_link' 
                   WHERE event_id = '$event_id'";
         mysqli_query($db, $query);

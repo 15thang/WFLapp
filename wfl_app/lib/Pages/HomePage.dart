@@ -68,16 +68,19 @@ class _HomePage extends State<HomePage> {
         _notes.addAll(value);
         startTimer();
       });
-      
     });
     super.initState();
   }
 
   startTimer() async {
     t = Timer.periodic(Duration(seconds: 1), (timer) {
-      DateTime startTime = DateTime(int.parse(_notes[1].event1Year), int.parse(_notes[1].event1Month), int.parse(_notes[1].event1Day));
+      DateTime startTime = DateTime(
+          int.parse(_notes[1].event1Year),
+          int.parse(_notes[1].event1Month),
+          int.parse(_notes[1].event1Day),
+          int.parse(_notes[1].event1Hour),
+          int.parse(_notes[1].event1Minute));
       Duration remaining = startTime.difference(DateTime.now());
-      print(remaining);
       if (remaining.inMilliseconds > 0) {
         setState(() {
           mins = remaining.inMinutes;

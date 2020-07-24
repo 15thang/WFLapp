@@ -7,6 +7,8 @@ class Homepage {
       event1Year,
       event1Month,
       event1Day,
+      event1Hour,
+      event1Minute,
       event1TicketLink,
       event1LiveLink,
       event1Place,
@@ -42,6 +44,8 @@ class Homepage {
       this.event1Year,
       this.event1Month,
       this.event1Day,
+      this.event1Hour,
+      this.event1Minute,
       this.event1TicketLink,
       this.event1LiveLink,
       this.event1Place,
@@ -77,6 +81,8 @@ class Homepage {
     event1Year = json['event1_year'];
     event1Month = json['event1_month'];
     event1Day = json['event1_day'];
+    event1Hour = json['event1_hour'];
+    event1Minute = json['event1_minute'];
     event1TicketLink = json['event1_ticketlink'];
     event1LiveLink = json['event1_live_link'];
     event1Place = json['event1_place'];
