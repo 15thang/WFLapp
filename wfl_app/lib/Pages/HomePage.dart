@@ -93,6 +93,9 @@ class _HomePage extends State<HomePage> {
         });
       } else {
         t.cancel();
+        setState(() {
+          sum = 0;
+        });
       }
     });
   }
