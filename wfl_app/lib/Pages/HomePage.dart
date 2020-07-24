@@ -75,12 +75,10 @@ class _HomePage extends State<HomePage> {
       Duration remaining = startTime.difference(DateTime.now());
       if (remaining.inMilliseconds > 0) {
         setState(() {
-          mins = remaining.inMinutes;
-          sec = remaining.inSeconds;
-          hrs = remaining.inMinutes ~/ 60;
           days = remaining.inDays;
-          mins = mins % 60;
-          sec = sec % 60;
+          hrs = remaining.inHours % 24;
+          mins = remaining.inMinutes % 60;
+          sec = remaining.inSeconds % 60;
           sum = days + hrs + mins + sec;
         });
       } else {
