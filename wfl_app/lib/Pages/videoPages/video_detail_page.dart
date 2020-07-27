@@ -73,13 +73,9 @@ class _VideosDetailPageState extends State<VideosDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Videos'),
-        backgroundColor: Colors.black,
-      ),
-      backgroundColor: Colors.grey[800],
-      body: YoutubePlayer(
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: YoutubePlayer(
         controller: _controller,
         showVideoProgressIndicator: true,
         progressIndicatorColor: Colors.red,
