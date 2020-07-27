@@ -4,7 +4,7 @@ import './Pages/HomePage.dart';
 import 'Pages/athletePages/athlete_page.dart';
 import 'Pages/competitionPages/competition_page.dart';
 import 'Pages/eventPages/event_page.dart';
-import 'Pages/videoPages/video_live_page.dart';
+import 'Pages/videoPages/video_page.dart';
 import 'Pages/morePages/more_page.dart';
 
 void main() {
@@ -30,7 +30,7 @@ class MyAppState extends State<MyApp> {
       case 2:
         return AthletePage();
       case 3:
-        return YoutubePlayerDemoApp();
+        return Videos();
       case 4:
         return Competition();
       case 5:
