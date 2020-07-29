@@ -178,7 +178,7 @@ const SECRET = "geheimpje";
                         <th class="skip-filter">E-Mail</th>
                     </tr>
                     <?php
-                    $query = "SELECT * FROM `testmail`";
+                    $query = "SELECT * FROM `newsmail`";
                     $results = mysqli_query($db, $query);
                     while ($row = $results->fetch_assoc()) {
                         $athlete_id = $row['id'];
@@ -338,7 +338,7 @@ const SECRET = "geheimpje";
     if(isset($_POST['add_mail_c'])){
         if(!empty($_POST['checkNews'])) {
             foreach($_POST['checkNews'] as $value){
-                $query = "SELECT * FROM `testmail` WHERE id = '$value'";
+                $query = "SELECT * FROM `newsmail` WHERE id = '$value'";
                 $results = mysqli_query($db, $query);
                 while ($row = $results->fetch_assoc()) {
                     array_push($_SESSION['emailArray'], $row['email']);
@@ -413,7 +413,7 @@ const SECRET = "geheimpje";
     }
     //all newsletter subscribers emails to array
     if (isset($_POST['add_mail_5'])){
-        $query = "SELECT * FROM `testmail`";
+        $query = "SELECT * FROM `newsmail`";
         $results = mysqli_query($db, $query);
         while ($row = $results->fetch_assoc()) {
             array_push($_SESSION['emailArray'], $row['email']);

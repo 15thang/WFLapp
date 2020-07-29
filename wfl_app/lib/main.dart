@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wfl_app/Pages/NewsLetter.dart';
 import 'package:wfl_app/Pages/morePages/more_page.dart';
 import './Pages/HomePage.dart';
 import 'Pages/athletePages/athlete_page.dart';
@@ -42,6 +43,7 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () => showAlert(context));
     return Scaffold(
         body: Container(
           child: callPage(_selectedPage),
@@ -93,4 +95,46 @@ class MyAppState extends State<MyApp> {
   }
 
   static color(MaterialColor red) {}
+
+  //melding voor nieuwsbrief
+  bool oneAlert = true;
+  void showAlert(BuildContext context) {
+    if (oneAlert) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Container(
+            height: 60,
+            child: Column(
+              children: <Widget>[
+                Text("Subscribe to our newsletter",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Voor korting en nieuws van WFL-evenementen.")
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Later"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Ok"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewsLetterPage(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      );
+      oneAlert = false;
+    }
+  }
 }
