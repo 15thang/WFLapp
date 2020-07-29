@@ -73,7 +73,7 @@ class _VideosState extends State<Videos> {
           return new GestureDetector(
             onTap: () {},
             child: new Card(
-              color: Colors.grey,
+              color: Colors.red[900],
               elevation: 5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +107,31 @@ class _VideosState extends State<Videos> {
                             ),
                           ),
                         ),
-                        Text(_notes[index].videoTitle),
+                        Container(
+                          width: 1000,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            gradient: LinearGradient(
+                              begin: FractionalOffset.topCenter,
+                              end: FractionalOffset.bottomCenter,
+                              colors: [
+                                Colors.black.withOpacity(0.0),
+                                Colors.red.withOpacity(0.5)
+                              ],
+                              stops: [0.0, 1.0],
+                            ),
+                          ),
+                          margin: const EdgeInsets.only(top: 5.0),
+                          child: Text(
+                            _notes[index].videoTitle,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.grey[200],
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ],
                     ),
                   ),
