@@ -1,6 +1,4 @@
-import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,16 +10,19 @@ class NewsLetterPage extends StatefulWidget {
 }
 
 class _NewsLetterPageState extends State<NewsLetterPage> {
-  TextEditingController email = new TextEditingController();
+  TextEditingController emailControl = TextEditingController();
+  String get userEmail => emailControl.text;
 
-  Future<List> senddata() async {
-    final response =
-        await http.post("http://superfighter.nl/APP_insert_newsmail.php", body: {
-      "email": email.text,
+  insertMethod() async {
+    String theUrl = "http://superfighter.nl/APP_insert_newsmail.php";
+    var res = await http.post(Uri.encodeFull(theUrl), headers: {
+      "Accept": "application/json"
+    }, body: {
+      "email": userEmail,
     });
-    var datauser = json.decode(response.body);
+    var respBody = json.decode(res.body);
+    print(respBody);
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +46,14 @@ class _NewsLetterPageState extends State<NewsLetterPage> {
                 height: 50,
               ),
               TextField(
-                controller: email,
+                controller: emailControl,
                 decoration: InputDecoration(hintText: '   example@mail.com'),
-              ),
-              SizedBox(
-                height: 75,
               ),
               RaisedButton(
                 child: Text("Subscribe to WFL-newsletter"),
                 color: Colors.blue,
                 onPressed: () {
-                  senddata;
+                  insertMethod();
                 },
               ),
             ],

@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/Pages/videoPages/video_detail_page.dart';
 import 'package:wfl_app/model/video.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Videos extends StatefulWidget {
   const Videos({Key key}) : super(key: key);
