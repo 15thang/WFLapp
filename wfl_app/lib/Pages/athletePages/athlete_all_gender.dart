@@ -213,7 +213,8 @@ class _AllGender extends State<AllGender> {
                                         _notes[index].athleteTitle,
                                         style: TextStyle(
                                             color: Colors.yellow,
-                                            backgroundColor: Colors.red[900], fontSize: 13.5),
+                                            backgroundColor: Colors.red[900],
+                                            fontSize: 13.5),
                                       ),
                                     ),
                                   ),
@@ -275,27 +276,28 @@ class _AllGender extends State<AllGender> {
                                                 const EdgeInsets.only(top: 0.0),
                                             child: Row(
                                               children: <Widget>[
-                                                Text(athleteStar,
-                                                    style: TextStyle(
-                                                      fontSize: 32,
-                                                      color: Colors.yellow[500],
-                                                      shadows: <Shadow>[
-                                                        Shadow(
-                                                            offset: Offset(
-                                                                0.0, 0.0),
-                                                            blurRadius: 20.0,
-                                                            color:
-                                                                Colors.black),
-                                                      ],
-                                                    )),
+                                                Text(
+                                                  athleteStar,
+                                                  style: TextStyle(
+                                                    fontSize: 32,
+                                                    color: Colors.yellow[500],
+                                                    shadows: <Shadow>[
+                                                      Shadow(
+                                                          offset:
+                                                              Offset(0.0, 0.0),
+                                                          blurRadius: 20.0,
+                                                          color: Colors.black),
+                                                    ],
+                                                  ),
+                                                ),
                                                 Container(
                                                   margin: const EdgeInsets.only(
                                                       top: 5.0),
                                                   child: Text(
-                                                      _notes[index]
-                                                          .athleteStars,
-                                                      style: TextStyle(
-                                                          fontSize: 20)),
+                                                    _notes[index].athleteStars,
+                                                    style:
+                                                        TextStyle(fontSize: 20),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -459,7 +461,8 @@ class _AllGender extends State<AllGender> {
                                       _notes[index].athleteTitle,
                                       style: TextStyle(
                                           color: Colors.yellow,
-                                          backgroundColor: Colors.red[900], fontSize: 13.5),
+                                          backgroundColor: Colors.red[900],
+                                          fontSize: 13.5),
                                     ),
                                   ),
                                 ),
@@ -521,25 +524,28 @@ class _AllGender extends State<AllGender> {
                                               const EdgeInsets.only(top: 0.0),
                                           child: Row(
                                             children: <Widget>[
-                                              Text(athleteStar,
-                                                  style: TextStyle(
-                                                    fontSize: 32,
-                                                    color: Colors.yellow[500],
-                                                    shadows: <Shadow>[
-                                                      Shadow(
-                                                          offset:
-                                                              Offset(0.0, 0.0),
-                                                          blurRadius: 20.0,
-                                                          color: Colors.black),
-                                                    ],
-                                                  )),
+                                              Text(
+                                                athleteStar,
+                                                style: TextStyle(
+                                                  fontSize: 32,
+                                                  color: Colors.yellow[500],
+                                                  shadows: <Shadow>[
+                                                    Shadow(
+                                                        offset:
+                                                            Offset(0.0, 0.0),
+                                                        blurRadius: 20.0,
+                                                        color: Colors.black),
+                                                  ],
+                                                ),
+                                              ),
                                               Container(
                                                 margin: const EdgeInsets.only(
                                                     top: 5.0),
                                                 child: Text(
-                                                    _notes[index].athleteStars,
-                                                    style: TextStyle(
-                                                        fontSize: 20)),
+                                                  _notes[index].athleteStars,
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                ),
                                               ),
                                             ],
                                           ),

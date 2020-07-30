@@ -8,6 +8,7 @@ import 'package:wfl_app/model/homepage.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'athletePages/athlete_detail_page.dart';
 import 'eventPages/event_detail_page.dart';
+import 'videoPages/video_live_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -214,10 +215,36 @@ class _HomePage extends State<HomePage> {
                                     ),
                                   ),
                                 )
-                              : YoutubePlayer(
-                                  controller: _controller,
-                                  showVideoProgressIndicator: true,
-                                  progressIndicatorColor: Colors.red,
+                              : GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => VideosLiveDetailPage(
+                                          liveLink: _notes[index].event1LiveLink,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: AspectRatio(
+                                    aspectRatio: 16 / 9,
+                                    child: Container(
+                                      child: Icon(
+                                        Icons.play_arrow,
+                                        color: Colors.grey.withOpacity(0.6),
+                                        size: 100,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        image: new DecorationImage(
+                                            image: new NetworkImage(
+                                                'https://img.youtube.com/vi/' +
+                                                    _notes[index]
+                                                        .event1LiveLink +
+                                                    '/hqdefault.jpg'),
+                                            fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                         ),
                       ),

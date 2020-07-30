@@ -6,13 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/video.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class VideosDetailPage extends StatefulWidget {
-  final int index;
+class VideosLiveDetailPage extends StatefulWidget {
+  final String liveLink;
 
-  const VideosDetailPage({Key key, this.index}) : super(key: key);
+  const VideosLiveDetailPage({Key key, this.liveLink}) : super(key: key);
 
   @override
-  _VideosDetailPageState createState() => _VideosDetailPageState();
+  _VideosLiveDetailPageState createState() => _VideosLiveDetailPageState();
 }
 
 //Future is to launch URL buttons (like buy ticket)
@@ -24,9 +24,7 @@ Future launchURL(String url) async {
   }
 }
 
-class _VideosDetailPageState extends State<VideosDetailPage> {
-  List<Video> _notes = List<Video>();
-
+class _VideosLiveDetailPageState extends State<VideosLiveDetailPage> {
   YoutubePlayerController _controller;
 
   Future launchURL(String url) async {
@@ -37,36 +35,16 @@ class _VideosDetailPageState extends State<VideosDetailPage> {
     }
   }
 
-  Future<List<Video>> fetchNotes() async {
-    var url = 'http://superfighter.nl/APP_output_videos.php';
-    var response = await http.get(url);
-
-    var notes = List<Video>();
-
-    if (response.statusCode == 200) {
-      var notesJson = json.decode(response.body);
-      for (var noteJson in notesJson) {
-        notes.add(Video.fromJson(noteJson));
-      }
-    }
-    return notes;
-  }
-
   @override
   void initState() {
-    fetchNotes().then((value) {
-      setState(() {
-        _notes.addAll(value);
-        _controller = YoutubePlayerController(
-          initialVideoId: _notes[widget.index].videoLink, // id youtube video
-          flags: YoutubePlayerFlags(
-            autoPlay: true,
-            isLive: false,
-            mute: false,
-          ),
-        );
-      });
-    });
+    _controller = YoutubePlayerController(
+      initialVideoId: widget.liveLink, // id youtube video
+      flags: YoutubePlayerFlags(
+        autoPlay: true,
+        isLive: true,
+        mute: false,
+      ),
+    );
     super.initState();
   }
 

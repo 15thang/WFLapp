@@ -95,6 +95,11 @@ class _VideosState extends State<Videos> {
                           child: AspectRatio(
                             aspectRatio: 16 / 9,
                             child: Container(
+                              child: Icon(
+                                Icons.play_arrow,
+                                color: Colors.grey.withOpacity(0.6),
+                                size: 100,
+                              ),
                               decoration: BoxDecoration(
                                 image: new DecorationImage(
                                     image: new NetworkImage(

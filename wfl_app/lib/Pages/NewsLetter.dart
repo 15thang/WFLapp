@@ -54,6 +54,7 @@ class _NewsLetterPageState extends State<NewsLetterPage> {
                 color: Colors.blue,
                 onPressed: () {
                   insertMethod();
+                  Navigator.pop(context);
                 },
               ),
             ],
