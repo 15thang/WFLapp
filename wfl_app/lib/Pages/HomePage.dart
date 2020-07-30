@@ -220,8 +220,10 @@ class _HomePage extends State<HomePage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => VideosLiveDetailPage(
-                                          liveLink: _notes[index].event1LiveLink,
+                                        builder: (context) =>
+                                            VideosLiveDetailPage(
+                                          liveLink:
+                                              _notes[index].event1LiveLink,
                                         ),
                                       ),
                                     );
@@ -383,25 +385,7 @@ class _HomePage extends State<HomePage> {
           new SliverList(
             delegate: new SliverChildBuilderDelegate(
               (context, index) => new ListTile(
-                title: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EventsDetailPage(
-                          event: int.parse(_notes[index].event2Id),
-                          past: 0,
-                          maxComp: int.parse(_notes[index].event2MaxComp),
-                          eventName: _notes[index].event2Name,
-                          eventPicture: _notes[index].event2Picture,
-                          eventDescription: _notes[index].event2Description,
-                          eventDate: _notes[index].event2Date,
-                          eventPlace: _notes[index].event2Place,
-                          eventLink: _notes[index].event2TicketLink,
-                        ),
-                      ),
-                    );
-                  },
+                title: Container(
                   child: Column(
                     children: <Widget>[
                       Container(
@@ -409,98 +393,170 @@ class _HomePage extends State<HomePage> {
                           children: <Widget>[
                             Container(
                               width: 10000,
-                              child: Row(
-                                children: <Widget>[
-                                  Text(
-                                    'Following event: ',
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  Text(
-                                    _notes[index].event2Name,
-                                    style: TextStyle(color: Colors.red[900]),
-                                  )
-                                ],
+                              child: Text(
+                                'Following events: ',
+                                textAlign: TextAlign.left,
                               ),
-                              margin: EdgeInsets.only(top: 8),
                             ),
                             Divider(color: Colors.black)
                           ],
                         ),
                         margin: EdgeInsets.only(left: 8, right: 8),
                       ),
-                      AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: new DecorationImage(
-                                image: new NetworkImage(
-                                    _notes[index].event2Picture),
-                                fit: BoxFit.fill),
-                          ),
-                          margin: EdgeInsets.only(left: 8, right: 8),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.blueGrey[100],
-                        margin: EdgeInsets.only(left: 8, right: 8),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              flex: 5,
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.only(top: 7, left: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(_notes[index].event2Name,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                    Text(_notes[index].event2Date),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.only(left: 4, right: 4),
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    launchURL(_notes[index].event2TicketLink);
-                                  },
-                                  child: Text(
-                                    'Buy Tickets',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  color: Colors.lightBlue[400],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 55,
-                        width: 170,
-                        decoration: BoxDecoration(
-                          image: new DecorationImage(
-                              image: new NetworkImage(
-                                  'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
-                              fit: BoxFit.fill),
-                        ),
-                      ),
                     ],
                   ),
                 ),
                 contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
+              ),
+              childCount: 1,
+            ),
+          ),
+          new SliverList(
+            delegate: new SliverChildBuilderDelegate(
+              (context, index) => new ListTile(
+                title: new Card(
+                  child: AspectRatio(
+                    aspectRatio: 14 / 9,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: _notes.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EventsDetailPage(
+                                  event: int.parse(_notes[index].event2Id),
+                                  past: 0,
+                                  maxComp:
+                                      int.parse(_notes[index].event2MaxComp),
+                                  eventName: _notes[index].event2Name,
+                                  eventPicture: _notes[index].event2Picture,
+                                  eventDescription:
+                                      _notes[index].event2Description,
+                                  eventDate: _notes[index].event2Date,
+                                  eventPlace: _notes[index].event2Place,
+                                  eventLink: _notes[index].event2TicketLink,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Column(
+                              children: <Widget>[
+                                AspectRatio(
+                                  aspectRatio: 16 / 9,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: new DecorationImage(
+                                          image: new NetworkImage(
+                                              _notes[index].event2Picture),
+                                          fit: BoxFit.fill),
+                                    ),
+                                    margin: EdgeInsets.only(left: 8, right: 8),
+                                  ),
+                                ),
+                                Container(
+                                  color: Colors.blueGrey[100],
+                                  margin: EdgeInsets.only(left: 8, right: 8),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Expanded(
+                                        flex: 5,
+                                        child: Container(
+                                          padding: const EdgeInsets.only(
+                                              top: 7, left: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text(_notes[index].event2Name,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              Text(_notes[index].event2Date),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          margin: const EdgeInsets.only(
+                                              left: 4, right: 4),
+                                          child: RaisedButton(
+                                            onPressed: () {
+                                              launchURL(_notes[index]
+                                                  .event2TicketLink);
+                                            },
+                                            child: Text(
+                                              'Buy Tickets',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            color: Colors.lightBlue[400],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            margin: EdgeInsets.only(right: 10),
+                            padding: EdgeInsets.only(right: 8),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
+              ),
+              childCount: 1,
+            ),
+          ),
+          new SliverList(
+            delegate: new SliverChildBuilderDelegate(
+              (context, index) => new ListTile(
+                title: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        height: 3,
+                        color: Colors.redAccent[700],
+                        margin: EdgeInsets.only(left: 8),
+                      ),
+                    ),
+                    Container(
+                      height: 55,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        image: new DecorationImage(
+                            image: new NetworkImage(
+                                'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
+                            fit: BoxFit.fill),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        height: 3,
+                        color: Colors.blue[900],
+                        margin: EdgeInsets.only(right: 8),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               childCount: 1,
             ),
