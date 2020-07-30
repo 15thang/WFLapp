@@ -36,26 +36,24 @@ while ($row = mysqli_fetch_assoc($result)) {
         $only1 = false;
     }
 }
-$only2 = true;
+//get all upcoming events
 $query = "SELECT * FROM `events` WHERE NOT event_name = 'event_0' AND event_date >= '$today' AND NOT event_id = '$event1_id' ORDER BY event_date ASC";
 $result = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($result)) {
-    if ($only2) {
-        $event2_id = $row['event_id'];
-        $event2_name = $row['event_name'];
-        $event2_picture = $row['event_picture'];
-        $event2_description = $row['event_description'];
-        $event2_date = $row['event_date'];
-        $event2_ticketlink = $row['event_link'];
-        $event2_place = $row['event_place'];
-        $only2 = false;
-        $query = "SELECT count( DISTINCT competition_id) AS event_max_comp FROM `eventcompetition` WHERE event_id = '$event2_id'";
-        $result = mysqli_query($db, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-            $event2_max_comp = $row['event_max_comp'];
-        }
+    $event2_id = $row['event_id'];
+    $event2_name = $row['event_name'];
+    $event2_picture = $row['event_picture'];
+    $event2_description = $row['event_description'];
+    $event2_date = $row['event_date'];
+    $event2_ticketlink = $row['event_link'];
+    $event2_place = $row['event_place'];
+    $query = "SELECT count( DISTINCT competition_id) AS event_max_comp FROM `eventcompetition` WHERE event_id = '$event2_id'";
+    $result = mysqli_query($db, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $event2_max_comp = $row['event_max_comp'];
     }
 }
+
 echo "[ ";
 $more = false;
 $query = "SELECT a.* FROM `athletes` AS a
