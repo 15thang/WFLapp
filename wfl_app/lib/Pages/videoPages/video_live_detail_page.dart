@@ -1,9 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wfl_app/model/video.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideosLiveDetailPage extends StatefulWidget {
