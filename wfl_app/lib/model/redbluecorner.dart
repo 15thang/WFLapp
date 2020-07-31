@@ -23,7 +23,8 @@ class Corners {
       bluecornerWeightclass,
       bluecornerGrade,
       bluecornerCompName,
-      bluecornerCompId;
+      bluecornerCompId,
+      count;
 
   Corners(
       {this.redcornerPicture,
@@ -48,7 +49,8 @@ class Corners {
       this.bluecornerWeightclass,
       this.bluecornerGrade,
       this.bluecornerCompName,
-      this.bluecornerCompId});
+      this.bluecornerCompId,
+      this.count});
 
   Corners.fromJson(Map<String, dynamic> json) {
     redcornerPicture = "http://superfighter.nl/" + json['redcorner_picture'];
@@ -76,5 +78,7 @@ class Corners {
     bluecornerGrade = json['bluecorner_grade'];
     bluecornerCompName = json['bluecorner_comp_name'];
     bluecornerCompId = json['bluecorner_comp_id'];
+    
+    count = json['count'];
   }
 }

@@ -39,6 +39,26 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 $redblueArray = array_merge($redArray,$blueArray);
+
+$noDuplicates = array();
+$noDuplicateComps = array();
+$firstsecond = 1;
+$count = -1;
+$more = false;
+for ($i = 0; $i <= 15; $i++) {
+    foreach ($redblueArray as $data) {
+        if ($firstsecond == 1 && !$data['redcorner_id'] == "" && !in_array($data['redcorner_id'], $noDuplicates)) {
+            $count++;
+            array_push($noDuplicates, $data['redcorner_id']);
+            $firstsecond = 2;
+        }
+        if ($firstsecond == 2 && !$data['bluecorner_id'] == "" && !in_array($data['bluecorner_id'], $noDuplicates)) {
+            array_push($noDuplicates, $data['bluecorner_id']);
+            $firstsecond = 1;
+            $more = true;
+        }
+    }
+}
 $noDuplicates = array();
 $noDuplicateComps = array();
 $firstsecond = 1;
@@ -62,6 +82,7 @@ for ($i = 0; $i <= 15; $i++) {
             echo '"redcorner_weightclass": "'.$data['redcorner_weightclass'].'", ';
             echo '"redcorner_grade": "'.$data['redcorner_grade'].'", ';
             echo '"redcorner_comp": "'.$data['redcorner_comp'].'", ';
+            echo '"count": "'.$count.'", ';
             array_push($noDuplicates, $data['redcorner_id']);
             $firstsecond = 2;
         }

@@ -63,34 +63,23 @@ class _EventPageState extends State<EventsDetailPage> {
     return notes;
   }
 
-  final GlobalKey _cardKey = GlobalKey();
-  Size cardSize;
-  Offset cardPosition;
+  int onlyOne = 10;
 
   @override
   void initState() {
     fetchNotes().then((value) {
       setState(() {
         _notes.addAll(value);
+        onlyOne = int.parse(_notes[1].count);
       });
     });
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => getSizeAndPosition());
   }
 
-  getSizeAndPosition() {
-    RenderBox _cardBox = _cardKey.currentContext.findRenderObject();
-    cardSize = _cardBox.size;
-    cardPosition = _cardBox.localToGlobal(Offset.zero);
-    print(cardSize);
-    print(cardPosition);
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      key: _cardKey,
       backgroundColor: Colors.grey[800],
       body: CustomScrollView(
         slivers: <Widget>[
@@ -174,7 +163,7 @@ class _EventPageState extends State<EventsDetailPage> {
                   ),
                 ),
               ),
-              childCount: 1,
+              childCount: _notes.length - onlyOne,
             ),
           ),
           new SliverList(
@@ -237,7 +226,7 @@ class _EventPageState extends State<EventsDetailPage> {
                   ),
                 ),
               ),
-              childCount: 1,
+              childCount: _notes.length - onlyOne,
             ),
           ),
           new SliverList(

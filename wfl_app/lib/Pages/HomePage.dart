@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wfl_app/model/homepage.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'athletePages/athlete_detail_page.dart';
 import 'eventPages/event_detail_page.dart';
 import 'videoPages/video_live_detail_page.dart';
@@ -31,7 +30,7 @@ class _HomePage extends State<HomePage> {
 
   Timer t;
   int days = 0, hrs = 0, mins = 0, sec = 0, sum = 1;
-  YoutubePlayerController _controller;
+  int onlyOne = 30;
 
   Future launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -59,6 +58,7 @@ class _HomePage extends State<HomePage> {
     fetchNotes().then((value) {
       setState(() {
         _notes.addAll(value);
+        onlyOne = int.parse(_notes[1].count);
         startTimer();
       });
     });
@@ -86,14 +86,6 @@ class _HomePage extends State<HomePage> {
         t.cancel();
         setState(() {
           sum = 0;
-          _controller = YoutubePlayerController(
-            initialVideoId: _notes[1].event1LiveLink, // id youtube video
-            flags: YoutubePlayerFlags(
-              autoPlay: false,
-              isLive: true,
-              mute: false,
-            ),
-          );
         });
       }
     });
@@ -101,206 +93,206 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      backgroundColor: Colors.white,
-      body: CustomScrollView(
-        slivers: <Widget>[
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-              (context, index) => new ListTile(
-                title: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        color: Colors.black,
-                        transform: Matrix4.translationValues(0.0, -4, 0.0),
-                        padding: EdgeInsets.only(
-                            left: 8, right: 12, top: 25, bottom: 17),
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(
+        return new Scaffold(
+          backgroundColor: Colors.white,
+          body: CustomScrollView(
+            slivers: <Widget>[
+              new SliverList(
+                delegate: new SliverChildBuilderDelegate(
+                  (context, index) => new ListTile(
+                    title: Container(
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            color: Colors.black,
+                            transform: Matrix4.translationValues(0.0, -4, 0.0),
+                            padding: EdgeInsets.only(
+                                left: 8, right: 12, top: 25, bottom: 17),
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 2,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(
-                                        'Next event: ',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 15),
+                                      Row(
+                                        children: <Widget>[
+                                          Text(
+                                            'Next event: ',
+                                            style: TextStyle(
+                                                color: Colors.white, fontSize: 15),
+                                          ),
+                                          Text(
+                                            _notes[index].event1Name,
+                                            style: TextStyle(
+                                                color: Colors.red[900],
+                                                fontSize: 15),
+                                          ),
+                                        ],
                                       ),
                                       Text(
-                                        _notes[index].event1Name,
+                                        'COUNTDOWN ' +
+                                            days.toString().padLeft(2, '0') +
+                                            ':' +
+                                            hrs.toString().padLeft(2, '0') +
+                                            ':' +
+                                            mins.toString().padLeft(2, '0') +
+                                            ':' +
+                                            sec.toString().padLeft(2, '0'),
                                         style: TextStyle(
-                                            color: Colors.red[900],
-                                            fontSize: 15),
+                                            color: Colors.white, fontSize: 19),
+                                        textAlign: TextAlign.center,
                                       ),
                                     ],
                                   ),
-                                  Text(
-                                    'COUNTDOWN ' +
-                                        days.toString().padLeft(2, '0') +
-                                        ':' +
-                                        hrs.toString().padLeft(2, '0') +
-                                        ':' +
-                                        mins.toString().padLeft(2, '0') +
-                                        ':' +
-                                        sec.toString().padLeft(2, '0'),
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 19),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.only(left: 4, right: 4),
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    launchURL(_notes[index].event2TicketLink);
-                                  },
-                                  child: Text(
-                                    'Buy Tickets',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  color: Colors.red[800],
                                 ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: Container(
-                          transform: Matrix4.translationValues(0.0, -4, 0.0),
-                          child: (sum > 0)
-                              ? GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => EventsDetailPage(
-                                          event:
-                                              int.parse(_notes[index].event1Id),
-                                          past: 0,
-                                          maxComp: int.parse(
-                                              _notes[index].event1MaxComp),
-                                          eventName: _notes[index].event1Name,
-                                          eventPicture:
-                                              _notes[index].event1Picture,
-                                          eventDescription:
-                                              _notes[index].event1Description,
-                                          eventDate: _notes[index].event1Date,
-                                          eventPlace: _notes[index].event1Place,
-                                          eventLink:
-                                              _notes[index].event1TicketLink,
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                Expanded(
+                                  flex: 1,
                                   child: Container(
-                                    height: 220,
-                                    decoration: BoxDecoration(
-                                      image: new DecorationImage(
-                                          image: new NetworkImage(
-                                              _notes[index].event1Picture),
-                                          fit: BoxFit.fill),
-                                    ),
-                                  ),
-                                )
-                              : GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            VideosLiveDetailPage(
-                                          liveLink:
-                                              _notes[index].event1LiveLink,
+                                    margin:
+                                        const EdgeInsets.only(left: 4, right: 4),
+                                    child: RaisedButton(
+                                      onPressed: () {
+                                        launchURL(_notes[index].event2TicketLink);
+                                      },
+                                      child: Text(
+                                        'Buy Tickets',
+                                        style: TextStyle(
+                                          color: Colors.white,
                                         ),
                                       ),
-                                    );
-                                  },
-                                  child: AspectRatio(
-                                    aspectRatio: 16 / 9,
-                                    child: Container(
-                                      child: Icon(
-                                        Icons.play_arrow,
-                                        color: Colors.grey.withOpacity(0.6),
-                                        size: 100,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        image: new DecorationImage(
-                                            image: new NetworkImage(
-                                                'https://img.youtube.com/vi/' +
-                                                    _notes[index]
-                                                        .event1LiveLink +
-                                                    '/hqdefault.jpg'),
-                                            fit: BoxFit.cover),
-                                      ),
+                                      color: Colors.red[800],
                                     ),
                                   ),
                                 ),
-                        ),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 5,
-                            child: Container(
-                              height: 3,
-                              color: Colors.redAccent[700],
-                              margin: EdgeInsets.only(left: 8),
+                              ],
                             ),
+                          ),
+                          AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: Container(
+                              transform: Matrix4.translationValues(0.0, -4, 0.0),
+                              child: (sum > 0)
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => EventsDetailPage(
+                                              event:
+                                                  int.parse(_notes[index].event1Id),
+                                              past: 0,
+                                              maxComp: int.parse(
+                                                  _notes[index].event1MaxComp),
+                                              eventName: _notes[index].event1Name,
+                                              eventPicture:
+                                                  _notes[index].event1Picture,
+                                              eventDescription:
+                                                  _notes[index].event1Description,
+                                              eventDate: _notes[index].event1Date,
+                                              eventPlace: _notes[index].event1Place,
+                                              eventLink:
+                                                  _notes[index].event1TicketLink,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        height: 220,
+                                        decoration: BoxDecoration(
+                                          image: new DecorationImage(
+                                              image: new NetworkImage(
+                                                  _notes[index].event1Picture),
+                                              fit: BoxFit.fill),
+                                        ),
+                                      ),
+                                    )
+                                  : GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                VideosLiveDetailPage(
+                                              liveLink:
+                                                  _notes[index].event1LiveLink,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: AspectRatio(
+                                        aspectRatio: 16 / 9,
+                                        child: Container(
+                                          child: Icon(
+                                            Icons.play_arrow,
+                                            color: Colors.grey.withOpacity(0.6),
+                                            size: 100,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            image: new DecorationImage(
+                                                image: new NetworkImage(
+                                                    'https://img.youtube.com/vi/' +
+                                                        _notes[index]
+                                                            .event1LiveLink +
+                                                        '/hqdefault.jpg'),
+                                                fit: BoxFit.cover),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                            ),
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                  height: 3,
+                                  color: Colors.redAccent[700],
+                                  margin: EdgeInsets.only(left: 8),
+                                ),
+                              ),
+                              Container(
+                                height: 55,
+                                width: 170,
+                                decoration: BoxDecoration(
+                                  image: new DecorationImage(
+                                      image: new NetworkImage(
+                                          'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
+                                      fit: BoxFit.fill),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                  height: 3,
+                                  color: Colors.blue[900],
+                                  margin: EdgeInsets.only(right: 8),
+                                ),
+                              ),
+                            ],
                           ),
                           Container(
-                            height: 55,
-                            width: 170,
-                            decoration: BoxDecoration(
-                              image: new DecorationImage(
-                                  image: new NetworkImage(
-                                      'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
-                                  fit: BoxFit.fill),
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: 10000,
+                                  child: Text(
+                                    'Featured athletes: ',
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ),
+                                Divider(color: Colors.black)
+                              ],
                             ),
-                          ),
-                          Expanded(
-                            flex: 5,
-                            child: Container(
-                              height: 3,
-                              color: Colors.blue[900],
-                              margin: EdgeInsets.only(right: 8),
-                            ),
+                            margin: EdgeInsets.only(left: 8, right: 8),
                           ),
                         ],
                       ),
-                      Container(
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              width: 10000,
-                              child: Text(
-                                'Featured athletes: ',
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                            Divider(color: Colors.black)
-                          ],
-                        ),
-                        margin: EdgeInsets.only(left: 8, right: 8),
-                      ),
-                    ],
+                    ),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
                   ),
-                ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
-              ),
-              childCount: 1,
+              childCount: _notes.length - onlyOne,
             ),
           ),
           new SliverList(

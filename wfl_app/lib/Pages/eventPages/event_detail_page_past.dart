@@ -52,11 +52,14 @@ class _EventPageState extends State<EventsDetailPagePast> {
   Size cardSize;
   Offset cardPosition;
 
+  int onlyOne = 10;
+
   @override
   void initState() {
     fetchNotes().then((value) {
       setState(() {
         _notes.addAll(value);
+        onlyOne = int.parse(_notes[1].count);
       });
     });
     super.initState();
@@ -139,7 +142,7 @@ class _EventPageState extends State<EventsDetailPagePast> {
                   ),
                 ),
               ),
-              childCount: 1,
+              childCount: _notes.length - onlyOne,
             ),
           ),
           new SliverList(
@@ -202,7 +205,7 @@ class _EventPageState extends State<EventsDetailPagePast> {
                   ),
                 ),
               ),
-              childCount: 1,
+              childCount: _notes.length - onlyOne,
             ),
           ),
           new SliverList(

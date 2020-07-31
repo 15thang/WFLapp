@@ -33,7 +33,8 @@ class Homepage {
       athleteLosses,
       athleteDraws,
       totalYellowcards,
-      totalRedcards;
+      totalRedcards,
+      count;
 
   Homepage(
       {this.event1Id,
@@ -70,7 +71,8 @@ class Homepage {
       this.athleteLosses,
       this.athleteDraws,
       this.totalYellowcards,
-      this.totalRedcards});
+      this.totalRedcards,
+      this.count});
 
   Homepage.fromJson(Map<String, dynamic> json) {
     event1Id = json['event1_id'];
@@ -110,5 +112,7 @@ class Homepage {
     athleteDraws = json['athlete_draws'];
     totalYellowcards = json['total_yellowcards'];
     totalRedcards = json['total_redcards'];
+
+    count = json['count'];
   }
 }

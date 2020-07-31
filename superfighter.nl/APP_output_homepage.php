@@ -50,6 +50,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     $athleteArray[] = $row;
 }
 
+$count = count($athleteArray);
+$count = $count - 2;
+
 array_shift($athleteArray);
 foreach ($athleteArray as $row) {
     $only1Event = true;
@@ -72,6 +75,9 @@ foreach ($athleteArray as $row) {
     echo '"athlete_draws": "'.$row['athlete_draws'].'", ';
     echo '"total_yellowcards": "'.$row['athlete_yellowcards'].'", ';
     echo '"total_redcards": "'.$row['athlete_redcards'].'", ';
+
+    //zodat er maar 1 banner is op app
+    echo '"count": "'.$count.'", ';
 
     //Eerst volgende evenement boven aan de homepage
     echo '"event1_id": "'.$event1_id.'", ';
