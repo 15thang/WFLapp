@@ -416,7 +416,7 @@ class _HomePage extends State<HomePage> {
               (context, index) => new ListTile(
                 title: new Card(
                   child: AspectRatio(
-                    aspectRatio: 14 / 9,
+                    aspectRatio: 12 / 9,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: _notes.length,

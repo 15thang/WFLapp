@@ -56,6 +56,8 @@ foreach ($athleteArray as $row) {
         echo ', ';
     }
 
+    echo '{ ';
+
     //Atleten uit eerst volgende evenement
     echo '"athlete_id": "'.$row['athlete_id'].'", ';
     echo '"athlete_firstname": "'.$row['athlete_firstname'].'", ';
@@ -70,7 +72,6 @@ foreach ($athleteArray as $row) {
     echo '"total_yellowcards": "'.$row['athlete_yellowcards'].'", ';
     echo '"total_redcards": "'.$row['athlete_redcards'].'"';
 
-    echo '{ ';
     //Eerst volgende evenement boven aan de homepage
     echo '"event1_id": "'.$event1_id.'", ';
     echo '"event1_name": "'.$event1_name.'", ';
@@ -89,7 +90,7 @@ foreach ($athleteArray as $row) {
 
     //get all upcoming events
     $query = "SELECT * FROM `events` WHERE NOT event_name = 'event_0' AND event_date >= '$today' 
-    AND NOT event_id = '$event1_id' ORDER BY event_date ASC LIMIT 1, 1";
+    AND NOT event_id = '$event1_id' ORDER BY event_date ASC LIMIT " . intval($offset) . ", 1";
     $result = mysqli_query($db, $query);
     while ($row = mysqli_fetch_assoc($result)) {
         //Evenement dat na eerst volgende evenement komt
