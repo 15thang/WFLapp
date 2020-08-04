@@ -7,11 +7,10 @@ $query = "SELECT * FROM `athletes`";
 $result = mysqli_query($db, $query);
 echo '[ ';
 while ($row = mysqli_fetch_assoc($result)) {
-    if ($more) {
-        echo ', ';
-    }
     echo '{ ';
     echo '"type": "athlete", ';
+    echo '"note_title": "'.$row['athlete_firstname'] .' '. $row['athlete_lastname'] .'", ';
+
     echo '"athlete_id": "'.$row['athlete_id'].'", ';
     echo '"athlete_firstname": "'.$row['athlete_firstname'].'", ';
     echo '"athlete_lastname": "'.$row['athlete_lastname'].'", ';
@@ -43,7 +42,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '"video_description": "", ';
     echo '"video_type": "", ';
     echo '"video_date_added": "", ';
-    echo '"video_link": "" }';
+    echo '"video_link": "" }, ';
     $more = true;
 }
 
@@ -60,6 +59,8 @@ foreach($event as $data) {
     $eventid = $data['event_id'];
     echo '{ ';
     echo '"type": "upcoming_event", ';
+    echo '"note_title": "'.$data['event_name'].'", ';
+
     echo '"athlete_id": "", ';
     echo '"athlete_firstname": "", ';
     echo '"athlete_lastname": "", ';
@@ -85,7 +86,7 @@ foreach($event as $data) {
     $query = "SELECT count( DISTINCT competition_id) AS event_max_comp FROM `eventcompetition` WHERE event_id = '$eventid'";
     $result = mysqli_query($db, $query);
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '"event_max_comp": "'.$row['event_max_comp'].'"';
+        echo '"event_max_comp": "'.$row['event_max_comp'].'", ';
     }
 
     echo '"video_id": "", ';
@@ -113,6 +114,8 @@ foreach($event as $data) {
     $eventid = $data['event_id'];
     echo '{ ';
     echo '"type": "old_event", ';
+    echo '"note_title": "'.$data['event_name'].'", ';
+
     echo '"athlete_id": "", ';
     echo '"athlete_firstname": "", ';
     echo '"athlete_lastname": "", ';
@@ -138,7 +141,7 @@ foreach($event as $data) {
     $query = "SELECT count( DISTINCT competition_id) AS event_max_comp FROM `eventcompetition` WHERE event_id = '$eventid'";
     $result = mysqli_query($db, $query);
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '"event_max_comp": "'.$row['event_max_comp'].'"';
+        echo '"event_max_comp": "'.$row['event_max_comp'].'", ';
     }
 
     echo '"video_id": "", ';
@@ -164,6 +167,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     }
     echo '{ ';
     echo '"type": "video", ';
+    echo '"note_title": "'.$row['video_title'].'", ';
+
     echo '"athlete_id": "", ';
     echo '"athlete_firstname": "", ';
     echo '"athlete_lastname": "", ';

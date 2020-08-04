@@ -1,10 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:wfl_app/model/athletes.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:wfl_app/Pages/videoPages/video_detail_page.dart';
+import 'package:wfl_app/model/search.dart';
 import 'athletePages/athlete_detail_page.dart';
+import 'eventPages/event_detail_page.dart';
+import 'eventPages/event_detail_page_past.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -12,19 +13,19 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  List<Athlete> _notes = List<Athlete>();
-  List<Athlete> _notesForDisplay = List<Athlete>();
+  List<Search> _notes = List<Search>();
+  List<Search> _notesForDisplay = List<Search>();
 
-  Future<List<Athlete>> fetchNotes() async {
-    var url = 'http://superfighter.nl/APP_output_athlete.php';
+  Future<List<Search>> fetchNotes() async {
+    var url = 'http://superfighter.nl/APP_output_search.php';
     var response = await http.get(url);
 
-    var notes = List<Athlete>();
+    var notes = List<Search>();
 
     if (response.statusCode == 200) {
       var notesJson = json.decode(response.body);
       for (var noteJson in notesJson) {
-        notes.add(Athlete.fromJson(noteJson));
+        notes.add(Search.fromJson(noteJson));
       }
     }
     return notes;
@@ -65,7 +66,7 @@ class _SearchPageState extends State<SearchPage> {
           text = text.toLowerCase();
           setState(() {
             _notesForDisplay = _notes.where((note) {
-              var noteTitle = note.athleteFullName.toLowerCase();
+              var noteTitle = note.noteTitle.toLowerCase();
               return noteTitle.contains(text);
             }).toList();
           });
@@ -75,10 +76,9 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   _listItem(index) {
-    if (int.parse(_notesForDisplay[index].athleteId) > 284) {
+    if (_notesForDisplay[index].type == 'athlete') {
       return Card(
         child: Container(
-          color: Colors.green,
           padding: const EdgeInsets.only(
               top: 10.0, bottom: 7.0, left: 16.0, right: 16.0),
           child: GestureDetector(
@@ -102,30 +102,34 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               );
             },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: <Widget>[
-                Text(
-                  _notesForDisplay[index].athleteFullName,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        _notesForDisplay[index].athleteFullName,
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        _notesForDisplay[index].athleteNickname,
+                        style: TextStyle(color: Colors.grey.shade600),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  _notesForDisplay[index].athleteNickname,
-                  style: TextStyle(color: Colors.grey.shade600),
-                ),
-                Text(
-                  _notesForDisplay[index].athleteId,
-                  style: TextStyle(color: Colors.grey.shade600),
-                ),
+                Text('ATHLETE'),
               ],
             ),
           ),
         ),
       );
-    } else {
+    } else if (_notesForDisplay[index].type == 'upcoming_event') {
       return Card(
         child: Container(
-          color: Colors.blue,
           padding: const EdgeInsets.only(
               top: 10.0, bottom: 7.0, left: 16.0, right: 16.0),
           child: GestureDetector(
@@ -133,37 +137,129 @@ class _SearchPageState extends State<SearchPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AthletesDetailPage(
-                    athleteId: int.parse(_notesForDisplay[index].athleteId),
-                    athleteFullName: _notesForDisplay[index].athleteFullName,
-                    athleteWins: int.parse(_notesForDisplay[index].athleteWins),
-                    athleteLosses:
-                        int.parse(_notesForDisplay[index].athleteLosses),
-                    athleteDraws:
-                        int.parse(_notesForDisplay[index].athleteDraws),
-                    athleteYellowcards:
-                        int.parse(_notesForDisplay[index].totalYellowcards),
-                    athleteRedcards:
-                        int.parse(_notesForDisplay[index].totalRedcards),
+                  builder: (context) => EventsDetailPage(
+                    event: int.parse(_notesForDisplay[index].eventId),
+                    past: 0,
+                    maxComp: int.parse(_notesForDisplay[index].eventMaxComp),
+                    eventName: _notesForDisplay[index].eventName,
+                    eventPicture: _notesForDisplay[index].eventPicture,
+                    eventDescription: _notesForDisplay[index].eventDescription,
+                    eventDate: _notesForDisplay[index].eventDate,
+                    eventPlace: _notesForDisplay[index].eventPlace,
+                    eventLink: _notesForDisplay[index].eventTicketLink,
                   ),
                 ),
               );
             },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: <Widget>[
-                Text(
-                  _notesForDisplay[index].athleteFullName,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        _notesForDisplay[index].eventName,
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        _notesForDisplay[index].eventDate,
+                        style: TextStyle(color: Colors.grey.shade600),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  _notesForDisplay[index].athleteNickname,
-                  style: TextStyle(color: Colors.grey.shade600),
+                Text('EVENT'),
+              ],
+            ),
+          ),
+        ),
+      );
+    } else if (_notesForDisplay[index].type == 'old_event') {
+      return Card(
+        child: Container(
+          padding: const EdgeInsets.only(
+              top: 10.0, bottom: 7.0, left: 16.0, right: 16.0),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EventsDetailPagePast(
+                    event: int.parse(_notesForDisplay[index].eventId),
+                    past: 1,
+                    maxComp: int.parse(_notesForDisplay[index].eventMaxComp),
+                    eventName: _notesForDisplay[index].eventName,
+                    eventPicture: _notesForDisplay[index].eventPicture,
+                    eventDescription: _notesForDisplay[index].eventDescription,
+                    eventDate: _notesForDisplay[index].eventDate,
+                    eventPlace: _notesForDisplay[index].eventPlace,
+                  ),
                 ),
-                Text(
-                  _notesForDisplay[index].athleteId,
-                  style: TextStyle(color: Colors.grey.shade600),
+              );
+            },
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        _notesForDisplay[index].eventName,
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        _notesForDisplay[index].eventDate,
+                        style: TextStyle(color: Colors.grey.shade600),
+                      ),
+                    ],
+                  ),
                 ),
+                Text('EVENT (over)'),
+              ],
+            ),
+          ),
+        ),
+      );
+    } else if (_notesForDisplay[index].type == 'video') {
+      return Card(
+        child: Container(
+          padding: const EdgeInsets.only(
+              top: 10.0, bottom: 7.0, left: 16.0, right: 16.0),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VideosDetailPage(
+                    index: index,
+                  ),
+                ),
+              );
+            },
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        _notesForDisplay[index].videoTitle,
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        _notesForDisplay[index].videoType,
+                        style: TextStyle(color: Colors.grey.shade600),
+                      ),
+                    ],
+                  ),
+                ),
+                Text('VIDEO'),
               ],
             ),
           ),
