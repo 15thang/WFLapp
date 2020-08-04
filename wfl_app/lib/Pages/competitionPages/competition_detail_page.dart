@@ -186,12 +186,15 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                         margin: const EdgeInsets.only(right: 5.0, top: 7),
                         padding: const EdgeInsets.only(right: 5.0),
                         height: 20,
-                        child: Text(
-                          'Points',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Points',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
                         ),
                         decoration: BoxDecoration(
                           color: Colors.grey[900],
@@ -318,9 +321,8 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             height: 40,
                             color: Colors.grey[900],
                             child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(_notes[index].athleteMatchesDone + ' / ' +
-                                _notes[index].athleteMatches,
+                              alignment: Alignment.center,
+                              child: Text(_notes[index].athleteMatchesDone + ' / 8',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -471,9 +473,8 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             height: 40,
                             color: Colors.grey[900],
                             child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(_notes[index].athleteMatchesDone + ' / ' +
-                                _notes[index].athleteMatches,
+                              alignment: Alignment.center,
+                              child: Text(_notes[index].athleteMatchesDone + ' / 8',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
