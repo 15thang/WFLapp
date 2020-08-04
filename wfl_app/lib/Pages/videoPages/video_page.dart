@@ -63,7 +63,23 @@ class _VideosState extends State<Videos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Videos'),
+        title: Row(
+        children: <Widget>[
+          Container(
+            height:90,
+            width: 90,
+            decoration: BoxDecoration(
+              image: new DecorationImage(
+                  image: new NetworkImage(
+                      'http://superfighter.nl/pics/wflicon.jpg'),
+                  fit: BoxFit.fill),
+            ),
+          ),
+          Text(' Videos',
+              style: TextStyle(color: Colors.white),
+            ),
+        ],
+      ),
         backgroundColor: Colors.black,
       ),
       backgroundColor: Colors.grey[800],
