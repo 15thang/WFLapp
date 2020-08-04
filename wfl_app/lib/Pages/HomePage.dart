@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wfl_app/Pages/SearchPage.dart';
 import 'package:wfl_app/model/homepage.dart';
 import 'athletePages/athlete_detail_page.dart';
 import 'eventPages/event_detail_page.dart';
@@ -163,6 +164,20 @@ class _HomePage extends State<HomePage> {
                                   ),
                                   color: Colors.red[800],
                                 ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SearchPage(),
+                                  ),
+                                );
+                              },
+                              child: Icon(
+                                Icons.search,
+                                color: Colors.white,
                               ),
                             ),
                           ],
