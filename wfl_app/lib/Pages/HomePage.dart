@@ -108,11 +108,11 @@ class _HomePage extends State<HomePage> {
                         color: Colors.black,
                         transform: Matrix4.translationValues(0.0, -4, 0.0),
                         padding: EdgeInsets.only(
-                            left: 8, right: 12, top: 25, bottom: 17),
+                            left: 8, right: 12, top: 25, bottom: 12),
                         child: Row(
                           children: <Widget>[
                             Expanded(
-                              flex: 2,
+                              flex: 11,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
@@ -141,14 +141,14 @@ class _HomePage extends State<HomePage> {
                                         ':' +
                                         sec.toString().padLeft(2, '0'),
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 19),
+                                        color: Colors.white, fontSize: 17),
                                     textAlign: TextAlign.center,
                                   ),
                                 ],
                               ),
                             ),
                             Expanded(
-                              flex: 1,
+                              flex: 6,
                               child: Container(
                                 margin:
                                     const EdgeInsets.only(left: 4, right: 4),
@@ -159,7 +159,7 @@ class _HomePage extends State<HomePage> {
                                   child: Text(
                                     'Buy Tickets',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.white, fontSize: 13
                                     ),
                                   ),
                                   color: Colors.red[800],

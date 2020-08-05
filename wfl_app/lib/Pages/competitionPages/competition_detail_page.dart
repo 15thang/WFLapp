@@ -267,7 +267,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                               alignment: Alignment.center,
                               child: Text(
                                 _notes[index].athleteTKO +
-                                    ' / ' +
+                                    ' - ' +
                                     _notes[index].athleteKO,
                                 style: TextStyle(
                                     color: Colors.white,
@@ -322,7 +322,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             color: Colors.grey[900],
                             child: Align(
                               alignment: Alignment.center,
-                              child: Text(_notes[index].athleteMatchesDone + ' / 8',
+                              child: Text(_notes[index].athleteMatchesDone + ' - 8',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -419,7 +419,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                               alignment: Alignment.center,
                               child: Text(
                                 _notes[index].athleteTKO +
-                                    ' / ' +
+                                    ' - ' +
                                     _notes[index].athleteKO,
                                 style: TextStyle(
                                     color: Colors.white,
@@ -474,7 +474,7 @@ class _CompetitionDetailPageState extends State<CompetitionDetailPage> {
                             color: Colors.grey[900],
                             child: Align(
                               alignment: Alignment.center,
-                              child: Text(_notes[index].athleteMatchesDone + ' / 8',
+                              child: Text(_notes[index].athleteMatchesDone + ' - 8',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,

@@ -127,7 +127,7 @@ class MyAppState extends State<MyApp> {
         context: context,
         builder: (context) => AlertDialog(
           content: Container(
-            height: 60,
+            height: 80,
             child: FutureBuilder<int>(
               future: _counter,
               builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
