@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:wfl_app/Pages/videoPages/video_detail_page.dart';
 import 'package:wfl_app/model/search.dart';
 import 'athletePages/athlete_detail_page.dart';
 import 'eventPages/event_detail_page.dart';
@@ -219,47 +218,6 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ),
                 Text('EVENT (over)'),
-              ],
-            ),
-          ),
-        ),
-      );
-    } else if (_notesForDisplay[index].type == 'video') {
-      return Card(
-        child: Container(
-          padding: const EdgeInsets.only(
-              top: 10.0, bottom: 7.0, left: 16.0, right: 16.0),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => VideosDetailPage(
-                    index: index,
-                  ),
-                ),
-              );
-            },
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 5,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        _notesForDisplay[index].videoTitle,
-                        style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        _notesForDisplay[index].videoType,
-                        style: TextStyle(color: Colors.grey.shade600),
-                      ),
-                    ],
-                  ),
-                ),
-                Text('VIDEO'),
               ],
             ),
           ),

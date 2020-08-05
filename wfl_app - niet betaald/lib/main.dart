@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wfl_app/Pages/NewsLetter.dart';
+import 'package:wfl_app/Pages/competitionPages/competition_page.dart';
 import 'package:wfl_app/Pages/morePages/more_page.dart';
 import './Pages/HomePage.dart';
 import 'Pages/athletePages/athlete_page.dart';
-import 'Pages/competitionPages/competition_page.dart';
 import 'Pages/eventPages/event_page.dart';
 import 'Pages/videoPages/video_page.dart';
 import 'Pages/morePages/more_page.dart';
@@ -56,7 +56,7 @@ class MyAppState extends State<MyApp> {
       case 3:
         return Videos();
       case 4:
-        return Competition();
+        return CompetitionPage();
       case 5:
         return MorePage();
       default:

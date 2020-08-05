@@ -1,63 +1,83 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:tuple/tuple.dart';
-import 'package:wfl_app/Pages/competitionPages/past_competitionpage.dart';
-import 'package:wfl_app/Pages/components/event_sliver_app_bar.dart';
-import 'package:wfl_app/Pages/delegates/sliver_persistent_header_delegate_impl.dart';
-import 'ongoing_competitionpage.dart';
+import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
+import 'package:wfl_app/model/competition.dart';
 
-class Competition extends StatefulWidget {
-  Competition({Key key}) : super(key: key);
+class CompetitionPage extends StatefulWidget {
+  const CompetitionPage({Key key}) : super(key: key);
 
   @override
   _CompetitionPageState createState() => _CompetitionPageState();
 }
 
-class _CompetitionPageState extends State<Competition>
-    with SingleTickerProviderStateMixin {
-  final List<Tuple3> _pages = [
-    Tuple3('Ongoing competitions', CompetitionPage(), Icon(Icons.video_library)),
-    Tuple3('Past competitions', PastCompetitionPage(), Icon(Icons.image)),
-  ];
+//Future is to launch URL buttons (like buy ticket)
+Future launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url, forceWebView: true, forceSafariVC: true);
+  } else {
+    print("Can't Launch");
+  }
+}
 
-  TabController _tabController;
+class _CompetitionPageState extends State<CompetitionPage> {
+  List<Competitions> _notes = List<Competitions>();
 
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: _pages.length, vsync: this);
-    _tabController.addListener(() => setState(() {}));
+  Future<List<Competitions>> fetchNotes() async {
+    var url = 'http://superfighter.nl/APP_output_competition.php';
+    var response = await http.get(url);
+
+    var notes = List<Competitions>();
+
+    if (response.statusCode == 200) {
+      var notesJson = json.decode(response.body);
+      for (var noteJson in notesJson) {
+        notes.add(Competitions.fromJson(noteJson));
+      }
+    }
+    return notes;
   }
 
   @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
+  void initState() {
+    fetchNotes().then((value) {
+      setState(() {
+        _notes.addAll(value);
+      });
+    });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            EventSliverAppBar(_pages[_tabController.index].item1),
-            SliverPersistentHeader(
-              delegate: SliverPersistentHeaderDelegateImpl(
-                tabBar: TabBar(
-                  labelColor: Colors.black,
-                  indicatorColor: Colors.black,
-                  controller: _tabController,
-                  tabs: _pages
-                      .map<Tab>((Tuple3 page) => Tab(text: page.item1))
-                      .toList(),
-                ),
+      appBar: AppBar(
+        title: Row(
+          children: <Widget>[
+            Container(
+              height: 90,
+              width: 90,
+              decoration: BoxDecoration(
+                image: new DecorationImage(
+                    image: new NetworkImage(
+                        'http://superfighter.nl/pics/wflicon.jpg'),
+                    fit: BoxFit.fill),
               ),
             ),
-          ];
-        },
-        body: TabBarView(
-          controller: _tabController,
-          children: _pages.map<Widget>((Tuple3 page) => page.item2).toList(),
+            Text(
+              ' Competitions',
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.black,
+      ),
+      backgroundColor: Colors.grey[800],
+      body: Center(
+        child: Text(
+          'Premium only',
+          style: TextStyle(color: Colors.white, fontSize: 15),
         ),
       ),
     );
