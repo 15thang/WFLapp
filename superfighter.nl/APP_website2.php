@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['username']))
+    { 
 echo'
 <section id="container_menu">
 	<form action="APP_menu.php" method=post>
@@ -191,6 +194,11 @@ $results = mysqli_query($db, $query);
         });
     });
 </script>
+<?php }
+    else {
+        echo 'Je moet inloggen';
+    }
+    ?>
 </body>
 </head>
 </html>

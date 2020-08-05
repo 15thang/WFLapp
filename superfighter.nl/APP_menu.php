@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+<?php
+session_start();
+if(isset($_SESSION['login_user']))
+    { 
+?>
 
 <head>
     <title>Group Project</title>
@@ -110,5 +115,9 @@
         setTimeout(carousel, 7500); // Change image every 2 seconds
     }
 </script>
-
+<?php }
+    else {
+        echo 'Je moet inloggen';
+    }
+    ?>
 </html>
