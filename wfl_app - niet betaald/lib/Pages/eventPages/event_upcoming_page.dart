@@ -158,6 +158,26 @@ class _EventPageState extends State<UpcomingEvents> {
                         ],
                       ),
                     ),
+                    Container(
+                      height: 10,
+                      color: Colors.grey[800],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        launchURL('https://www.animaleurope.com/animal-nrg.html');
+                      },
+                      child: AspectRatio(
+                        aspectRatio: 5 / 1,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: new DecorationImage(
+                                image: new NetworkImage(
+                                    'https://www.stack3d.com/wp-content/uploads/2019/12/animal-nrg-drink.jpg'),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
