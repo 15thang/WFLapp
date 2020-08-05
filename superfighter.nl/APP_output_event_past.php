@@ -27,6 +27,12 @@ foreach($event as $data) {
     echo '"event_picture": "'.$data['event_picture'].'", ';
     echo '"event_picture2": "'.$data['event_picture2'].'", ';
     echo '"event_link": "'.$data['event_link'].'", ';
+    $query = "SELECT * FROM ads ORDER BY RAND() LIMIT 1";
+    $result = mysqli_query($db, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '"event_ad_pic": "'.$row['ad_image'].'", ';
+        echo '"event_ad_link": "'.$row['ad_link'].'", ';
+    }
     $query = "SELECT count( DISTINCT competition_id) AS event_max_comp FROM `eventcompetition` WHERE event_id = '$eventid'";
     $result = mysqli_query($db, $query);
     while ($row = mysqli_fetch_assoc($result)) {

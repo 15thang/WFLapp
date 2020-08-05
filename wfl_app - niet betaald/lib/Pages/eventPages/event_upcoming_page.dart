@@ -164,7 +164,7 @@ class _EventPageState extends State<UpcomingEvents> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        launchURL('https://www.animaleurope.com/animal-nrg.html');
+                        launchURL(_notes[index].eventAdLink);
                       },
                       child: AspectRatio(
                         aspectRatio: 5 / 1,
@@ -172,7 +172,7 @@ class _EventPageState extends State<UpcomingEvents> {
                           decoration: BoxDecoration(
                             image: new DecorationImage(
                                 image: new NetworkImage(
-                                    'https://www.stack3d.com/wp-content/uploads/2019/12/animal-nrg-drink.jpg'),
+                                    _notes[index].eventAdPic),
                                 fit: BoxFit.cover),
                           ),
                         ),
