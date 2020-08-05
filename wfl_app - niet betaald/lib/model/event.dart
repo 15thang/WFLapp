@@ -11,7 +11,9 @@ class Event {
          eventPicture, 
          eventPicture2,
          eventTicketLink,
-         eventMaxComp;
+         eventMaxComp,
+         eventAdPic,
+         eventAdLink;
 
   Event({
     this.eventId,
@@ -26,7 +28,9 @@ class Event {
     this.eventPicture,
     this.eventPicture2,
     this.eventTicketLink,
-    this.eventMaxComp
+    this.eventMaxComp,
+    this.eventAdPic,
+    this.eventAdLink
   });
 
   Event.fromJson(Map<String, dynamic> json) {
@@ -43,6 +47,9 @@ class Event {
     eventPicture2 = "http://superfighter.nl/" + json['event_picture2'];
     eventTicketLink = json['event_link'];
     eventMaxComp = json['event_max_comp'];
+
+    eventAdPic = "http://superfighter.nl/" + json['event_ad_pic'];
+    eventAdLink = json['event_ad_link'];
   }
 }
 

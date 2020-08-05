@@ -163,6 +163,25 @@ class _EventPageState extends State<PastEvents> {
                       ],
                     ),
                   ),
+                  Container(
+                    height: 10,
+                    color: Colors.grey[800],
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      launchURL(_notes[index].eventAdLink);
+                    },
+                    child: AspectRatio(
+                      aspectRatio: 5 / 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: new DecorationImage(
+                              image: new NetworkImage(_notes[index].eventAdPic),
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
