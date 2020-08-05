@@ -16,7 +16,7 @@ class _NewsLetterPageState extends State<NewsLetterPage> {
 
   Future<void> _incrementCounter() async {
     final SharedPreferences prefs = await _prefs;
-    final int counter = (prefs.getInt('counter') ?? 0) ;
+    final int counter = (prefs.getInt('counter') ?? 0) + 1;
 
     setState(() {
       _counter = prefs.setInt("counter", counter).then((bool success) {
