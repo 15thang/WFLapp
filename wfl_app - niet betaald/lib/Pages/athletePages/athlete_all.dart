@@ -206,7 +206,8 @@ class _All extends State<All> {
                                         _notes[index].athleteTitle,
                                         style: TextStyle(
                                             color: Colors.yellow,
-                                            backgroundColor: Colors.red[900], fontSize: 13.5),
+                                            backgroundColor: Colors.red[900],
+                                            fontSize: 13.5),
                                       ),
                                     ),
                                   ),
@@ -314,6 +315,7 @@ class _All extends State<All> {
     );
   }
 
+  int ad = 1;
   Widget _smallDisplay() {
     return Scaffold(
       backgroundColor: Colors.grey[800],
@@ -394,148 +396,170 @@ class _All extends State<All> {
           if (athleteStar == "1") {
             athleteStar = "★";
           }
-          return new GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AthletesDetailPage(
-                    athleteId: int.parse(_notes[index].athleteId),
-                    athleteFullName: _notes[index].athleteFullName,
-                    athleteWins: int.parse(_notes[index].athleteWins),
-                    athleteLosses: int.parse(_notes[index].athleteLosses),
-                    athleteDraws: int.parse(_notes[index].athleteDraws),
-                    athleteYellowcards:
-                        int.parse(_notes[index].totalYellowcards),
-                    athleteRedcards: int.parse(_notes[index].totalRedcards),
+          if (index == ad) {
+            ad += 2;
+            return new GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AthletesDetailPage(
+                      athleteId: int.parse(_notes[index].athleteId),
+                      athleteFullName: _notes[index].athleteFullName,
+                      athleteWins: int.parse(_notes[index].athleteWins),
+                      athleteLosses: int.parse(_notes[index].athleteLosses),
+                      athleteDraws: int.parse(_notes[index].athleteDraws),
+                      athleteYellowcards:
+                          int.parse(_notes[index].totalYellowcards),
+                      athleteRedcards: int.parse(_notes[index].totalRedcards),
+                    ),
                   ),
-                ),
-              );
-            },
-            child: new Card(
-              color: Colors.grey[400],
-              elevation: 5,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      height: 174,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(5),
-                            topLeft: Radius.circular(5)),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Expanded(
-                            flex: 11,
-                            child: Stack(
-                              children: <Widget>[
-                                Container(
-                                  width: 174,
-                                  height: 174,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(5),
-                                        topLeft: Radius.circular(5)),
-                                    image: new DecorationImage(
-                                        image: new NetworkImage(_notes[index]
-                                            .athleteProfilePicture),
-                                        fit: BoxFit.cover),
-                                  ),
-                                  child: Container(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Text(
-                                      _notes[index].athleteTitle,
-                                      style: TextStyle(
-                                          color: Colors.yellow,
-                                          backgroundColor: Colors.red[900],
-                                          fontSize: 13.5),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 174,
-                                  height: 174,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    gradient: LinearGradient(
-                                      begin: FractionalOffset.topCenter,
-                                      end: FractionalOffset.bottomCenter,
-                                      colors: [
-                                        Colors.grey.withOpacity(0.0),
-                                        Colors.black.withOpacity(0.5)
-                                      ],
-                                      stops: [0.0, 1.0],
-                                    ),
-                                  ),
-                                ),
-                              ],
+                );
+              },
+              child: new Card(
+                color: Colors.grey[400],
+                elevation: 5,
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 174,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(5),
+                                  topLeft: Radius.circular(5)),
                             ),
-                          ),
-                          Expanded(
-                            flex: 14,
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(_notes[index].athleteFullName,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 17)),
-                                  Text(_notes[index].athleteNickname,
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 17)),
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 5.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 11,
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Container(
+                                        width: 174,
+                                        height: 174,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(5),
+                                              topLeft: Radius.circular(5)),
+                                          image: new DecorationImage(
+                                              image: new NetworkImage(
+                                                  _notes[index]
+                                                      .athleteProfilePicture),
+                                              fit: BoxFit.cover),
+                                        ),
+                                        child: Container(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Text(
+                                            _notes[index].athleteTitle,
+                                            style: TextStyle(
+                                                color: Colors.yellow,
+                                                backgroundColor:
+                                                    Colors.red[900],
+                                                fontSize: 13.5),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 174,
+                                        height: 174,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          gradient: LinearGradient(
+                                            begin: FractionalOffset.topCenter,
+                                            end: FractionalOffset.bottomCenter,
+                                            colors: [
+                                              Colors.grey.withOpacity(0.0),
+                                              Colors.black.withOpacity(0.5)
+                                            ],
+                                            stops: [0.0, 1.0],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 14,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Text(_notes[index].athleteNationality,
-                                            style: TextStyle(fontSize: 16)),
-                                        Text(_notes[index].athleteDayOfBirth,
-                                            style: TextStyle(fontSize: 16)),
+                                        Text(_notes[index].athleteFullName,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17)),
+                                        Text(_notes[index].athleteNickname,
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic,
+                                                fontSize: 17)),
                                         Container(
                                           margin:
                                               const EdgeInsets.only(top: 5.0),
-                                          child: Text(
-                                              athleteWeightclass +
-                                                  '"  ' +
-                                                  athleteGrade,
-                                              style: TextStyle(fontSize: 16)),
-                                        ),
-                                        Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 0.0),
-                                          child: Row(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: <Widget>[
                                               Text(
-                                                athleteStar,
-                                                style: TextStyle(
-                                                  fontSize: 32,
-                                                  color: Colors.yellow[500],
-                                                  shadows: <Shadow>[
-                                                    Shadow(
-                                                        offset:
-                                                            Offset(0.0, 0.0),
-                                                        blurRadius: 20.0,
-                                                        color: Colors.black),
-                                                  ],
-                                                ),
-                                              ),
+                                                  _notes[index]
+                                                      .athleteNationality,
+                                                  style:
+                                                      TextStyle(fontSize: 16)),
+                                              Text(
+                                                  _notes[index]
+                                                      .athleteDayOfBirth,
+                                                  style:
+                                                      TextStyle(fontSize: 16)),
                                               Container(
                                                 margin: const EdgeInsets.only(
                                                     top: 5.0),
                                                 child: Text(
-                                                  _notes[index].athleteStars,
-                                                  style:
-                                                      TextStyle(fontSize: 20),
+                                                    athleteWeightclass +
+                                                        '"  ' +
+                                                        athleteGrade,
+                                                    style: TextStyle(
+                                                        fontSize: 16)),
+                                              ),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    top: 0.0),
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Text(
+                                                      athleteStar,
+                                                      style: TextStyle(
+                                                        fontSize: 32,
+                                                        color:
+                                                            Colors.yellow[500],
+                                                        shadows: <Shadow>[
+                                                          Shadow(
+                                                              offset: Offset(
+                                                                  0.0, 0.0),
+                                                              blurRadius: 20.0,
+                                                              color:
+                                                                  Colors.black),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              top: 5.0),
+                                                      child: Text(
+                                                        _notes[index]
+                                                            .athleteStars,
+                                                        style: TextStyle(
+                                                            fontSize: 20),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ],
@@ -544,18 +568,201 @@ class _All extends State<All> {
                                       ],
                                     ),
                                   ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      height: 10,
+                      color: Colors.grey[800],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        launchURL(_notes[index].athleteAdLink);
+                      },
+                      child: AspectRatio(
+                        aspectRatio: 5 / 1,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: new DecorationImage(
+                                image:
+                                    new NetworkImage(_notes[index].athleteAdPic),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return new GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AthletesDetailPage(
+                      athleteId: int.parse(_notes[index].athleteId),
+                      athleteFullName: _notes[index].athleteFullName,
+                      athleteWins: int.parse(_notes[index].athleteWins),
+                      athleteLosses: int.parse(_notes[index].athleteLosses),
+                      athleteDraws: int.parse(_notes[index].athleteDraws),
+                      athleteYellowcards:
+                          int.parse(_notes[index].totalYellowcards),
+                      athleteRedcards: int.parse(_notes[index].totalRedcards),
+                    ),
+                  ),
+                );
+              },
+              child: new Card(
+                color: Colors.grey[400],
+                elevation: 5,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        height: 174,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(5),
+                              topLeft: Radius.circular(5)),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              flex: 11,
+                              child: Stack(
+                                children: <Widget>[
+                                  Container(
+                                    width: 174,
+                                    height: 174,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(5),
+                                          topLeft: Radius.circular(5)),
+                                      image: new DecorationImage(
+                                          image: new NetworkImage(_notes[index]
+                                              .athleteProfilePicture),
+                                          fit: BoxFit.cover),
+                                    ),
+                                    child: Container(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Text(
+                                        _notes[index].athleteTitle,
+                                        style: TextStyle(
+                                            color: Colors.yellow,
+                                            backgroundColor: Colors.red[900],
+                                            fontSize: 13.5),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 174,
+                                    height: 174,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      gradient: LinearGradient(
+                                        begin: FractionalOffset.topCenter,
+                                        end: FractionalOffset.bottomCenter,
+                                        colors: [
+                                          Colors.grey.withOpacity(0.0),
+                                          Colors.black.withOpacity(0.5)
+                                        ],
+                                        stops: [0.0, 1.0],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
-                          ),
-                        ],
+                            Expanded(
+                              flex: 14,
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(_notes[index].athleteFullName,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17)),
+                                    Text(_notes[index].athleteNickname,
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            fontSize: 17)),
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 5.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(_notes[index].athleteNationality,
+                                              style: TextStyle(fontSize: 16)),
+                                          Text(_notes[index].athleteDayOfBirth,
+                                              style: TextStyle(fontSize: 16)),
+                                          Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 5.0),
+                                            child: Text(
+                                                athleteWeightclass +
+                                                    '"  ' +
+                                                    athleteGrade,
+                                                style: TextStyle(fontSize: 16)),
+                                          ),
+                                          Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 0.0),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Text(
+                                                  athleteStar,
+                                                  style: TextStyle(
+                                                    fontSize: 32,
+                                                    color: Colors.yellow[500],
+                                                    shadows: <Shadow>[
+                                                      Shadow(
+                                                          offset:
+                                                              Offset(0.0, 0.0),
+                                                          blurRadius: 20.0,
+                                                          color: Colors.black),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      top: 5.0),
+                                                  child: Text(
+                                                    _notes[index].athleteStars,
+                                                    style:
+                                                        TextStyle(fontSize: 20),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          );
+            );
+          }
         },
         itemCount: _notes.length,
       ),

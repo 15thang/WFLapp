@@ -21,7 +21,9 @@ class Athlete {
       totalYellowcards,
       totalRedcards,
       athleteStar,
-      athleteStars;
+      athleteStars,
+      athleteAdPic,
+      athleteAdLink;
 
   Athlete(
       {this.athleteProfilePicture,
@@ -46,7 +48,9 @@ class Athlete {
       this.totalYellowcards,
       this.totalRedcards,
       this.athleteStar,
-      this.athleteStars});
+      this.athleteStars,
+      this.athleteAdPic,
+      this.athleteAdLink});
 
   Athlete.fromJson(Map<String, dynamic> json) {
     athleteProfilePicture = "http://superfighter.nl/" + json['athlete_picture'];
@@ -72,5 +76,7 @@ class Athlete {
     totalRedcards = json['athlete_redcards'];
     athleteStar = json['athlete_star'].toString();
     athleteStars = json['athlete_stars'];
+    athleteAdPic = "http://superfighter.nl/" + json['athlete_ad_image'];
+    athleteAdLink = json['athlete_ad_link'];
   }
 }
