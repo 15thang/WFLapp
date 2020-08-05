@@ -8,7 +8,6 @@ import 'package:wfl_app/Pages/SearchPage.dart';
 import 'package:wfl_app/model/homepage.dart';
 import 'athletePages/athlete_detail_page.dart';
 import 'eventPages/event_detail_page.dart';
-import 'videoPages/video_live_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -159,8 +158,7 @@ class _HomePage extends State<HomePage> {
                                   child: Text(
                                     'Buy Tickets',
                                     style: TextStyle(
-                                      color: Colors.white, fontSize: 13
-                                    ),
+                                        color: Colors.white, fontSize: 13),
                                   ),
                                   color: Colors.red[800],
                                 ),
@@ -187,74 +185,37 @@ class _HomePage extends State<HomePage> {
                         aspectRatio: 16 / 9,
                         child: Container(
                           transform: Matrix4.translationValues(0.0, -4, 0.0),
-                          child: (sum > 0)
-                              ? GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => EventsDetailPage(
-                                          event:
-                                              int.parse(_notes[index].event1Id),
-                                          past: 0,
-                                          maxComp: int.parse(
-                                              _notes[index].event1MaxComp),
-                                          eventName: _notes[index].event1Name,
-                                          eventPicture:
-                                              _notes[index].event1Picture,
-                                          eventDescription:
-                                              _notes[index].event1Description,
-                                          eventDate: _notes[index].event1Date,
-                                          eventPlace: _notes[index].event1Place,
-                                          eventLink:
-                                              _notes[index].event1TicketLink,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    height: 220,
-                                    decoration: BoxDecoration(
-                                      image: new DecorationImage(
-                                          image: new NetworkImage(
-                                              _notes[index].event1Picture),
-                                          fit: BoxFit.fill),
-                                    ),
-                                  ),
-                                )
-                              : GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            VideosLiveDetailPage(
-                                          liveLink:
-                                              _notes[index].event1LiveLink,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: AspectRatio(
-                                    aspectRatio: 16 / 9,
-                                    child: Container(
-                                      child: Icon(
-                                        Icons.play_arrow,
-                                        color: Colors.grey.withOpacity(0.6),
-                                        size: 100,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        image: new DecorationImage(
-                                            image: new NetworkImage(
-                                                'https://img.youtube.com/vi/' +
-                                                    _notes[index]
-                                                        .event1LiveLink +
-                                                    '/hqdefault.jpg'),
-                                            fit: BoxFit.cover),
-                                      ),
-                                    ),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EventsDetailPage(
+                                    event: int.parse(_notes[index].event1Id),
+                                    past: 0,
+                                    maxComp:
+                                        int.parse(_notes[index].event1MaxComp),
+                                    eventName: _notes[index].event1Name,
+                                    eventPicture: _notes[index].event1Picture,
+                                    eventDescription:
+                                        _notes[index].event1Description,
+                                    eventDate: _notes[index].event1Date,
+                                    eventPlace: _notes[index].event1Place,
+                                    eventLink: _notes[index].event1TicketLink,
                                   ),
                                 ),
+                              );
+                            },
+                            child: Container(
+                              height: 220,
+                              decoration: BoxDecoration(
+                                image: new DecorationImage(
+                                    image: new NetworkImage(
+                                        _notes[index].event1Picture),
+                                    fit: BoxFit.fill),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                       Row(
