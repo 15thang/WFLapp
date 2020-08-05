@@ -57,6 +57,9 @@ if(isset($_SESSION['login_user']))
             <div id="videos">
                 <a href="APP_videos.php">Videos</a>
             </div>
+            <div id="athlete" href="APP_website2.php">
+                <a href="APP_advertentie.php">Advertenties</a>
+            </div>
             <div id="competition">
                 <a href="APP_mailer.php">E-Mail</a>
             </div>
