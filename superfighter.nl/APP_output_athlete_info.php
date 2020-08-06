@@ -40,6 +40,8 @@ while ($row = mysqli_fetch_assoc($result)) {
         'athlete_stars' => '',
         'athlete_last_title' => '',
         'title_id' => '',
+        'athlete_ad_image' => '',
+        'athlete_ad_link' => '',
     );
 
     if (!$row['title'] == "") {
@@ -118,9 +120,20 @@ for($i = 0; $i < count($arr); $i++) {
                         $athlete_stars = "";
                     }
 
+                    $adimg = "";
+                    $adlink = "";
+                    $query = "SELECT * FROM ads ORDER BY RAND() LIMIT 1";
+                    $result = mysqli_query($db, $query);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $adimg = $row['ad_image'];
+                        $adlink = $row['ad_link'];
+                    }
+
                     $replacements = array('athlete_stars' => $athlete_stars,
                         'athlete_star' => $athlete_yellowstar,
-                        'athlete_last_title' => "");
+                        'athlete_last_title' => "",
+                        'athlete_ad_image' => $adimg,
+                        'athlete_ad_link' => $adlink);
 
                     $array = array_replace($arr[$i], $replacements);
                     $noDuplicates[] = $i;
@@ -201,7 +214,9 @@ if ($title) {
         echo '"athlete_redcards": "'.$row['athlete_redcards'].'", ';
         echo '"athlete_star": "'.$row['athlete_star'].'", ';
         echo '"athlete_stars": "'.$row['athlete_stars'].'", ';
-        echo '"athlete_last_title": "'.$row['athlete_last_title'].'"';
+        echo '"athlete_last_title": "'.$row['athlete_last_title'].'", ';
+        echo '"athlete_ad_image": "", ';
+        echo '"athlete_ad_link": ""';
         echo ' }';
         $more = true;
     }
@@ -234,7 +249,9 @@ if ($title) {
             echo '"athlete_redcards": "'.$row['athlete_redcards'].'", ';
             echo '"athlete_star": "'.$row['athlete_star'].'", ';
             echo '"athlete_stars": "'.$row['athlete_stars'].'", ';
-            echo '"athlete_last_title": "'.$row['athlete_last_title'].'"';
+            echo '"athlete_last_title": "'.$row['athlete_last_title'].'", ';
+            echo '"athlete_ad_image": "", ';
+            echo '"athlete_ad_link": ""';
             echo ' }';
             $more = true;
         }

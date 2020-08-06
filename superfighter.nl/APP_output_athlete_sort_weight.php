@@ -65,9 +65,20 @@ for($i = 0; $i < count($arr); $i++) {
                     $athlete_stars = "";
                 }
 
+                $adimg = "";
+                $adlink = "";
+                $query = "SELECT * FROM ads ORDER BY RAND() LIMIT 1";
+                $result = mysqli_query($db, $query);
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $adimg = $row['ad_image'];
+                    $adlink = $row['ad_link'];
+                }
+
                 $replacements = array('athlete_stars' => $athlete_stars,
                     'athlete_star' => $athlete_yellowstar,
-                    'athlete_last_title' => $last_title);
+                    'athlete_last_title' => $last_title,
+                    'athlete_ad_image' => $adimg,
+                    'athlete_ad_link' => $adlink);
 
                 $array = array_replace($arr[$i], $replacements);
                 $noDuplicates[] = $i;
