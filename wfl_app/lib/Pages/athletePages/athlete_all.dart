@@ -259,7 +259,7 @@ class _All extends State<All> {
                                                 const EdgeInsets.only(top: 5.0),
                                             child: Text(
                                                 athleteWeightclass +
-                                                    '"  ' +
+                                                    'kg  ' +
                                                     athleteGrade,
                                                 style: TextStyle(fontSize: 16)),
                                           ),
@@ -506,7 +506,7 @@ class _All extends State<All> {
                                               const EdgeInsets.only(top: 5.0),
                                           child: Text(
                                               athleteWeightclass +
-                                                  '"  ' +
+                                                  'kg  ' +
                                                   athleteGrade,
                                               style: TextStyle(fontSize: 16)),
                                         ),

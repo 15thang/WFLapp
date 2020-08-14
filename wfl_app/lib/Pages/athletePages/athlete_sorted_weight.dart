@@ -263,7 +263,7 @@ class _W95p extends State<W95p> {
                                                 const EdgeInsets.only(top: 5.0),
                                             child: Text(
                                                 athleteWeightclass +
-                                                    '"  ' +
+                                                    'kg  ' +
                                                     athleteGrade,
                                                 style: TextStyle(fontSize: 16)),
                                           ),
@@ -509,7 +509,7 @@ class _W95p extends State<W95p> {
                                               const EdgeInsets.only(top: 5.0),
                                           child: Text(
                                               athleteWeightclass +
-                                                  '"  ' +
+                                                  'kg  ' +
                                                   athleteGrade,
                                               style: TextStyle(fontSize: 16)),
                                         ),
