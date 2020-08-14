@@ -148,21 +148,44 @@ class _HomePage extends State<HomePage> {
                               ),
                             ),
                             Expanded(
-                              flex: 6,
+                              flex: 5,
                               child: Container(
                                 margin:
                                     const EdgeInsets.only(left: 4, right: 4),
-                                child: RaisedButton(
-                                  onPressed: () {
+                                child: GestureDetector(
+                                  onTap: () {
                                     launchURL(_notes[index].event2TicketLink);
                                   },
-                                  child: Text(
-                                    'Buy Tickets',
-                                    style: TextStyle(
-                                      color: Colors.white, fontSize: 13
+                                  child: AspectRatio(
+                                    aspectRatio: 27 / 10,
+                                    child: Container(
+                                      height: 100,
+                                      decoration: new BoxDecoration(
+                                        color: Colors.redAccent[700],
+                                        borderRadius: new BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(),
+                                          ),
+                                          Text(
+                                            'Buy Tickets',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  color: Colors.red[800],
                                 ),
                               ),
                             ),
