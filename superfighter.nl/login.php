@@ -2,16 +2,14 @@
    //ob_start();
    session_start();
    
+   include 'connection.php';
    
+$username = $_POST['admin_name'];
+$password = $_POST['admin_password'];
    
-   $wachtwoord = $_POST['ww'];
-   $gebruiker = $_POST['gebruikersnaam'];
- 
-   include 'connectie2.php';
+    $vraag="SELECT * FROM admin WHERE admin_name = '".$username."' AND admin_password = '".$password."'";
    
-    $vraag="SELECT * FROM users WHERE username = '".$gebruiker."' AND password = '".$wachtwoord."'";
-   
-    $resultaat = $conn->query($vraag);  
+    $resultaat = $db->query($vraag);  
    
    
     $msg = '';
@@ -21,9 +19,9 @@
     $row = $resultaat->fetch_assoc();
     $id = $row['id'];
 
-    $_SESSION['gebruiker'] = $id;
+    $_SESSION['admin_name'] = $id;
     echo " Login successful! Returning to main page...";
-    header('Refresh: 2; URL=webshop.php');
+    header('Refresh: 2; URL=APP_menu.php');
 	}
 	else
 	{
@@ -31,4 +29,3 @@
     header('Refresh: 2; URL=login.html');
 	}
 ?>
-

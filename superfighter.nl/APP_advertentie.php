@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(isset($_SESSION['admin_name']))
+    { 
+?>
+
+<?php
 ob_start();
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 ?>
@@ -77,3 +83,8 @@ $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp')
     }
     ?>
 </div>
+<?php }
+    else {
+        echo 'Je moet inloggen';
+    }
+?>

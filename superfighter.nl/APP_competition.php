@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(isset($_SESSION['admin_name']))
+    { 
+?>
 <link rel="stylesheet" href="css/wflapp.css">
 <link rel="stylesheet" type="text/css" href="css/APP_CSS.css">
 
@@ -56,5 +61,11 @@ echo '</table> </div>';
     });
     });
 </script>
+
+<?php }
+    else {
+        echo 'Je moet inloggen';
+    }
+?>
 
 

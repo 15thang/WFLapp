@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(isset($_SESSION['admin_name']))
+    { 
+?>
+<?php
 ob_start();
 $db = mysqli_connect('localhost', 'jobenam437', 'a5i3v6jf', 'jobenam437_wflapp');
 ?>
@@ -31,7 +36,13 @@ while ($row = $results->fetch_assoc()) {
         <form id="form_edit_video" method="post" action="APP_edit_video.php?video_id='.$row['video_id'].'" style="float: right; margin-top: -30px;">
             <button type="submit" class="button" value="Edit" style="background-image: linear-gradient(to bottom, rgba(0, 163, 52,0) , rgba(173,255,47, 1) , rgba(0, 163, 52,0)">Edit</button>
         </form>
+        
         </div>';
+        
 }
-
 ?>
+<?php }
+    else {
+        echo 'Je moet inloggen';
+    }
+    ?>

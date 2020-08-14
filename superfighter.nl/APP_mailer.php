@@ -14,6 +14,13 @@ require 'vendor/autoload.php';
 
 const SECRET = "geheimpje";
 ?>
+
+<?php
+session_start();
+if(isset($_SESSION['admin_name']))
+    { 
+?>
+
 <link rel="stylesheet" type="text/css" href="css/wflapp.css">
 <link rel="stylesheet" type="text/css" href="css/APP_athlete_CSS.css">
 <link rel="stylesheet" type="text/css" href="css/APP_event_CSS.css">
@@ -618,4 +625,10 @@ if (isset($_POST['send_mail'])) {
         echo "<script type='text/javascript'>alert('No E-Mail adresses found.')</script>";
     }
 }
+?>
+
+<?php }
+    else {
+        echo 'Je moet inloggen';
+    }
 ?>
