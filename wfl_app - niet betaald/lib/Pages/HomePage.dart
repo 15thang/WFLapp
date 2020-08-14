@@ -371,7 +371,7 @@ class _HomePage extends State<HomePage> {
                 ),
                 contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
               ),
-              childCount: 1,
+              childCount: _notes.length - onlyOne,
             ),
           ),
           new SliverList(
@@ -400,7 +400,7 @@ class _HomePage extends State<HomePage> {
                 ),
                 contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
               ),
-              childCount: 1,
+              childCount: _notes.length - onlyOne,
             ),
           ),
           new SliverList(
@@ -513,7 +513,7 @@ class _HomePage extends State<HomePage> {
                 ),
                 contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
               ),
-              childCount: 1,
+              childCount: _notes.length - onlyOne,
             ),
           ),
           new SliverList(
@@ -550,7 +550,7 @@ class _HomePage extends State<HomePage> {
                   ],
                 ),
               ),
-              childCount: 1,
+              childCount: _notes.length - onlyOne,
             ),
           ),
         ],

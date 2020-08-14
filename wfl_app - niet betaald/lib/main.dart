@@ -90,7 +90,7 @@ class MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.event_note),
-              title: Text('Event\'s'),
+              title: Text('Events'),
               backgroundColor: Colors.black,
             ),
             BottomNavigationBarItem(
@@ -105,7 +105,7 @@ class MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.assignment),
-              title: Text('Competities'),
+              title: Text('Competition'),
               backgroundColor: Colors.black,
             ),
             BottomNavigationBarItem(
@@ -148,7 +148,7 @@ class MyAppState extends State<MyApp> {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Text(
-                              'Enter your email adress to receive news and discounts from WFL!')
+                              'Enter your email adress to receive WFL-news and discounts!')
                         ],
                       );
                     }
