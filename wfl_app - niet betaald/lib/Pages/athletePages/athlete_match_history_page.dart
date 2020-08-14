@@ -151,7 +151,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                               ),
                             ),
                             Expanded(
-                              flex: 10,
+                              flex: 15,
                               child: Row(
                                 children: <Widget>[
                                   Text(

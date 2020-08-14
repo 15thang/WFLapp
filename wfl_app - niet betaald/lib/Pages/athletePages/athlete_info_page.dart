@@ -207,7 +207,7 @@ class _AthletesInfoPage extends State<AthletesInfoPage> {
                                     style: TextStyle(color: Colors.white)),
                                 Text(_notes[index].athleteDayOfBirth,
                                     style: TextStyle(color: Colors.white)),
-                                Text(athleteWeightclass + '" ' + athleteGrade,
+                                Text(athleteWeightclass + 'kg ' + athleteGrade,
                                     style: TextStyle(color: Colors.white)),
                                 Container(
                                   margin: const EdgeInsets.only(top: 5.0),

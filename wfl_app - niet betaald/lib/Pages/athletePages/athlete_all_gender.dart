@@ -267,7 +267,7 @@ class _AllGender extends State<AllGender> {
                                                 const EdgeInsets.only(top: 5.0),
                                             child: Text(
                                                 athleteWeightclass +
-                                                    '"  ' +
+                                                    'kg  ' +
                                                     athleteGrade,
                                                 style: TextStyle(fontSize: 16)),
                                           ),
@@ -515,7 +515,7 @@ class _AllGender extends State<AllGender> {
                                               const EdgeInsets.only(top: 5.0),
                                           child: Text(
                                               athleteWeightclass +
-                                                  '"  ' +
+                                                  'kg  ' +
                                                   athleteGrade,
                                               style: TextStyle(fontSize: 16)),
                                         ),
