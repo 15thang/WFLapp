@@ -177,7 +177,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                 );
               },
               child: new Card(
-                color: Colors.grey[400],
+                color: Colors.white,
                 elevation: 10.0,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -280,7 +280,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                               children: <Widget>[
                                                 Text(athleteStar,
                                                     style: TextStyle(
-                                                      fontSize: 32,
+                                                      fontSize: 28,
                                                       color: Colors.yellow[500],
                                                       shadows: <Shadow>[
                                                         Shadow(
@@ -423,7 +423,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
               );
             },
             child: new Card(
-              color: Colors.grey[400],
+              color: Colors.white,
               elevation: 5,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

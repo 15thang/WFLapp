@@ -171,7 +171,7 @@ class _W95p extends State<W95p> {
                 );
               },
               child: new Card(
-                color: Colors.grey[400],
+                color: Colors.white,
                 elevation: 10.0,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -274,7 +274,7 @@ class _W95p extends State<W95p> {
                                               children: <Widget>[
                                                 Text(athleteStar,
                                                     style: TextStyle(
-                                                      fontSize: 32,
+                                                      fontSize: 28,
                                                       color: Colors.yellow[500],
                                                       shadows: <Shadow>[
                                                         Shadow(
@@ -417,7 +417,7 @@ class _W95p extends State<W95p> {
               );
             },
             child: new Card(
-              color: Colors.grey[400],
+              color: Colors.white,
               elevation: 5,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -167,7 +167,7 @@ class _All extends State<All> {
                 );
               },
               child: new Card(
-                color: Colors.grey[400],
+                color: Colors.white,
                 elevation: 10.0,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,7 +206,8 @@ class _All extends State<All> {
                                         _notes[index].athleteTitle,
                                         style: TextStyle(
                                             color: Colors.yellow,
-                                            backgroundColor: Colors.red[900], fontSize: 13.5),
+                                            backgroundColor: Colors.red[900],
+                                            fontSize: 13.5),
                                       ),
                                     ),
                                   ),
@@ -268,19 +269,20 @@ class _All extends State<All> {
                                                 const EdgeInsets.only(top: 0.0),
                                             child: Row(
                                               children: <Widget>[
-                                                Text(athleteStar,
-                                                    style: TextStyle(
-                                                      fontSize: 32,
-                                                      color: Colors.yellow[500],
-                                                      shadows: <Shadow>[
-                                                        Shadow(
-                                                            offset: Offset(
-                                                                0.0, 0.0),
-                                                            blurRadius: 20.0,
-                                                            color:
-                                                                Colors.black),
-                                                      ],
-                                                    )),
+                                                Text(
+                                                  athleteStar,
+                                                  style: TextStyle(
+                                                    fontSize: 28,
+                                                    color: Colors.yellow[500],
+                                                    shadows: <Shadow>[
+                                                      Shadow(
+                                                          offset:
+                                                              Offset(0.0, 0.0),
+                                                          blurRadius: 20.0,
+                                                          color: Colors.black),
+                                                    ],
+                                                  ),
+                                                ),
                                                 Container(
                                                   margin: const EdgeInsets.only(
                                                       top: 5.0),
@@ -413,7 +415,7 @@ class _All extends State<All> {
               );
             },
             child: new Card(
-              color: Colors.grey[400],
+              color: Colors.white,
               elevation: 5,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
