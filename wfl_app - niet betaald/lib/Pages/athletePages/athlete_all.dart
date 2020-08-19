@@ -167,7 +167,7 @@ class _All extends State<All> {
                 );
               },
               child: new Card(
-                color: Colors.grey[400],
+                color: Colors.white,
                 elevation: 10.0,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,7 +271,7 @@ class _All extends State<All> {
                                               children: <Widget>[
                                                 Text(athleteStar,
                                                     style: TextStyle(
-                                                      fontSize: 32,
+                                                      fontSize: 28,
                                                       color: Colors.yellow[500],
                                                       shadows: <Shadow>[
                                                         Shadow(
@@ -417,7 +417,7 @@ class _All extends State<All> {
                 );
               },
               child: new Card(
-                color: Colors.grey[400],
+                color: Colors.white,
                 elevation: 5,
                 child: Column(
                   children: <Widget>[
@@ -619,7 +619,7 @@ class _All extends State<All> {
                 );
               },
               child: new Card(
-                color: Colors.grey[400],
+                color: Colors.white,
                 elevation: 5,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
