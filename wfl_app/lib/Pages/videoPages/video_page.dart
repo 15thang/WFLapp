@@ -103,7 +103,7 @@ class _VideosState extends State<Videos> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => VideosDetailPage(
-                                  index: index,
+                                  link: _notes[index].videoLink,
                                 ),
                               ),
                             );

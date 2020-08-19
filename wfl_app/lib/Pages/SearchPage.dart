@@ -235,7 +235,7 @@ class _SearchPageState extends State<SearchPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => VideosDetailPage(
-                    index: index,
+                    link: _notesForDisplay[index].videoLink,
                   ),
                 ),
               );

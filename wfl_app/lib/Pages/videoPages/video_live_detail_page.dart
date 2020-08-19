@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideosLiveDetailPage extends StatefulWidget {
@@ -12,25 +11,8 @@ class VideosLiveDetailPage extends StatefulWidget {
   _VideosLiveDetailPageState createState() => _VideosLiveDetailPageState();
 }
 
-//Future is to launch URL buttons (like buy ticket)
-Future launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url, forceWebView: true, forceSafariVC: true);
-  } else {
-    print("Can't Launch");
-  }
-}
-
 class _VideosLiveDetailPageState extends State<VideosLiveDetailPage> {
   YoutubePlayerController _controller;
-
-  Future launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceWebView: true, forceSafariVC: true);
-    } else {
-      print("Can't Launch");
-    }
-  }
 
   @override
   void initState() {
@@ -60,7 +42,7 @@ class _VideosLiveDetailPageState extends State<VideosLiveDetailPage> {
             child: Icon(
               Icons.clear,
             ),
-            backgroundColor: Colors.black,
+            backgroundColor: Color.fromRGBO(0, 0, 0, 0.5),
             onPressed: () {
               Navigator.pop(context);
             },
