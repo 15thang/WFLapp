@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -24,7 +25,15 @@ class _VideosLiveDetailPageState extends State<VideosLiveDetailPage> {
         mute: false,
       ),
     );
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIOverlays(
+        [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    super.dispose();
   }
 
   @override
