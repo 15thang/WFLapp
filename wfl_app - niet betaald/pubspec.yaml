@@ -23,12 +23,18 @@ dependencies:
   webview_flutter: ^0.3.22+1
   tuple: ^1.0.3
   shared_preferences: ^0.5.8
+  flutter_launcher_icons: ^0.7.5
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   youtube_player_flutter: ^7.0.0+6
   url_launcher: ^3.0.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/wflappicon.jpg"
 
 dev_dependencies:
   flutter_test:
