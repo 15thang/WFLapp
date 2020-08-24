@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -9,6 +10,7 @@ import 'package:wfl_app/model/homepage.dart';
 import 'athletePages/athlete_detail_page.dart';
 import 'eventPages/event_detail_page.dart';
 import 'videoPages/video_live_detail_page.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -94,7 +96,16 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+  value: const SystemUiOverlayStyle(
+    // For Android.
+    // Use [light] for white status bar and [dark] for black status bar.
+    statusBarIconBrightness: Brightness.light,
+    // For iOS.
+    // Use [dark] for white status bar and [light] for black status bar.
+    statusBarBrightness: Brightness.dark,
+  ),
+  child: Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: <Widget>[
@@ -592,7 +603,7 @@ class _HomePage extends State<HomePage> {
             ),
           ),
         ],
-      ),
+      ),),
     );
   }
 }
