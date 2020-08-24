@@ -240,29 +240,26 @@ class _All extends State<All> {
                                     Text(_notes[index].athleteFullName,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 17)),
+                                            fontSize: 14)),
                                     Text(_notes[index].athleteNickname,
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic,
-                                            fontSize: 17)),
+                                            fontSize: 14)),
                                     Container(
-                                      margin: const EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(_notes[index].athleteNationality,
-                                              style: TextStyle(fontSize: 16)),
+                                              style: TextStyle(fontSize: 14)),
                                           Text(_notes[index].athleteDayOfBirth,
-                                              style: TextStyle(fontSize: 16)),
+                                              style: TextStyle(fontSize: 14)),
                                           Container(
-                                            margin:
-                                                const EdgeInsets.only(top: 5.0),
                                             child: Text(
                                                 athleteWeightclass +
                                                     'kg  ' +
                                                     athleteGrade,
-                                                style: TextStyle(fontSize: 16)),
+                                                style: TextStyle(fontSize: 14)),
                                           ),
                                           Container(
                                             margin:
@@ -272,8 +269,8 @@ class _All extends State<All> {
                                                 Text(
                                                   athleteStar,
                                                   style: TextStyle(
-                                                    fontSize: 28,
-                                                    color: Colors.yellow[500],
+                                                    fontSize: 16,
+                                                    color: Colors.yellow[600],
                                                     shadows: <Shadow>[
                                                       Shadow(
                                                           offset:
@@ -290,7 +287,7 @@ class _All extends State<All> {
                                                       _notes[index]
                                                           .athleteStars,
                                                       style: TextStyle(
-                                                          fontSize: 20)),
+                                                          fontSize: 14)),
                                                 ),
                                               ],
                                             ),
@@ -488,7 +485,7 @@ class _All extends State<All> {
                                   Text(_notes[index].athleteFullName,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 17)),
+                                          fontSize: 15)),
                                   Text(_notes[index].athleteNickname,
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic,
