@@ -103,7 +103,7 @@ class _EventPageState extends State<PastEvents> {
                     ),
                   ),
                   Container(
-                    height: 65,
+                    height: 70,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
@@ -119,40 +119,6 @@ class _EventPageState extends State<PastEvents> {
                                         TextStyle(fontWeight: FontWeight.bold)),
                                 Text(_notes[index].eventDate),
                                 Text(_notes[index].eventPlace),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            margin: const EdgeInsets.only(left: 6.0),
-                            padding: const EdgeInsets.all(5),
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 4, right: 4),
-                                    child: RaisedButton(
-                                      onPressed: () {
-                                        launchURL(
-                                            _notes[index].eventTicketLink);
-                                      },
-                                      child: Text(
-                                        'Buy Tickets',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      color: Colors.lightBlue[400],
-                                    ),
-                                  ),
-                                ),
                                 SizedBox(
                                   height: 10,
                                 ),
