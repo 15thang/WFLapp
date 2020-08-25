@@ -216,7 +216,8 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                         _notes[index].athleteTitle,
                                         style: TextStyle(
                                             color: Colors.yellow,
-                                            backgroundColor: Colors.red[900], fontSize: 13.5),
+                                            backgroundColor: Colors.red[900],
+                                            fontSize: 13.5),
                                       ),
                                     ),
                                   ),
@@ -249,48 +250,46 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                     Text(_notes[index].athleteFullName,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 17)),
+                                            fontSize: 14)),
                                     Text(_notes[index].athleteNickname,
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic,
-                                            fontSize: 17)),
+                                            fontSize: 14)),
                                     Container(
-                                      margin: const EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(_notes[index].athleteNationality,
-                                              style: TextStyle(fontSize: 16)),
+                                              style: TextStyle(fontSize: 14)),
                                           Text(_notes[index].athleteDayOfBirth,
-                                              style: TextStyle(fontSize: 16)),
+                                              style: TextStyle(fontSize: 14)),
                                           Container(
-                                            margin:
-                                                const EdgeInsets.only(top: 5.0),
                                             child: Text(
                                                 athleteWeightclass +
                                                     'kg  ' +
                                                     athleteGrade,
-                                                style: TextStyle(fontSize: 16)),
+                                                style: TextStyle(fontSize: 14)),
                                           ),
                                           Container(
                                             margin:
                                                 const EdgeInsets.only(top: 0.0),
                                             child: Row(
                                               children: <Widget>[
-                                                Text(athleteStar,
-                                                    style: TextStyle(
-                                                      fontSize: 28,
-                                                      color: Colors.yellow[500],
-                                                      shadows: <Shadow>[
-                                                        Shadow(
-                                                            offset: Offset(
-                                                                0.0, 0.0),
-                                                            blurRadius: 20.0,
-                                                            color:
-                                                                Colors.black),
-                                                      ],
-                                                    )),
+                                                Text(
+                                                  athleteStar,
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.yellow[600],
+                                                    shadows: <Shadow>[
+                                                      Shadow(
+                                                          offset:
+                                                              Offset(0.0, 0.0),
+                                                          blurRadius: 20.0,
+                                                          color: Colors.black),
+                                                    ],
+                                                  ),
+                                                ),
                                                 Container(
                                                   margin: const EdgeInsets.only(
                                                       top: 5.0),
@@ -298,7 +297,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                                       _notes[index]
                                                           .athleteStars,
                                                       style: TextStyle(
-                                                          fontSize: 20)),
+                                                          fontSize: 14)),
                                                 ),
                                               ],
                                             ),
@@ -462,7 +461,8 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                       _notes[index].athleteTitle,
                                       style: TextStyle(
                                           color: Colors.yellow,
-                                          backgroundColor: Colors.red[900], fontSize: 13.5),
+                                          backgroundColor: Colors.red[900],
+                                          fontSize: 13.5),
                                     ),
                                   ),
                                 ),
@@ -495,7 +495,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                   Text(_notes[index].athleteFullName,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 17)),
+                                          fontSize: 15)),
                                   Text(_notes[index].athleteNickname,
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic,
@@ -524,25 +524,28 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                               const EdgeInsets.only(top: 0.0),
                                           child: Row(
                                             children: <Widget>[
-                                              Text(athleteStar,
-                                                  style: TextStyle(
-                                                    fontSize: 32,
-                                                    color: Colors.yellow[500],
-                                                    shadows: <Shadow>[
-                                                      Shadow(
-                                                          offset:
-                                                              Offset(0.0, 0.0),
-                                                          blurRadius: 20.0,
-                                                          color: Colors.black),
-                                                    ],
-                                                  )),
+                                              Text(
+                                                athleteStar,
+                                                style: TextStyle(
+                                                  fontSize: 32,
+                                                  color: Colors.yellow[500],
+                                                  shadows: <Shadow>[
+                                                    Shadow(
+                                                        offset:
+                                                            Offset(0.0, 0.0),
+                                                        blurRadius: 20.0,
+                                                        color: Colors.black),
+                                                  ],
+                                                ),
+                                              ),
                                               Container(
                                                 margin: const EdgeInsets.only(
                                                     top: 5.0),
                                                 child: Text(
-                                                    _notes[index].athleteStars,
-                                                    style: TextStyle(
-                                                        fontSize: 20)),
+                                                  _notes[index].athleteStars,
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                ),
                                               ),
                                             ],
                                           ),

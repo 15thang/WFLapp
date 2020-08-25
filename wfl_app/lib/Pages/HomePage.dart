@@ -97,82 +97,81 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-  value: const SystemUiOverlayStyle(
-    // For Android.
-    // Use [light] for white status bar and [dark] for black status bar.
-    statusBarIconBrightness: Brightness.light,
-    // For iOS.
-    // Use [dark] for white status bar and [light] for black status bar.
-    statusBarBrightness: Brightness.dark,
-  ),
-  child: Scaffold(
-      backgroundColor: Colors.white,
-      body: CustomScrollView(
-        slivers: <Widget>[
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-              (context, index) => new ListTile(
-                title: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        color: Colors.black,
-                        transform: Matrix4.translationValues(0.0, -4, 0.0),
-                        padding: EdgeInsets.only(
-                            left: 8, right: 12, top: 25, bottom: 12),
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(
-                              flex: 11,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
-                                      Text(
-                                        'Next event: ',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 15),
-                                      ),
-                                      Text(
-                                        _notes[index].event1Name,
-                                        style: TextStyle(
-                                            color: Colors.red[900],
-                                            fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    'COUNTDOWN ' +
-                                        days.toString().padLeft(2, '0') +
-                                        ':' +
-                                        hrs.toString().padLeft(2, '0') +
-                                        ':' +
-                                        mins.toString().padLeft(2, '0') +
-                                        ':' +
-                                        sec.toString().padLeft(2, '0'),
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 17),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
+      value: const SystemUiOverlayStyle(
+        // For Android.
+        // Use [light] for white status bar and [dark] for black status bar.
+        statusBarIconBrightness: Brightness.light,
+        // For iOS.
+        // Use [dark] for white status bar and [light] for black status bar.
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: CustomScrollView(
+          slivers: <Widget>[
+            new SliverList(
+              delegate: new SliverChildBuilderDelegate(
+                (context, index) => new ListTile(
+                  title: Container(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          color: Colors.black,
+                          transform: Matrix4.translationValues(0.0, -4, 0.0),
+                          padding: EdgeInsets.only(
+                              left: 8, right: 12, top: 25, bottom: 12),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 11,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          'Next event: ',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15),
+                                        ),
+                                        Text(
+                                          _notes[index].event1Name,
+                                          style: TextStyle(
+                                              color: Colors.red[900],
+                                              fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      'COUNTDOWN ' +
+                                          days.toString().padLeft(2, '0') +
+                                          ':' +
+                                          hrs.toString().padLeft(2, '0') +
+                                          ':' +
+                                          mins.toString().padLeft(2, '0') +
+                                          ':' +
+                                          sec.toString().padLeft(2, '0'),
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 17),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 5,
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.only(left: 4, right: 4),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    launchURL(_notes[index].event2TicketLink);
-                                  },
-                                  child: AspectRatio(
-                                    aspectRatio: 27 / 10,
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.only(left: 4, right: 4),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      launchURL(_notes[index].event2TicketLink);
+                                    },
                                     child: Container(
-                                      height: 100,
+                                      height: 43,
                                       decoration: new BoxDecoration(
-                                        color: Colors.redAccent[700],
+                                        color: Colors.red[900],
                                         borderRadius: new BorderRadius.all(
                                           Radius.circular(5),
                                         ),
@@ -186,7 +185,7 @@ class _HomePage extends State<HomePage> {
                                           Text(
                                             'Buy Tickets',
                                             style: TextStyle(
-                                                color: Colors.white,
+                                                color: Colors.white, fontWeight: FontWeight.bold,
                                                 fontSize: 13),
                                           ),
                                           Expanded(
@@ -199,411 +198,415 @@ class _HomePage extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SearchPage(),
-                                  ),
-                                );
-                              },
-                              child: Icon(
-                                Icons.search,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: Container(
-                          transform: Matrix4.translationValues(0.0, -4, 0.0),
-                          child: (sum > 0)
-                              ? GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => EventsDetailPage(
-                                          event:
-                                              int.parse(_notes[index].event1Id),
-                                          past: 0,
-                                          maxComp: int.parse(
-                                              _notes[index].event1MaxComp),
-                                          eventName: _notes[index].event1Name,
-                                          eventPicture:
-                                              _notes[index].event1Picture,
-                                          eventDescription:
-                                              _notes[index].event1Description,
-                                          eventDate: _notes[index].event1Date,
-                                          eventPlace: _notes[index].event1Place,
-                                          eventLink:
-                                              _notes[index].event1TicketLink,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    height: 220,
-                                    decoration: BoxDecoration(
-                                      image: new DecorationImage(
-                                          image: new NetworkImage(
-                                              _notes[index].event1Picture),
-                                          fit: BoxFit.fill),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SearchPage(),
                                     ),
-                                  ),
-                                )
-                              : GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            VideosLiveDetailPage(
-                                          liveLink:
-                                              _notes[index].event1LiveLink,
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.search,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: Container(
+                            transform: Matrix4.translationValues(0.0, -4, 0.0),
+                            child: (sum > 0)
+                                ? GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              EventsDetailPage(
+                                            event: int.parse(
+                                                _notes[index].event1Id),
+                                            past: 0,
+                                            maxComp: int.parse(
+                                                _notes[index].event1MaxComp),
+                                            eventName: _notes[index].event1Name,
+                                            eventPicture:
+                                                _notes[index].event1Picture,
+                                            eventDescription:
+                                                _notes[index].event1Description,
+                                            eventDate: _notes[index].event1Date,
+                                            eventPlace:
+                                                _notes[index].event1Place,
+                                            eventLink:
+                                                _notes[index].event1TicketLink,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                  child: AspectRatio(
-                                    aspectRatio: 16 / 9,
+                                      );
+                                    },
                                     child: Container(
-                                      child: Icon(
-                                        Icons.play_arrow,
-                                        color: Colors.grey.withOpacity(0.6),
-                                        size: 100,
-                                      ),
+                                      height: 220,
                                       decoration: BoxDecoration(
                                         image: new DecorationImage(
                                             image: new NetworkImage(
-                                                'https://img.youtube.com/vi/' +
-                                                    _notes[index]
-                                                        .event1LiveLink +
-                                                    '/hqdefault.jpg'),
-                                            fit: BoxFit.cover),
+                                                _notes[index].event1Picture),
+                                            fit: BoxFit.fill),
+                                      ),
+                                    ),
+                                  )
+                                : GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              VideosLiveDetailPage(
+                                            liveLink:
+                                                _notes[index].event1LiveLink,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: AspectRatio(
+                                      aspectRatio: 16 / 9,
+                                      child: Container(
+                                        child: Icon(
+                                          Icons.play_arrow,
+                                          color: Colors.grey.withOpacity(0.6),
+                                          size: 100,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          image: new DecorationImage(
+                                              image: new NetworkImage(
+                                                  'https://img.youtube.com/vi/' +
+                                                      _notes[index]
+                                                          .event1LiveLink +
+                                                      '/hqdefault.jpg'),
+                                              fit: BoxFit.cover),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
+                          ),
                         ),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 5,
-                            child: Container(
-                              height: 3,
-                              color: Colors.redAccent[700],
-                              margin: EdgeInsets.only(left: 8),
-                            ),
-                          ),
-                          Container(
-                            height: 55,
-                            width: 170,
-                            decoration: BoxDecoration(
-                              image: new DecorationImage(
-                                  image: new NetworkImage(
-                                      'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
-                                  fit: BoxFit.fill),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 5,
-                            child: Container(
-                              height: 3,
-                              color: Colors.blue[900],
-                              margin: EdgeInsets.only(right: 8),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        child: Column(
+                        Row(
                           children: <Widget>[
-                            Container(
-                              width: 10000,
-                              child: Text(
-                                'Featured athletes: ',
-                                textAlign: TextAlign.left,
+                            Expanded(
+                              flex: 5,
+                              child: Container(
+                                height: 3,
+                                color: Colors.redAccent[700],
+                                margin: EdgeInsets.only(left: 8),
                               ),
                             ),
-                            Divider(color: Colors.black)
+                            Container(
+                              height: 55,
+                              width: 170,
+                              decoration: BoxDecoration(
+                                image: new DecorationImage(
+                                    image: new NetworkImage(
+                                        'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
+                                    fit: BoxFit.fill),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 5,
+                              child: Container(
+                                height: 3,
+                                color: Colors.blue[900],
+                                margin: EdgeInsets.only(right: 8),
+                              ),
+                            ),
                           ],
                         ),
-                        margin: EdgeInsets.only(left: 8, right: 8),
-                      ),
-                    ],
-                  ),
-                ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
-              ),
-              childCount: _notes.length - onlyOne,
-            ),
-          ),
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-              (context, index) => new ListTile(
-                title: new Card(
-                  child: Container(
-                    height: 180,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _notes.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AthletesDetailPage(
-                                  athleteId: int.parse(_notes[index].athleteId),
-                                  athleteFullName:
-                                      _notes[index].athleteFullName,
-                                  athleteWins:
-                                      int.parse(_notes[index].athleteWins),
-                                  athleteLosses:
-                                      int.parse(_notes[index].athleteLosses),
-                                  athleteDraws:
-                                      int.parse(_notes[index].athleteDraws),
-                                  athleteYellowcards:
-                                      int.parse(_notes[index].totalYellowcards),
-                                  athleteRedcards:
-                                      int.parse(_notes[index].totalRedcards),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                width: 10000,
+                                child: Text(
+                                  'Featured athletes: ',
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
-                            );
-                          },
-                          child: Container(
-                            width: 120,
-                            height: 120,
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  height: 100,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    image: new DecorationImage(
-                                        image: new NetworkImage(
-                                            _notes[index].athletePicture),
-                                        fit: BoxFit.fill),
+                              Divider(color: Colors.black)
+                            ],
+                          ),
+                          margin: EdgeInsets.only(left: 8, right: 8),
+                        ),
+                      ],
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                ),
+                childCount: _notes.length - onlyOne,
+              ),
+            ),
+            new SliverList(
+              delegate: new SliverChildBuilderDelegate(
+                (context, index) => new ListTile(
+                  title: new Card(
+                    child: Container(
+                      height: 180,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _notes.length,
+                        itemBuilder: (BuildContext ctxt, int index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AthletesDetailPage(
+                                    athleteId:
+                                        int.parse(_notes[index].athleteId),
+                                    athleteFullName:
+                                        _notes[index].athleteFullName,
+                                    athleteWins:
+                                        int.parse(_notes[index].athleteWins),
+                                    athleteLosses:
+                                        int.parse(_notes[index].athleteLosses),
+                                    athleteDraws:
+                                        int.parse(_notes[index].athleteDraws),
+                                    athleteYellowcards: int.parse(
+                                        _notes[index].totalYellowcards),
+                                    athleteRedcards:
+                                        int.parse(_notes[index].totalRedcards),
                                   ),
                                 ),
-                                Text(_notes[index].athleteFullName),
-                                Text(_notes[index].athleteNickname),
-                              ],
-                            ),
-                            margin: EdgeInsets.only(
-                                left: 5, right: 10, top: 3, bottom: 8),
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.3),
-                                  spreadRadius: 5,
-                                  blurRadius: 2,
-                                  offset: Offset(
-                                      0, 3), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    margin: EdgeInsets.only(left: 8, right: 8),
-                  ),
-                ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
-              ),
-              childCount: 1,
-            ),
-          ),
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-              (context, index) => new ListTile(
-                title: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              width: 10000,
-                              child: Text(
-                                'Following events: ',
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                            Divider(color: Colors.black)
-                          ],
-                        ),
-                        margin: EdgeInsets.only(left: 8, right: 8),
-                      ),
-                    ],
-                  ),
-                ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
-              ),
-              childCount: 1,
-            ),
-          ),
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-              (context, index) => new ListTile(
-                title: new Card(
-                  child: AspectRatio(
-                    aspectRatio: 12 / 9,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _notes.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EventsDetailPage(
-                                  event: int.parse(_notes[index].event2Id),
-                                  past: 0,
-                                  maxComp:
-                                      int.parse(_notes[index].event2MaxComp),
-                                  eventName: _notes[index].event2Name,
-                                  eventPicture: _notes[index].event2Picture,
-                                  eventDescription:
-                                      _notes[index].event2Description,
-                                  eventDate: _notes[index].event2Date,
-                                  eventPlace: _notes[index].event2Place,
-                                  eventLink: _notes[index].event2TicketLink,
-                                ),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: Column(
-                              children: <Widget>[
-                                AspectRatio(
-                                  aspectRatio: 16 / 9,
-                                  child: Container(
+                              );
+                            },
+                            child: Container(
+                              width: 120,
+                              height: 120,
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    height: 100,
+                                    width: 100,
                                     decoration: BoxDecoration(
                                       image: new DecorationImage(
                                           image: new NetworkImage(
-                                              _notes[index].event2Picture),
+                                              _notes[index].athletePicture),
                                           fit: BoxFit.fill),
                                     ),
-                                    margin: EdgeInsets.only(left: 8, right: 8),
                                   ),
-                                ),
-                                Container(
-                                  color: Colors.blueGrey[100],
-                                  margin: EdgeInsets.only(left: 8, right: 8),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Expanded(
-                                        flex: 5,
-                                        child: Container(
-                                          padding: const EdgeInsets.only(
-                                              top: 7, left: 10),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(_notes[index].event2Name,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold)),
-                                              Text(_notes[index].event2Date),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 3,
-                                        child: Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 4, right: 4),
-                                          child: RaisedButton(
-                                            onPressed: () {
-                                              launchURL(_notes[index]
-                                                  .event2TicketLink);
-                                            },
-                                            child: Text(
-                                              'Buy Tickets',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            color: Colors.lightBlue[400],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                  Text(_notes[index].athleteFullName),
+                                  Text(_notes[index].athleteNickname),
+                                ],
+                              ),
+                              margin: EdgeInsets.only(
+                                  left: 5, right: 10, top: 3, bottom: 8),
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    spreadRadius: 5,
+                                    blurRadius: 2,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                            margin: EdgeInsets.only(right: 10),
-                            padding: EdgeInsets.only(right: 8),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
+                      margin: EdgeInsets.only(left: 8, right: 8),
                     ),
                   ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                childCount: 1,
               ),
-              childCount: 1,
             ),
-          ),
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
-              (context, index) => new ListTile(
-                title: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 5,
-                      child: Container(
-                        height: 3,
-                        color: Colors.redAccent[700],
-                        margin: EdgeInsets.only(left: 8),
-                      ),
+            new SliverList(
+              delegate: new SliverChildBuilderDelegate(
+                (context, index) => new ListTile(
+                  title: Container(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                width: 10000,
+                                child: Text(
+                                  'Following events: ',
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                              Divider(color: Colors.black)
+                            ],
+                          ),
+                          margin: EdgeInsets.only(left: 8, right: 8),
+                        ),
+                      ],
                     ),
-                    Container(
-                      height: 55,
-                      width: 170,
-                      decoration: BoxDecoration(
-                        image: new DecorationImage(
-                            image: new NetworkImage(
-                                'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
-                            fit: BoxFit.fill),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 5,
-                      child: Container(
-                        height: 3,
-                        color: Colors.blue[900],
-                        margin: EdgeInsets.only(right: 8),
-                      ),
-                    ),
-                  ],
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
                 ),
+                childCount: 1,
               ),
-              childCount: 1,
             ),
-          ),
-        ],
-      ),),
+            new SliverList(
+              delegate: new SliverChildBuilderDelegate(
+                (context, index) => new ListTile(
+                  title: new Card(
+                    child: AspectRatio(
+                      aspectRatio: 12 / 9,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _notes.length,
+                        itemBuilder: (BuildContext ctxt, int index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EventsDetailPage(
+                                    event: int.parse(_notes[index].event2Id),
+                                    past: 0,
+                                    maxComp:
+                                        int.parse(_notes[index].event2MaxComp),
+                                    eventName: _notes[index].event2Name,
+                                    eventPicture: _notes[index].event2Picture,
+                                    eventDescription:
+                                        _notes[index].event2Description,
+                                    eventDate: _notes[index].event2Date,
+                                    eventPlace: _notes[index].event2Place,
+                                    eventLink: _notes[index].event2TicketLink,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                children: <Widget>[
+                                  AspectRatio(
+                                    aspectRatio: 16 / 9,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        image: new DecorationImage(
+                                            image: new NetworkImage(
+                                                _notes[index].event2Picture),
+                                            fit: BoxFit.fill),
+                                      ),
+                                      margin:
+                                          EdgeInsets.only(left: 8, right: 8),
+                                    ),
+                                  ),
+                                  Container(
+                                    color: Colors.blueGrey[100],
+                                    margin: EdgeInsets.only(left: 8, right: 8),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        Expanded(
+                                          flex: 5,
+                                          child: Container(
+                                            padding: const EdgeInsets.only(
+                                                top: 7, left: 10),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(_notes[index].event2Name,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                                Text(_notes[index].event2Date),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 3,
+                                          child: Container(
+                                            margin: const EdgeInsets.only(
+                                                left: 4, right: 4),
+                                            child: RaisedButton(
+                                              onPressed: () {
+                                                launchURL(_notes[index]
+                                                    .event2TicketLink);
+                                              },
+                                              child: Text(
+                                                'Buy Tickets',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              color: Colors.lightBlue[400],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              margin: EdgeInsets.only(right: 10),
+                              padding: EdgeInsets.only(right: 8),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                ),
+                childCount: 1,
+              ),
+            ),
+            new SliverList(
+              delegate: new SliverChildBuilderDelegate(
+                (context, index) => new ListTile(
+                  title: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 5,
+                        child: Container(
+                          height: 3,
+                          color: Colors.redAccent[700],
+                          margin: EdgeInsets.only(left: 8),
+                        ),
+                      ),
+                      Container(
+                        height: 55,
+                        width: 170,
+                        decoration: BoxDecoration(
+                          image: new DecorationImage(
+                              image: new NetworkImage(
+                                  'https://wfltickets.com/wp-content/uploads/2018/08/world-fighting-league-logo.png'),
+                              fit: BoxFit.fill),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Container(
+                          height: 3,
+                          color: Colors.blue[900],
+                          margin: EdgeInsets.only(right: 8),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                childCount: 1,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
