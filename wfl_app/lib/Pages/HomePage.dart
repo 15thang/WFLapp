@@ -153,7 +153,7 @@ class _HomePage extends State<HomePage> {
                                           ':' +
                                           sec.toString().padLeft(2, '0'),
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 17),
+                                          color: Colors.white, fontSize: 16),
                                       textAlign: TextAlign.center,
                                     ),
                                   ],
