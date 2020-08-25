@@ -107,7 +107,7 @@ class _HomePage extends State<HomePage> {
                         color: Colors.black,
                         transform: Matrix4.translationValues(0.0, -4, 0.0),
                         padding: EdgeInsets.only(
-                            left: 8, right: 12, top: 25, bottom: 12),
+                            left: 8, right: 12, top: 33, bottom: 12),
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -140,7 +140,7 @@ class _HomePage extends State<HomePage> {
                                         ':' +
                                         sec.toString().padLeft(2, '0'),
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 17),
+                                        color: Colors.white, fontSize: 16),
                                     textAlign: TextAlign.center,
                                   ),
                                 ],
