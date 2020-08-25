@@ -10,7 +10,6 @@ import 'package:wfl_app/model/homepage.dart';
 import 'athletePages/athlete_detail_page.dart';
 import 'eventPages/event_detail_page.dart';
 import 'videoPages/video_live_detail_page.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -119,7 +118,7 @@ class _HomePage extends State<HomePage> {
                           color: Colors.black,
                           transform: Matrix4.translationValues(0.0, -4, 0.0),
                           padding: EdgeInsets.only(
-                              left: 8, right: 12, top: 25, bottom: 12),
+                              left: 8, right: 12, top: 33, bottom: 12),
                           child: Row(
                             children: <Widget>[
                               Expanded(
