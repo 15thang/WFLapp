@@ -250,11 +250,11 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                     Text(_notes[index].athleteFullName,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 17)),
+                                            fontSize: 14)),
                                     Text(_notes[index].athleteNickname,
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic,
-                                            fontSize: 17)),
+                                            fontSize: 14)),
                                     Container(
                                       margin: const EdgeInsets.only(top: 5.0),
                                       child: Column(
@@ -262,9 +262,9 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(_notes[index].athleteNationality,
-                                              style: TextStyle(fontSize: 16)),
+                                              style: TextStyle(fontSize: 14)),
                                           Text(_notes[index].athleteDayOfBirth,
-                                              style: TextStyle(fontSize: 16)),
+                                              style: TextStyle(fontSize: 14)),
                                           Container(
                                             margin:
                                                 const EdgeInsets.only(top: 5.0),
@@ -272,7 +272,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                                 athleteWeightclass +
                                                     'kg  ' +
                                                     athleteGrade,
-                                                style: TextStyle(fontSize: 16)),
+                                                style: TextStyle(fontSize: 14)),
                                           ),
                                           Container(
                                             margin:
@@ -281,7 +281,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                               children: <Widget>[
                                                 Text(athleteStar,
                                                     style: TextStyle(
-                                                      fontSize: 28,
+                                                      fontSize: 16,
                                                       color: Colors.yellow[500],
                                                       shadows: <Shadow>[
                                                         Shadow(
@@ -299,7 +299,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                                       _notes[index]
                                                           .athleteStars,
                                                       style: TextStyle(
-                                                          fontSize: 20)),
+                                                          fontSize: 14)),
                                                 ),
                                               ],
                                             ),
@@ -505,7 +505,7 @@ class _AthleteWeightGender extends State<AthleteWeightGender> {
                                         Text(_notes[index].athleteFullName,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 17)),
+                                                fontSize: 15)),
                                         Text(_notes[index].athleteNickname,
                                             style: TextStyle(
                                                 fontStyle: FontStyle.italic,

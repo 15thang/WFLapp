@@ -103,7 +103,7 @@ class _EventPageState extends State<PastEvents> {
                     ),
                   ),
                   Container(
-                    height: 65,
+                    height: 70,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[

@@ -244,11 +244,11 @@ class _W95p extends State<W95p> {
                                     Text(_notes[index].athleteFullName,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 17)),
+                                            fontSize: 14)),
                                     Text(_notes[index].athleteNickname,
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic,
-                                            fontSize: 17)),
+                                            fontSize: 14)),
                                     Container(
                                       margin: const EdgeInsets.only(top: 5.0),
                                       child: Column(
@@ -256,9 +256,9 @@ class _W95p extends State<W95p> {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(_notes[index].athleteNationality,
-                                              style: TextStyle(fontSize: 16)),
+                                              style: TextStyle(fontSize: 14)),
                                           Text(_notes[index].athleteDayOfBirth,
-                                              style: TextStyle(fontSize: 16)),
+                                              style: TextStyle(fontSize: 14)),
                                           Container(
                                             margin:
                                                 const EdgeInsets.only(top: 5.0),
@@ -266,7 +266,7 @@ class _W95p extends State<W95p> {
                                                 athleteWeightclass +
                                                     'kg  ' +
                                                     athleteGrade,
-                                                style: TextStyle(fontSize: 16)),
+                                                style: TextStyle(fontSize: 14)),
                                           ),
                                           Container(
                                             margin:
@@ -275,7 +275,7 @@ class _W95p extends State<W95p> {
                                               children: <Widget>[
                                                 Text(athleteStar,
                                                     style: TextStyle(
-                                                      fontSize: 28,
+                                                      fontSize: 16,
                                                       color: Colors.yellow[500],
                                                       shadows: <Shadow>[
                                                         Shadow(
@@ -293,7 +293,7 @@ class _W95p extends State<W95p> {
                                                       _notes[index]
                                                           .athleteStars,
                                                       style: TextStyle(
-                                                          fontSize: 20)),
+                                                          fontSize: 14)),
                                                 ),
                                               ],
                                             ),
@@ -499,7 +499,7 @@ class _W95p extends State<W95p> {
                                         Text(_notes[index].athleteFullName,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 17)),
+                                                fontSize: 15)),
                                         Text(_notes[index].athleteNickname,
                                             style: TextStyle(
                                                 fontStyle: FontStyle.italic,

@@ -168,7 +168,7 @@ class _HomePage extends State<HomePage> {
                                       launchURL(_notes[index].event2TicketLink);
                                     },
                                     child: Container(
-                                      height: 43,
+                                      height: 40,
                                       decoration: new BoxDecoration(
                                         color: Colors.red[900],
                                         borderRadius: new BorderRadius.all(

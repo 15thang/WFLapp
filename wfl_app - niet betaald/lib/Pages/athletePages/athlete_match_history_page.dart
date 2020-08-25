@@ -86,7 +86,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                 Row(
                   children: <Widget>[
                     Expanded(
-                      flex: 3,
+                      flex: 6,
                       child: Container(
                         margin: const EdgeInsets.only(left: 3.0, bottom: 5.0),
                         padding: const EdgeInsets.only(left: 5.0),
@@ -114,7 +114,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
@@ -131,7 +131,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 3,
+                      flex: 6,
                       child: Container(
                         margin: const EdgeInsets.only(left: 3.0, bottom: 5.0),
                         padding: const EdgeInsets.only(left: 5.0),
@@ -159,7 +159,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
@@ -176,7 +176,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 2,
+                      flex: 4,
                       child: Container(
                         margin: const EdgeInsets.only(
                             left: 3.0, bottom: 5.0, right: 3.0),
@@ -209,7 +209,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                                     height: 10,
                                     width: 10,
                                     color: Colors.yellow,
-                                    margin: const EdgeInsets.only(right: 15.0),
+                                    margin: const EdgeInsets.only(right: 10.0),
                                   ),
                                   Text(
                                     '${widget.athleteRedcards} ',
@@ -239,7 +239,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                 Row(
                   children: <Widget>[
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Container(
                         margin: const EdgeInsets.only(left: 3.0),
                         padding: const EdgeInsets.only(left: 5.0),
@@ -275,7 +275,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 3,
+                      flex: 4,
                       child: Container(
                         height: 20,
                         color: Colors.grey[900],
@@ -289,7 +289,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                       ),
                     ),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Container(
                         margin: const EdgeInsets.only(right: 3.0),
                         padding: const EdgeInsets.only(right: 5.0),
@@ -325,7 +325,7 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        flex: 2,
+                        flex: 3,
                         child: Text(
                           ' ' + _notes[index].matchDate,
                           style: TextStyle(color: Colors.grey[900]),
@@ -339,14 +339,14 @@ class _MatchHistoryPageState extends State<MatchHistoryPage> {
                         ),
                       ),
                       Expanded(
-                        flex: 3,
+                        flex: 4,
                         child: Text(
                           _notes[index].matchOpponent,
                           style: TextStyle(color: Colors.grey[900]),
                         ),
                       ),
                       Expanded(
-                        flex: 2,
+                        flex: 3,
                         child: Text(
                           _notes[index].matchMethod,
                           style: TextStyle(color: Colors.grey[900]),
