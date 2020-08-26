@@ -236,7 +236,7 @@ class _EventPageState extends State<EventsDetailPagePast> {
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(10),
-                                  height: 90,
+                                  height: 110,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -309,7 +309,7 @@ class _EventPageState extends State<EventsDetailPagePast> {
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(10),
-                                  height: 90,
+                                  height: 110,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
